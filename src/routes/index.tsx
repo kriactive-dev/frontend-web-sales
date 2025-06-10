@@ -11,7 +11,8 @@ import { SimpleLayoutType } from 'config';
 import SimpleLayout from 'layout/Simple';
 
 // render - landing page
-const PagesLanding = Loadable(lazy(() => import('pages/landing')));
+// const PagesLanding = Loadable(lazy(() => import('pages/landing')));
+const PagesLanding = Loadable(lazy(() => import('pages/inital')));
 
 // ==============================|| ROUTES RENDER ||============================== //
 
