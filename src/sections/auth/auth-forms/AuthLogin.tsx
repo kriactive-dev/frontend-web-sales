@@ -85,7 +85,7 @@ export default function AuthLogin({ forgot }: { forgot?: string }) {
             <Grid container spacing={3}>
               <Grid size={12}>
                 <Stack sx={{ gap: 1 }}>
-                  <InputLabel htmlFor="email-login">Email Address</InputLabel>
+                  <InputLabel htmlFor="email-login">Email</InputLabel>
                   <OutlinedInput
                     id="email-login"
                     type="email"
@@ -106,7 +106,7 @@ export default function AuthLogin({ forgot }: { forgot?: string }) {
               </Grid>
               <Grid size={12}>
                 <Stack sx={{ gap: 1 }}>
-                  <InputLabel htmlFor="password-login">Password</InputLabel>
+                  <InputLabel htmlFor="password-login">Senha</InputLabel>
                   <OutlinedInput
                     fullWidth
                     error={Boolean(touched.password && errors.password)}
@@ -139,7 +139,7 @@ export default function AuthLogin({ forgot }: { forgot?: string }) {
                 )}
               </Grid>
 
-              <Grid sx={{ mt: -1 }} size={12}>
+              {/* <Grid sx={{ mt: -1 }} size={12}>
                 <Stack direction="row" sx={{ gap: 2, justifyContent: 'space-between', alignItems: 'center' }}>
                   <FormControlLabel
                     control={
@@ -158,7 +158,7 @@ export default function AuthLogin({ forgot }: { forgot?: string }) {
                     Forgot Password?
                   </Link>
                 </Stack>
-              </Grid>
+              </Grid> */}
               {errors.submit && (
                 <Grid size={12}>
                   <FormHelperText error>{errors.submit}</FormHelperText>

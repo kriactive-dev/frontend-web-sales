@@ -74,7 +74,7 @@ export default function UserList() {
   return (
     <Box sx={{ p: 1.25, px: !drawerOpen ? 1.25 : 3, borderTop: '2px solid ', borderTopColor: 'divider' }}>
       <List disablePadding>
-        <ListItem
+        {/* <ListItem
           disablePadding
           secondaryAction={
             <ExpandMore
@@ -99,7 +99,7 @@ export default function UserList() {
             <Avatar alt="Avatar" src={avatar1} sx={{ ...(drawerOpen && { width: 46, height: 46 }) }} />
           </ListItemAvatar>
           <ListItemText primary={user?.name} sx={{ ...(!drawerOpen && { display: 'none' }) }} secondary="UI/UX Designer" />
-        </ListItem>
+        </ListItem> */}
       </List>
       <Menu
         id="basic-menu"
