@@ -8,6 +8,11 @@ import { SimpleLayoutType } from 'config';
 import DashboardLayout from 'layout/Dashboard';
 import PagesLayout from 'layout/Pages';
 import SimpleLayout from 'layout/Simple';
+// import User from 'pages/usermanagement/user/user';
+
+//User management
+// const User = Loadable(lazy(() => import('pages/usermanagement/user/user')));
+const User = Loadable(lazy(() => import('pages/usermanagement/user/user')));
 
 // render - dashboard
 const DashboardDefault = Loadable(lazy(() => import('pages/dashboard/default')));
@@ -184,6 +189,17 @@ const MainRoutes = {
               path: 'finance',
               element: <DashboardFinance />
             }
+          ]
+        },
+
+        {
+          path: 'usermanagement',
+          children: [
+            {
+              path: 'usermanagement',
+              element: <User />
+            },
+           
           ]
         },
         {
