@@ -1,46 +1,27 @@
-import { RouterProvider } from 'react-router-dom';
+import './App.css'
+import './index.css'
+import Home from './pages/Home';
+import About from './pages/About';
+import Login from './pages/Login';
+import Dashboard from './pages/Dashboard';
+import { Routes, Route } from 'react-router-dom';
+import routes from './utils/routes/routes';
 
-// project-imports
-import router from 'routes';
-import ThemeCustomization from 'themes';
 
-import Locales from 'components/Locales';
-import RTLLayout from 'components/RTLLayout';
-import ScrollTop from 'components/ScrollTop';
-import Customization from 'components/Customization';
-import Snackbar from 'components/@extended/Snackbar';
-import Notistack from 'components/third-party/Notistack';
-import Metrics from 'metrics';
 
-// auth-provider
-import { JWTProvider as AuthProvider } from 'contexts/JWTContext';
-// import { FirebaseProvider as AuthProvider } from 'contexts/FirebaseContext';
-// import { AWSCognitoProvider as AuthProvider } from 'contexts/AWSCognitoContext';
-// import { Auth0Provider as AuthProvider } from 'contexts/Auth0Context';
 
-// ==============================|| APP - THEME, ROUTER, LOCAL  ||============================== //
-
-export default function App() {
+function App() {
   return (
     <>
-      <ThemeCustomization>
-        <RTLLayout>
-          <Locales>
-            <ScrollTop>
-              <AuthProvider>
-                <>
-                  <Notistack>
-                    <RouterProvider router={router} />
-                    <Customization />
-                    <Snackbar />
-                  </Notistack>
-                </>
-              </AuthProvider>
-            </ScrollTop>
-          </Locales>
-        </RTLLayout>
-      </ThemeCustomization>
-      <Metrics />
+      <Routes>
+        <Route path={routes.home} element={<Home />} />
+        <Route path={routes.about} element={<About />} />
+        <Route path={routes.login} element={<Login />} />
+        <Route path={routes.dashboard} element={<Dashboard />} />
+      </Routes>
     </>
   );
 }
+
+export default App;
+//Apis, http://143.198.159.11:9000/api/users

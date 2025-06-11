@@ -1,40 +1,40 @@
-/* map */
-@import 'mapbox-gl/dist/mapbox-gl.css';
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
 
-/* fonts */
-@import 'assets/fonts/inter/inter.css';
 
-/* scroll bar */
-@import 'simplebar/dist/simplebar.css';
-@import 'slick-carousel/slick/slick.css';
-@import 'slick-carousel/slick/slick-theme.css';
+.barsBody{
+    border: 0px solid black;
+    background-color: #f8f9fa;
+}
 
-/* apex-chart */
-@import 'assets/third-party/apex-chart.css';
-@import 'assets/third-party/react-table.css';
+.barsDash{
+    display: flex;
+}
 
-/* google-fonts */
-@import '@fontsource/roboto/400.css';
-@import '@fontsource/roboto/500.css';
-@import '@fontsource/roboto/300.css';
-@import '@fontsource/roboto/700.css';
+.barsHeaderSide{
+    width: 300px;
+    border: 0px solid black;
+    height: 100vh;
+}
+.barsBody{
+    width: calc(100% - 300px);
+}
 
-@import '@fontsource/inter/400.css';
-@import '@fontsource/inter/500.css';
-@import '@fontsource/inter/600.css';
-@import '@fontsource/inter/700.css';
 
-@import '@fontsource/poppins/400.css';
-@import '@fontsource/poppins/500.css';
-@import '@fontsource/poppins/600.css';
-@import '@fontsource/poppins/700.css';
+.headerbar{
+    width: 100%;
+    border: 0px solid black;
+    height: 50px;
+}
 
-@import '@fontsource/public-sans/400.css';
-@import '@fontsource/public-sans/500.css';
-@import '@fontsource/public-sans/600.css';
-@import '@fontsource/public-sans/700.css';
+.sideBarComponent{
+    padding: 20px 20px;
+    border: 1px solid black;
+    border-left: 1px dotted black;
+    height: 100vh;
+}
 
-/* tap highlight */
-* {
-  -webkit-tap-highlight-color: transparent;
+.logoSideBarComponent img{
+    width: 120px;
 }
