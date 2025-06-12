@@ -2,6 +2,7 @@ import logo from "../../assets/images/logo/logo-ligth.svg"
 import userprofile from "../../assets/images/user/avatar-1.jpg"
 import React, { useState } from "react";
 import { UserRound, ScrollText, ShieldCheck, ChevronRight, ListFilter } from "lucide-react";
+import { useNavigate } from "react-router-dom";
 
 interface MenuItem {
     label: string;
@@ -11,7 +12,7 @@ interface MenuItem {
 
 const menuItems: MenuItem[] = [
     {
-        label: "Usuário",
+        label: "User",
         icon: <UserRound className="iconLinkUser" />,
         submenu: ["Lista", "Configurações"],
     },
@@ -27,11 +28,25 @@ const menuItems: MenuItem[] = [
     },
 ];
 const Sidebar: React.FC = () => {
+
     const [activeIndex, setActiveIndex] = useState<number | null>(null);
+    const navigate = useNavigate();
 
     const toggleSubmenu = (index: number) => {
         setActiveIndex((prevIndex) => (prevIndex === index ? null : index));
     };
+
+    const removeAccents = (str: string) => {
+        return str.normalize("NFD").replace(/[\u0300-\u036f]/g, "");
+    };
+
+    const onNavigate = (path: string, name: string) => {
+        const cleanPath = `${removeAccents(name.toLowerCase())}/${removeAccents(path.toLowerCase())}`;
+        navigate(cleanPath)
+        // console.log(cleanPath);
+
+    };
+
     return (
         <>
 
@@ -64,6 +79,20 @@ const Sidebar: React.FC = () => {
 
                     </div>
                     <div className="pagesDash">
+                        <h2>Dashboard</h2>
+                        <ul>
+                            <div >
+                                <ul className="submenuDash">
+                                    <li onClick={() => navigate("/dashboard/default")}>
+                                        Default
+                                    </li>
+                                </ul>
+                            </div>
+
+                        </ul>
+                    </div>
+
+                    <div className="pagesDash">
                         <h2>Gestão de Usuários</h2>
                         <ul>
                             {menuItems.map((item, index) => {
@@ -83,9 +112,11 @@ const Sidebar: React.FC = () => {
                                         <div className={`submenuWrapper ${isActive ? 'open' : ''}`}>
                                             <ul className="submenuDash">
                                                 {item.submenu.map((subItem, subIndex) => (
-                                                    <li key={subIndex}>
+
+                                                    <li key={subIndex} onClick={() => onNavigate(subItem, item.label)}>
                                                         <span>{subItem}</span>
                                                     </li>
+
                                                 ))}
                                             </ul>
                                         </div>
@@ -95,6 +126,7 @@ const Sidebar: React.FC = () => {
 
                         </ul>
                     </div>
+
 
                 </div>
             </div>

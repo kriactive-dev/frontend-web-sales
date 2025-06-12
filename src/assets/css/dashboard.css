@@ -262,8 +262,9 @@ body {
 
 .bodyDashJ{
     width: 100%;
-    min-height: 50vh;
+    height: calc(100vh - 120px);
     border: 0px solid black;
+    overflow-y: auto;
     margin-top: 10px;
     padding: 20px 20px;
 }
@@ -272,12 +273,12 @@ body {
     border: 0px solid black;
     background-color: #fff;
     border-radius: 10px;
-    padding: 20px 20px;
-    border: 1px solid #ddd;
+    padding: 20px 0px;
+    border: 1px solid #dedede;
 }
 
 .tableContainer .userTable{
-    width: 100%;
+    width: calc(100% - 0px);
     margin-top: 20px;
 }
 
@@ -290,12 +291,128 @@ body {
 
 .userTable th,
 .userTable td {
-  padding: 16px 20px;
+  padding: 20px 20px;
   border-top: 1px solid #ddd;
   text-align: left;
 }
 
 .userTable thead{
-    background-color: #eeeeee7a;
+    background-color: #eeeeee49;
 }
 
+.tableContainer h2{
+    font-size: 1rem;
+    font-weight: 700;
+    padding: 10px 20px;
+}
+
+.tableContainer .userTable th{
+    font-size: 14px;
+    text-transform: uppercase;
+}
+
+.userTable .actions {
+    display: flex;
+    gap: 10px;
+  }
+  
+  .userTable .action-btn {
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 6px;
+    border-radius: 4px;
+    transition: background-color 0.2s;
+  }
+  
+  .userTable .action-btn.edit:hover {
+    background-color: #e0f7fa;
+  }
+  
+  .userTable .action-btn.delete:hover {
+    background-color: #ffebee;
+  }
+  
+  .userTable .action-btn.refresh:hover {
+    background-color: #f1f8e9;
+  }
+  
+  .status{
+    color: #fff;
+    padding: 5px 20px;
+    border-radius: 15px;
+  }
+  .active{
+    background-color: #2ca87f;
+    
+  }
+
+  .inactive{
+    background-color: #e04546;
+  }
+.graficsDouble{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.itemGraphics{
+    width: 49.5%;
+    min-height: 300px;
+    background-color: #fff;
+    padding: 15px 25px;
+    border-radius: 10px;
+    border: 1px solid #eee;
+}
+
+.itemGraphics h2{
+    font-weight: 700;
+    margin: 20px 0px;
+}
+
+.cardsDefaultDash{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 20px;
+}
+
+.cardsDefaultDash .itemCard{
+    width: calc((100% / 4) - 5px);
+    height: 120px;
+    background-color: #fff;
+    border: 1px solid #eee;
+    border-radius: 10px;
+    padding: 20px;
+}
+
+.itemCard h2{
+    font-weight: 600;
+    font-size: 14px;
+}
+
+.itemCard .titleUser{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.itemCard .titleUser .iconcards{
+    padding: 5px;
+    background-color: #2ca87f30;
+}
+
+.itemCard .titleUser .iconcards .iconcard{
+    color: #2ca87f;
+}
+
+.numersItemCard span{
+    font-size: 1rem;
+}
+
+.graphicLine, .graphicBar{
+    width: 100%;
+    border: 0px solid black;
+    height: 300px;
+    display: block;
+}

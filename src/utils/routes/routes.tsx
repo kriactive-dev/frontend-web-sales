@@ -3,6 +3,8 @@ const routes = {
     dashboard: '/dashboard',
     about: '/about',
     login: '/login',
+    userList: 'user/lista',
+    dahsboardDefault: 'default',
     profile: '/profile/:id',
   };
   

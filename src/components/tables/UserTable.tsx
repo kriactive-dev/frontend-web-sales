@@ -1,4 +1,6 @@
 import type React from "react";
+import { Pencil, Trash2, RefreshCw, Eye } from "lucide-react";
+
 
 interface User {
     id: number;
@@ -36,6 +38,7 @@ const UserTable: React.FC = () => {
                             <th>Contacto</th>
                             <th>Função</th>
                             <th>Status</th>
+                            <th>Ações</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -48,13 +51,29 @@ const UserTable: React.FC = () => {
                                 <td>{user.role}</td>
                                 <td>
                                     <span className={`status ${user.status === "Ativo" ? "active" : "inactive"}`}>
-                                        {user.status}
+                                        <span>
+                                            {user.status}
+                                        </span>
+
                                     </span>
+                                </td>
+                                <td className="actions">
+                                    <button className="action-btn refresh" title="Atualizar">
+                                        <Eye size={16} />
+                                    </button>
+                                    <button className="action-btn edit" title="Editar">
+                                        <Pencil size={16} />
+                                    </button>
+                                    <button className="action-btn delete" title="Apagar">
+                                        <Trash2 size={16} />
+                                    </button>
+
                                 </td>
                             </tr>
                         ))}
                     </tbody>
                 </table>
+
             </div>
         </>
     )

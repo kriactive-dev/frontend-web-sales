@@ -9,7 +9,7 @@ const Login: React.FC = () => {
     const [email, setEmail] = useState<string>('')
     const [password, setPassword] = useState<string>('')
     const handleLogin = ()=>{
-        navigate("/dashboard")
+        navigate("/dashboard/default")
     }
     return (
         <>
