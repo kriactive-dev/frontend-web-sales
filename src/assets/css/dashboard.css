@@ -1,0 +1,301 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap');
+
+body {
+    font-family: "Inter", sans-serif;
+}
+
+.barsBody {
+    border: 0px solid black;
+    background-color: #f8f9fa;
+}
+
+.barsDash {
+    display: flex;
+}
+
+.barsHeaderSide {
+    width: 300px;
+    border: 0px solid black;
+    height: 100vh;
+}
+
+.barsBody {
+    width: calc(100% - 300px);
+}
+
+
+.headerbar {
+    width: 100%;
+    border: 0px solid black;
+    min-height: 50px;
+}
+
+.sideBarComponent {
+    padding: 20px 20px;
+    /* border: 1px dashed black; */
+    border-right: 1px dashed #bbb;
+    height: 100vh;
+}
+
+.dashProfile {
+    margin-top: 20px;
+}
+
+.dashProfile .profile {
+    width: 100%;
+    height: 80px;
+    border: 0px solid black;
+    background-color: #efefefc2;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    padding: 0px 20px;
+    justify-content: space-between;
+    border: 1px solid #ddd;
+}
+
+.imgProfile {
+    width: 50px;
+    height: 50px;
+    overflow: hidden;
+    border-radius: 100%;
+}
+
+.imgProfile{
+    display: flex;
+}
+.imgProfile img{
+    width: 100%;
+}
+
+.proL{
+    display: flex;
+    align-items: center;
+}
+
+.naCar{
+    display: flex;
+    flex-direction: column;
+    margin-left: 20px;
+}
+
+
+.naCar span{
+    color: #222;
+    font-size: 12px;
+}
+.naCar span:first-child{
+    font-size: 14px;
+    font-weight: 600;
+}
+
+.listFilterLIcon{
+    color: #777;
+}
+
+.listFilterL{
+    height: 40px;
+    width: 40px;
+    
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 100%;
+    cursor: pointer;
+    transition: all .4s ease;
+}
+.listFilterL:hover{
+    background-color: #7777771d;
+}
+.logoSideBarComponent img {
+    width: 140px;
+}
+
+.pagesDash {
+    margin-top: 20px;
+}
+
+.pagesDash h2 {
+    font-weight: 700;
+    font-size: 12px;
+    text-transform: uppercase;
+    padding: 10px 15px;
+}
+
+.pagesDash ul {
+    margin-top: 5px;
+    width: 100%;
+
+}
+
+
+.pagesDash ul li .menuPri {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    cursor: pointer;
+    margin-top: 5px;
+    color: #777;
+    padding: 10px 20px;
+    border-radius: 10px;
+    width: 100%;
+}
+
+.submenuDash {
+    /* padding: 0px 30px; */
+    margin-left: 50px;
+}
+
+.pagesDash ul li .inconLf {
+    display: flex;
+    align-items: center;
+}
+
+.pagesDash ul li .inconLf span {
+    margin-left: 20px;
+    font-size: 14px;
+    color: #777;
+}
+
+.submenuDash {
+    transition: all 1s ease-in-out;
+}
+
+.submenuDash li {
+    margin-top: 10px;
+    list-style-type: disc;
+    font-size: 15px;
+    color: #999;
+    cursor: pointer;
+}
+
+.submenuDash li span {
+    margin-left: 20px;
+}
+
+.iconLinkUser {
+    width: 18px;
+    height: 18px;
+}
+
+.iconLinkUserv2 {
+    width: 17px;
+    height: 17px;
+}
+
+.pagesDash ul li .menuPri:hover {
+    background-color: #eeeeeeb7;
+
+}
+
+.submenuWrapper {
+    max-height: 0;
+    overflow: hidden;
+    transition: all 0.5s ease;
+}
+
+.submenuWrapper.open {
+    max-height: 200px;
+}
+
+
+
+
+.iconLinkUserv2.rotate {
+    transform: rotate(90deg);
+    transition: transform 0.3s ease;
+}
+
+.headerDah{
+    width: 100%;
+    border: 0px solid black;
+    padding: 20px 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.serachBar{
+    display: flex;
+    align-items: center;
+}
+
+.serachBar .serach{
+    
+    width: 250px;
+    background-color: white;
+    margin-left: 10px;
+    border-radius: 10px;
+    border: 1px solid #ccc;
+    display: flex;
+    align-items: center;
+}
+
+.serachBar .serach input[type="text"]{
+    height: 50px;
+    outline: none;
+    text-indent: 15px;
+}
+
+.serachIcon{
+    margin-left: 20px;
+    color: #999;
+}
+
+.serachBarMenuIcon{
+    color: #777;
+    cursor: pointer;
+    width: 40px;
+}
+
+.profileBarsUser{
+    width: 50px;
+    height: 50px;
+    border-radius: 100%;
+    overflow: hidden;
+    cursor: pointer;
+}
+
+.profileBarsUser img{
+    width: 100%;
+}
+
+.bodyDashJ{
+    width: 100%;
+    min-height: 50vh;
+    border: 0px solid black;
+    margin-top: 10px;
+    padding: 20px 20px;
+}
+
+.tableContainer{
+    border: 0px solid black;
+    background-color: #fff;
+    border-radius: 10px;
+    padding: 20px 20px;
+    border: 1px solid #ddd;
+}
+
+.tableContainer .userTable{
+    width: 100%;
+    margin-top: 20px;
+}
+
+.tableContainer .userTable tr{
+    height: 40px;
+    /* display: block; */
+    padding: 20px;
+
+}
+
+.userTable th,
+.userTable td {
+  padding: 16px 20px;
+  border-top: 1px solid #ddd;
+  text-align: left;
+}
+
+.userTable thead{
+    background-color: #eeeeee7a;
+}
+

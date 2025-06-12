@@ -1,5 +1,6 @@
 import Sidebar from "../components/dashboard/Sidebar";
 import Header from "../components/dashboard/Header";
+import UserTable from "../components/tables/UserTable";
 const Dashboard: React.FC = () => {
     return (
         <>
@@ -13,6 +14,9 @@ const Dashboard: React.FC = () => {
                 <div className="barsBody">
                     <div className="headerbar">
                         <Header />
+                    </div>
+                    <div className="bodyDashJ">
+                        <UserTable/>
                     </div>
 
                 </div>
