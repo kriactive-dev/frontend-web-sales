@@ -1,6 +1,5 @@
 import type React from "react";
 import BarChartComponent from "../graphics/BarChartComponent";
-import PieChartComponent from "../graphics/PieChartComponent";
 import LineChartComponent from "../graphics/LineChartComponent";
 import { User } from "lucide-react";
 
@@ -12,10 +11,10 @@ const Default: React.FC = () => {
         { name: 'Apr', users: 200 },
     ];
 
-    const pieData = [
-        { name: 'Ativos', value: 65 },
-        { name: 'Inativos', value: 35 },
-    ];
+    // const pieData = [
+    //     { name: 'Ativos', value: 65 },
+    //     { name: 'Inativos', value: 35 },
+    // ];
 
     const lineData = [
         { day: 'Seg', visits: 100 },

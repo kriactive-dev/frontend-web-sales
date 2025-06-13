@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
-import { Pencil, Trash2, RefreshCw, Eye } from "lucide-react";
+import { Pencil, Trash2, Eye } from "lucide-react";
 interface Role {
     id: number;
     name: string;

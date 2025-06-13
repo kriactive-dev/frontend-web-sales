@@ -4,12 +4,15 @@ import routes from "../utils/routes/routes";
 
 const Home: React.FC = () => {
     const navigate = useNavigate()
-    const handleLogin = ()=>{
+    const handleLogin = () => {
         navigate(routes.login)
     }
     return (
         <>
-            <button onClick={handleLogin}>Aceder</button>
+            <div className="button">
+                <button onClick={handleLogin} className="btn">Aceder</button>
+            </div>
+
         </>
     )
 }

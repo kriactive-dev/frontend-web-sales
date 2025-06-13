@@ -1,5 +1,5 @@
 import type React from "react";
-import { Pencil, Trash2, RefreshCw, Eye } from "lucide-react";
+import { Pencil, Trash2, Eye } from "lucide-react";
 
 
 interface User {
