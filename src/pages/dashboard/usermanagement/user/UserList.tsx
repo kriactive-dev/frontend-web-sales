@@ -32,7 +32,9 @@ const UserList: React.FC = () => {
             });
     }, []);
 
-    if (loading) return <p>Carregando usuários...</p>;
+    if (loading) return <div className="containerLoader">
+        <div className="loader"></div>
+    </div>;
     if (error) return <p>{error}</p>;
 
     return (
