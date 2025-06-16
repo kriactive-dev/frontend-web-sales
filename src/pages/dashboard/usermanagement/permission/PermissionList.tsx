@@ -2,26 +2,22 @@ import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import { Pencil, Trash2, Eye } from "lucide-react";
 import urls from '../../../../utils/apis/apis';
-interface Role {
-    id: number;
-    name: string;
-}
 
-interface User {
+
+interface Permissions {
     id: number;
     name: string;
-    email: string;
     created_at: string;
-    roles: Role[];
+    updated_at: string;
 }
 
-const UserList: React.FC = () => {
-    const [users, setUsers] = useState<User[]>([]);
+const PermissionList: React.FC = () => {
+    const [users, setUsers] = useState<Permissions[]>([]);
     const [loading, setLoading] = useState<boolean>(true);
     const [error, setError] = useState<string | null>(null);
 
     useEffect(() => {
-        axios.get<User[]>(urls.user)
+        axios.get<Permissions[]>(urls.permissions)
             .then(response => {
                 setUsers(response.data);
                 setLoading(false);
@@ -40,15 +36,13 @@ const UserList: React.FC = () => {
 
     return (
         <div className="tableContainer">
-            <h2>Lista de Usuários</h2>
+            <h2>Lista de Permissões</h2>
             <table className="userTable">
                 <thead>
                     <tr>
                         <th>ID</th>
                         <th>Nome</th>
-                        <th>Email</th>
                         <th>Data de Criação</th>
-                        <th>Funções</th>
                         <th>Ações</th>
                     </tr>
                 </thead>
@@ -57,9 +51,8 @@ const UserList: React.FC = () => {
                         <tr key={user.id}>
                             <td>{user.id}</td>
                             <td>{user.name}</td>
-                            <td>{user.email}</td>
                             <td>{new Date(user.created_at).toLocaleDateString()}</td>
-                            <td>{user.roles.map(role => role.name).join(', ')}</td>
+
                             <td className="actions">
                                 <button className="action-btn refresh" title="Detalhes">
                                     <Eye size={16} />
@@ -80,6 +73,8 @@ const UserList: React.FC = () => {
     );
 };
 
-export default UserList;
+export default PermissionList;
+
+
 
 
