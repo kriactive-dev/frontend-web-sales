@@ -56,13 +56,13 @@ const RoleList: React.FC = () => {
 
     return (
         <div className="tableContainer">
-            <h2>Lista de Permissões</h2>
+            <h2>Lista de Roles</h2>
             <table className="userTable">
                 <thead>
                     <tr>
                         <th>ID</th>
                         <th>Nome</th>
-                        <th>Permisções</th>
+                        <th>permissões</th>
                         <th>Data de Criação</th>
 
                         <th>Ações</th>
@@ -73,29 +73,38 @@ const RoleList: React.FC = () => {
                         <tr key={user.id}>
                             <td>{user.id}</td>
                             <td>{user.name}</td>
-                            {user.permissions.length > 0 ? (
+                            <td>{user.permissions.length > 0 ? (
+                                // <ul className="permissionsList">
+                                //     {user.permissions.map((permission) => {
+                                //         const parts = permission.name.split(".");
+                                //         const action = parts.length > 1 ? parts[1] : permission.name; // pega só o 'view', 'create'...
+                                //         return <li key={permission.id}>{action}</li>;
+                                //     })}
+                                // </ul>
                                 <ul className="permissionsList">
-                                    {user.permissions.map((permission) => {
+                                    {user.permissions.slice(0, 3).map((permission) => {
                                         const parts = permission.name.split(".");
-                                        const action = parts.length > 1 ? parts[1] : permission.name; // pega só o 'view', 'create'...
+                                        const action = parts.length > 1 ? parts[1] : permission.name;
                                         return <li key={permission.id}>{action}</li>;
                                     })}
+                                    {user.permissions.length > 3 && <li>...</li>}
                                 </ul>
+
                             ) : (
                                 <p className="text-sm text-gray-400">Sem permissões atribuídas.</p>
-                            )}
+                            )}</td>
 
                             <td>{new Date(user.created_at).toLocaleDateString()}</td>
 
                             <td className="actions">
                                 <button className="action-btn refresh" title="Detalhes">
-                                    <Eye size={16} />
+                                    <Eye size={16} className="btnDetails" />
                                 </button>
                                 <button className="action-btn edit" title="Editar">
-                                    <Pencil size={16} />
+                                    <Pencil size={16} className="btnUpdate" />
                                 </button>
                                 <button className="action-btn delete" title="Apagar">
-                                    <Trash2 size={16} />
+                                    <Trash2 size={16} className="btnTrash" />
                                 </button>
 
                             </td>

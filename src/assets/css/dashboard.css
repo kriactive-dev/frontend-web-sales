@@ -145,10 +145,6 @@ body {
     width: 100%;
 }
 
-.submenuDash {
-    /* padding: 0px 30px; */
-    margin-left: 50px;
-}
 
 .pagesDash ul li .inconLf {
     display: flex;
@@ -160,9 +156,9 @@ body {
     font-size: 14px;
     color: #777;
 }
-
 .submenuDash {
     transition: all 1s ease-in-out;
+    margin-left: 5px;
 }
 
 .submenuDash li {
@@ -202,6 +198,20 @@ body {
     max-height: 200px;
 }
 
+.submenuDash li {
+    width: calc(100% - 20px);
+    list-style: none;
+    
+    padding: 7px 5px;
+    
+    border-radius: 10px;
+    transition: all .5 ease;
+    margin-left: 15px;
+}
+
+.submenuDash li:hover{
+    background-color: #eeeeee9e;
+}
 
 
 
@@ -444,9 +454,61 @@ body {
     animation: spin 1s linear infinite;
 }
 
-.permissionsList{
+.permissionsList {
     display: flex;
+
 }
+
+.permissionsList li {
+    background-color: #e04546;
+    margin-right: 10px;
+    margin-top: 10px;
+    padding: 5px 20px;
+    border-radius: 10px;
+    color: #fff;
+}
+
+.permissionsList li:first-child {
+    background-color: #2ca87f;
+    margin-right: 10px;
+    padding: 5px 20px;
+    border-radius: 10px;
+    color: #fff;
+}
+
+.permissionsList li:nth-child(2) {
+    background-color: #0c4fa8;
+}
+
+
+
+
+.permissionsList li:last-child {
+    background-color: #fff;
+    color: #222;
+    cursor: pointer;
+}
+
+.btnTrash {
+    color: #e04546;
+}
+
+.btnDetails {
+    color: #222;
+}
+
+.btnUpdate {
+    color: #0c4fa8;
+}
+
+.colorPut{
+    background-color: #0c50a810;
+}
+
+.colorPut span{
+    color: #0c4fa8;
+}
+
 
 @keyframes spin {
     0% {

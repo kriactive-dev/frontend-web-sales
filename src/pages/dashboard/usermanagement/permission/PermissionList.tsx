@@ -55,13 +55,13 @@ const PermissionList: React.FC = () => {
 
                             <td className="actions">
                                 <button className="action-btn refresh" title="Detalhes">
-                                    <Eye size={16} />
+                                    <Eye size={16} className="btnDetails" />
                                 </button>
                                 <button className="action-btn edit" title="Editar">
-                                    <Pencil size={16} />
+                                    <Pencil size={16} className="btnUpdate" />
                                 </button>
                                 <button className="action-btn delete" title="Apagar">
-                                    <Trash2 size={16} />
+                                    <Trash2 size={16} className="btnTrash" />
                                 </button>
 
                             </td>

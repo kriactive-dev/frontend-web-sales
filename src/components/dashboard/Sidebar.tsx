@@ -36,6 +36,8 @@ const menuItems2: MenuItem[] = [
     }
 ];
 const Sidebar: React.FC = () => {
+    const [selectedSubmenu, setSelectedSubmenu] = useState({ submenu: "", parent: "" });
+
 
     const [activeIndex, setActiveIndex] = useState<number | null>(null);
     const [activeIndexDash, setActiveIndexDash] = useState<number | null>(null);
@@ -54,12 +56,13 @@ const Sidebar: React.FC = () => {
     };
     const onNavigate = (path: string, name: string) => {
         let cleanPath = ""
-        if(name === ""){
+        if (name === "") {
             cleanPath = `${removeAccents(path.toLowerCase())}`;
-        }else{
+        } else {
             cleanPath = `${removeAccents(name.toLowerCase())}/${removeAccents(path.toLowerCase())}`;
         }
-        
+        setSelectedSubmenu({ submenu: path, parent: name });
+
         navigate(cleanPath)
         // console.log(cleanPath);
 
@@ -151,7 +154,7 @@ const Sidebar: React.FC = () => {
                             {menuItems.map((item, index) => {
                                 const isActive = activeIndex === index;
                                 return (
-                                    <li key={index} onClick={() => toggleSubmenu(index)}>
+                                    <li key={index} onClick={() => toggleSubmenu(index)} >
                                         <div className="menuPri">
                                             <div className="inconLf">
                                                 {item.icon}
@@ -165,12 +168,21 @@ const Sidebar: React.FC = () => {
                                         <div className={`submenuWrapper ${isActive ? 'open' : ''}`}>
                                             <ul className="submenuDash">
                                                 {item.submenu.map((subItem, subIndex) => (
-
-                                                    <li key={subIndex} onClick={() => onNavigate(subItem, item.label)}>
+                                                    <li
+                                                        key={subIndex}
+                                                        onClick={() => onNavigate(subItem, item.label)}
+                                                        className={
+                                                            selectedSubmenu.submenu === subItem && selectedSubmenu.parent === item.label
+                                                                ? "colorPut"
+                                                                : ""
+                                                        }
+                                                    >
                                                         <span>{subItem}</span>
                                                     </li>
-
                                                 ))}
+
+
+
                                             </ul>
                                         </div>
                                     </li>
