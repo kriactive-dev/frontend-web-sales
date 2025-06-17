@@ -591,6 +591,7 @@ body {
     align-items: center;
     justify-content: space-between;
     padding: 10px 20px;
+    width: 100%;
 }
 
 .headerTableList button{
@@ -613,6 +614,101 @@ body {
     color: #fff;
 }
 
+.containerForm{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    min-height: calc(100vh - 200px);
+    background-color: #fff;
+    border-radius: 10px;
+    padding: 40px 20px;
+    box-shadow: rgba(50, 50, 93, 0.25) 0px 2px 5px -1px, rgba(0, 0, 0, 0.3) 0px 1px 3px -1px;
+}
+.formUserd{
+    width: 95%;
+    height: calc(100vh - 200px);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+.containerForm .headerTableList{
+    padding: 0px;
+    margin-bottom: 20px;
+    padding-bottom: 20px;
+}
+
+.containerForm .headerTableList{
+    border-bottom: 1px solid #eee;
+}
+
+.formUserd input{
+    width: 100%;
+    border: 1px solid #aaa;
+    height: 60px;
+    margin-bottom: 20px;
+    border-radius: 8px;
+    outline: none;
+    text-indent: 10px;
+}
+
+.formUserd label{
+    width: 100%;
+    text-align: left;
+    font-size: 14px;
+    margin-bottom: 10px;
+    font-weight: 600;
+}
+
+.formUserd h2{
+    width: 100%;
+    text-align: left;
+    font-size: 1.2rem;
+    font-weight: 600;
+    margin-bottom: 10px;
+}
+
+.btnRegister{
+    width: 100%;
+
+    display: flex;
+    justify-content: flex-start;
+}
+
+.btnRegister button{
+    width: 120px;
+    margin-right: 5px;
+    border-radius: 5px;
+    background-color: #2f71ff;
+    height: 45px;
+    color: #fff;
+    font-weight: 600;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.btnRegister button span{
+    color: #fff;
+    font-weight: 600;
+    margin-left: 5px;
+    font-size: 1rem;
+}
+.iconButtonCreate{
+    width: 18px;
+    height: 18px;
+}
+.btnRegister button:first-child{
+    background-color: #e04546;
+}
+
+.titleUser h2{
+    font-size: 1.1rem;
+    margin-bottom: 15px;
+    font-weight: 600;
+    color: #555;
+}
 
 
 

@@ -262,7 +262,7 @@ const UserList: React.FC = () => {
                         <select value={selectedRole} onChange={(e) => setSelectedRole(e.target.value)} required className="roleOptions h-10 px-2 rounded border">
                             <option value="" >Selecione</option>
                             {roles.map(role => (
-                                <option key={role.id} value={role.name}>{role.name}</option>
+                                <option style={{textTransform: "capitalize"}} key={role.id} value={role.name}>{role.name}</option>
                             ))}
                         </select>
                         <div className="buttonAddCancel">
@@ -282,7 +282,7 @@ const UserList: React.FC = () => {
                         <select value={selectedPermission} onChange={(e) => setSelectedPermission(e.target.value)} required className="roleOptions h-10 px-2 rounded border">
                             <option value="">Selecione</option>
                             {permissions.map(p => (
-                                <option key={p.id} value={p.name}>{p.name}</option>
+                                <option style={{textTransform: "capitalize"}} key={p.id} value={p.name}>{p.name.split(".").length > 1 ? p.name.split(".")[1] : p.name}</option>
                             ))}
                         </select>
                         <div className="buttonAddCancel">

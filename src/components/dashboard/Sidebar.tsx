@@ -19,12 +19,12 @@ const menuItems: MenuItem[] = [
     {
         label: "Roles",
         icon: <ScrollText className="iconLinkUser" />,
-        submenu: ["Lista"],
+        submenu: ["Lista", "Novo"],
     },
     {
         label: "Permissões",
         icon: <ShieldCheck className="iconLinkUser" />,
-        submenu: ["Lista"],
+        submenu: ["Lista", "Novo"],
     },
 ];
 
