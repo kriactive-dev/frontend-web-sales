@@ -308,6 +308,7 @@ body {
     padding: 20px 20px;
     border-top: 1px solid #ddd;
     text-align: left;
+    text-transform: capitalize;
 }
 
 .userTable thead {
@@ -317,7 +318,6 @@ body {
 .tableContainer h2 {
     font-size: 1rem;
     font-weight: 700;
-    padding: 10px 20px;
 }
 
 .tableContainer .userTable th {
@@ -449,7 +449,7 @@ body {
 
 .loader {
     border: 4px solid #fff;
-    border-top: 4px solid #0c4fa8;
+    border-top: 4px solid #2f71ff;
     border-radius: 50%;
     width: 50px;
     height: 50px;
@@ -478,8 +478,12 @@ body {
     color: #fff;
 }
 
+.btnPermission{
+    color: #2ca87f;
+}
+
 .permissionsList li:nth-child(2) {
-    background-color: #0c4fa8;
+    background-color: #2f71ff;
 }
 
 
@@ -500,7 +504,7 @@ body {
 }
 
 .btnUpdate {
-    color: #0c4fa8;
+    color: #2f71ff;
 }
 
 .colorPut{
@@ -508,7 +512,7 @@ body {
 }
 
 .colorPut span{
-    color: #0c4fa8;
+    color: #2f71ff;
 }
 
 .dialog-backdrop{
@@ -556,7 +560,7 @@ body {
     font-size: 14px;
 }
 .buttonAddCancel button:first-child{
-    background-color: #0c4fa8;
+    background-color: #2f71ff;
     margin-right: 10px;
     
 }
@@ -581,6 +585,35 @@ body {
     width: 100%;
     height: 100%;
 } */
+
+.headerTableList{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 10px 20px;
+}
+
+.headerTableList button{
+    background-color: #2f71ff;
+    padding: 10px 15px;
+    border-radius: 5px;
+    display: flex;
+    align-items: center;
+    /* border: 1px solid #eee; */
+    box-shadow: rgba(50, 50, 93, 0.25) 0px 2px 5px -1px, rgba(0, 0, 0, 0.3) 0px 1px 3px -1px;
+}
+
+.headerTableList button span{
+    margin-left: 5px;
+    color: #fff;
+    font-weight: 700;
+}
+
+.iconPlusUser{
+    color: #fff;
+}
+
+
 
 
 @keyframes spin {

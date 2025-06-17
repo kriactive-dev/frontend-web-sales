@@ -1,8 +1,9 @@
 import React, { use, useEffect, useState } from 'react';
 import axios from 'axios';
-import { Pencil, Trash2, Eye, ShieldCheck, UserCheck } from "lucide-react";
+import { Pencil, Trash2, Eye, ShieldCheck, UserCheck, Plus } from "lucide-react";
 import urls from '../../../../utils/apis/apis';
 import { useNavigate } from 'react-router-dom';
+import { toast } from 'react-toastify';
 interface Pivot {
     role_id: number;
     permission_id: number;
@@ -53,16 +54,23 @@ const UserList: React.FC = () => {
     const [showPermissionDialog, setShowPermissionDialog] = useState(false);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState<string | null>(null);
+    const handleClickSucess = () => {
+        toast.success('Sucesso!');
+    }
+
+    const handleClickFaild = () => {
+        toast.error('Erro!');
+    }
     const deleteUser = async (id: number) => {
         setLoading(true)
         try {
             await axios.delete(`${urls.user}/${id}`);
-            alert('Usuário apagado com sucesso!');
             setUsers(users.filter(user => user.id !== id));
+            handleClickSucess()
         } catch (error) {
             console.error('Erro ao apagar usuário:', error);
-            alert('Erro ao apagar usuário!');
-        }finally{
+            handleClickFaild()
+        } finally {
             setLoading(false)
             loadData()
         }
@@ -108,30 +116,57 @@ const UserList: React.FC = () => {
     }, []);
 
     const assignRole = () => {
-        setLoading(true)
+        setLoading(true);
+
         if (selectedUserId && selectedRole) {
             axios.post(`${urls.user}/${selectedUserId}/roles`, {
                 roles: [selectedRole],
-            }).then(() => {
-                setShowRoleDialog(false);
-                setLoading(false)
-                loadData()
-            });
+            })
+                .then(() => {
+                    setShowRoleDialog(false);
+                    loadData();
+                    toast.success("Sucesso")
+                })
+                .catch((error) => {
+                    console.error("Erro ao atribuir o role:", error);
+                    toast.error("Erro ao atribuir o role!");
+                })
+                .finally(() => {
+                    setLoading(false);
+                });
+        } else {
+            setLoading(false);
+            toast.warn("Role não selecionados.");
         }
     };
 
+    // handleClickSucess
+
     const assignPermission = () => {
-        setLoading(true)
+        setLoading(true);
+
         if (selectedUserId && selectedPermission) {
             axios.post(`${urls.user}/${selectedUserId}/permissions`, {
                 permissions: [selectedPermission],
-            }).then(() => {
-                setShowPermissionDialog(false);
-                setLoading(false)
-                loadData()
-            });
+            })
+                .then(() => {
+                    setShowPermissionDialog(false);
+                    loadData();
+                    toast.success("Permissão atribuida")
+                })
+                .catch((error) => {
+                    console.error("Erro ao atribuir permissão:", error);
+                    toast.error("Erro ao atribuir permissão!");
+                })
+                .finally(() => {
+                    setLoading(false);
+                });
+        } else {
+            setLoading(false);
+            toast.warn("Usuário ou permissão não selecionados.");
         }
     };
+
 
     if (loading) return <div className="containerLoader">
         <div className="loader"></div>
@@ -141,7 +176,16 @@ const UserList: React.FC = () => {
     return (
         <div className="tableContainer">
             <div className="dialog"></div>
-            <h2>Lista de Usuários</h2>
+            <div className="headerTableList">
+                <h2>Lista de Usuários</h2>
+                <button className="action-btn" title="Novo usuário" onClick={() => {
+                    navigate("/dashboard/user/novo")
+                }}>
+                    <Plus size={16} className='iconPlusUser' />
+                    <span>Novo</span>
+                </button>
+            </div>
+
             <table className="userTable">
                 <thead>
                     <tr>
@@ -162,30 +206,32 @@ const UserList: React.FC = () => {
                             <td>{new Date(user.created_at).toLocaleDateString()}</td>
                             <td>{user.roles.map(role => role.name).join(', ')}</td>
                             <td className="actions">
-                                <button className="action-btn refresh" title="Detalhes">
+                                <button className="action-btn refresh" title="Detalhes" onClick={() => {
+
+                                }}>
                                     <Eye size={16} className="btnDetails" />
                                 </button>
-                                <button className="action-btn edit" title="Editar">
-                                    <Pencil size={16} className="btnUpdate" onClick={() => {
-                                        navigate(`/dashboard/user/${user.id}`);
-                                    }} />
+                                <button className="action-btn edit" title="Editar" onClick={() => {
+                                    navigate(`/dashboard/user/${user.id}`);
+                                }}>
+                                    <Pencil size={16} className="btnUpdate" />
                                 </button>
-                                <button className="action-btn delete" title="Apagar">
-                                    <Trash2 size={16} className="btnTrash" onClick={() => {
-                                        deleteUser(user.id)
-                                    }} />
+                                <button className="action-btn delete" title="Apagar" onClick={() => {
+                                    deleteUser(user.id)
+                                }}>
+                                    <Trash2 size={16} className="btnTrash" />
                                 </button>
-                                <button className="action-btn" title="Atribuir Permissão">
-                                    <ShieldCheck size={16} onClick={() => {
-                                        setSelectedUserId(user.id);
-                                        setShowPermissionDialog(true);
-                                    }} />
+                                <button className="action-btn" title="Atribuir Permissão" onClick={() => {
+                                    setSelectedUserId(user.id);
+                                    setShowPermissionDialog(true);
+                                }}>
+                                    <ShieldCheck className="btnPermission" size={16} />
                                 </button>
-                                <button className="action-btn" title="Atribuir Função">
-                                    <UserCheck size={16} onClick={() => {
-                                        setSelectedUserId(user.id);
-                                        setShowRoleDialog(true);
-                                    }} />
+                                <button className="action-btn" title="Atribuir Função" onClick={() => {
+                                    setSelectedUserId(user.id);
+                                    setShowRoleDialog(true);
+                                }}>
+                                    <UserCheck size={16} />
                                 </button>
                             </td>
                             {/* <td className="actions">

@@ -12,6 +12,8 @@ import RoleList from './pages/dashboard/usermanagement/role/RoleList';
 import PermissionList from './pages/dashboard/usermanagement/permission/PermissionList';
 import UserNew from './pages/dashboard/usermanagement/user/UserNew';
 import UserUpdate from './pages/dashboard/usermanagement/user/UserUpdate';
+import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 
 
@@ -19,6 +21,7 @@ import UserUpdate from './pages/dashboard/usermanagement/user/UserUpdate';
 function App() {
   return (
     <>
+     <ToastContainer />
       <Routes>
         <Route path={routes.home} element={<Home />} />
         <Route path={routes.about} element={<About />} />
