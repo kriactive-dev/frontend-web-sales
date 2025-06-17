@@ -436,13 +436,15 @@ body {
 
 .containerLoader {
     position: fixed;
+    left: 0;
+    top: 0;
     z-index: 9999;
-    width: calc(100% - 200px);
+    width: calc(100%);
     height: 100%;
     display: flex;
-    align-items: flex-start;
+    align-items: center;
     justify-content: center;
-    background-color: rgba(0, 0, 0, 0);
+    background-color: rgba(0, 0, 0, 0.5);
 }
 
 .loader {
@@ -508,6 +510,77 @@ body {
 .colorPut span{
     color: #0c4fa8;
 }
+
+.dialog-backdrop{
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 999;
+    background-color: rgba(0, 0, 0, 0.2);
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.dialog-box{
+    background-color: #fff;
+    padding: 20px 40px;
+    border-radius: 10px;
+    width: 500px;
+    height: 180px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+}
+
+.dialog-box h3{
+    font-weight: 700;
+    font-size: 1rem;
+}
+
+.buttonAddCancel{
+    width: 100%;
+    display: flex;
+    justify-content: flex-end;
+}
+
+.buttonAddCancel button{
+    background-color: #e04546;
+    color: #fff;
+    padding: 10px 20px;
+    border-radius: 10px;
+    font-weight: 500;
+    font-size: 14px;
+}
+.buttonAddCancel button:first-child{
+    background-color: #0c4fa8;
+    margin-right: 10px;
+    
+}
+
+.roleOptions{
+    width: 100%;
+    margin: 15px 0px;
+    cursor: pointer;
+    border: 1px solid #ccc;
+    /* height: 550px!important; */
+    padding: 10px;
+    outline: none;
+}
+
+
+/* .dialog{
+    position: absolute;
+    z-index: 9999999;
+    background-color: red;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+} */
 
 
 @keyframes spin {

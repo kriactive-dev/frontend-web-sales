@@ -1,10 +1,36 @@
-import React, { useEffect, useState } from 'react';
+import React, { use, useEffect, useState } from 'react';
 import axios from 'axios';
-import { Pencil, Trash2, Eye } from "lucide-react";
+import { Pencil, Trash2, Eye, ShieldCheck, UserCheck } from "lucide-react";
 import urls from '../../../../utils/apis/apis';
+import { useNavigate } from 'react-router-dom';
+interface Pivot {
+    role_id: number;
+    permission_id: number;
+}
+
+interface Permission {
+    id: number;
+    name: string;
+    guard_name: string;
+    created_at: string;
+    updated_at: string;
+    pivot: Pivot;
+}
+
 interface Role {
     id: number;
     name: string;
+    guard_name: string;
+    created_at: string;
+    updated_at: string;
+    permissions: Permission[];
+}
+
+interface Permissions {
+    id: number;
+    name: string;
+    created_at: string;
+    updated_at: string;
 }
 
 interface User {
@@ -16,11 +42,47 @@ interface User {
 }
 
 const UserList: React.FC = () => {
+    const navigate = useNavigate();
     const [users, setUsers] = useState<User[]>([]);
-    const [loading, setLoading] = useState<boolean>(true);
+    const [roles, setRoles] = useState<Role[]>([]);
+    const [permissions, setPermissions] = useState<Permissions[]>([]);
+    const [selectedUserId, setSelectedUserId] = useState<number | null>(null);
+    const [selectedRole, setSelectedRole] = useState<string>("");
+    const [selectedPermission, setSelectedPermission] = useState<string>("");
+    const [showRoleDialog, setShowRoleDialog] = useState(false);
+    const [showPermissionDialog, setShowPermissionDialog] = useState(false);
+    const [loading, setLoading] = useState(true);
     const [error, setError] = useState<string | null>(null);
+    const deleteUser = async (id: number) => {
+        setLoading(true)
+        try {
+            await axios.delete(`${urls.user}/${id}`);
+            alert('Usuário apagado com sucesso!');
+            setUsers(users.filter(user => user.id !== id));
+        } catch (error) {
+            console.error('Erro ao apagar usuário:', error);
+            alert('Erro ao apagar usuário!');
+        }finally{
+            setLoading(false)
+            loadData()
+        }
+    };
 
-    useEffect(() => {
+
+    // useEffect(() => {
+    //     axios.get<User[]>(urls.user)
+    //         .then(response => {
+    //             setUsers(response.data);
+    //             setLoading(false);
+    //         })
+    //         .catch(error => {
+    //             console.error('Erro ao buscar usuários:', error);
+    //             setError('Erro ao carregar dados.');
+    //             setLoading(false);
+    //         });
+    // }, []);
+
+    const loadData = () => {
         axios.get<User[]>(urls.user)
             .then(response => {
                 setUsers(response.data);
@@ -31,7 +93,45 @@ const UserList: React.FC = () => {
                 setError('Erro ao carregar dados.');
                 setLoading(false);
             });
+
+        axios.get(urls.roles)
+            .then(res => setRoles(res.data))
+            .catch(err => console.error("Erro ao carregar funções:", err));
+
+        axios.get(urls.permissions)
+            .then(res => setPermissions(res.data))
+            .catch(err => console.error("Erro ao carregar permissões:", err));
+    }
+
+    useEffect(() => {
+        loadData()
     }, []);
+
+    const assignRole = () => {
+        setLoading(true)
+        if (selectedUserId && selectedRole) {
+            axios.post(`${urls.user}/${selectedUserId}/roles`, {
+                roles: [selectedRole],
+            }).then(() => {
+                setShowRoleDialog(false);
+                setLoading(false)
+                loadData()
+            });
+        }
+    };
+
+    const assignPermission = () => {
+        setLoading(true)
+        if (selectedUserId && selectedPermission) {
+            axios.post(`${urls.user}/${selectedUserId}/permissions`, {
+                permissions: [selectedPermission],
+            }).then(() => {
+                setShowPermissionDialog(false);
+                setLoading(false)
+                loadData()
+            });
+        }
+    };
 
     if (loading) return <div className="containerLoader">
         <div className="loader"></div>
@@ -40,6 +140,7 @@ const UserList: React.FC = () => {
 
     return (
         <div className="tableContainer">
+            <div className="dialog"></div>
             <h2>Lista de Usuários</h2>
             <table className="userTable">
                 <thead>
@@ -65,17 +166,86 @@ const UserList: React.FC = () => {
                                     <Eye size={16} className="btnDetails" />
                                 </button>
                                 <button className="action-btn edit" title="Editar">
-                                    <Pencil size={16} className="btnUpdate" />
+                                    <Pencil size={16} className="btnUpdate" onClick={() => {
+                                        navigate(`/dashboard/user/${user.id}`);
+                                    }} />
                                 </button>
                                 <button className="action-btn delete" title="Apagar">
-                                    <Trash2 size={16} className="btnTrash" />
+                                    <Trash2 size={16} className="btnTrash" onClick={() => {
+                                        deleteUser(user.id)
+                                    }} />
+                                </button>
+                                <button className="action-btn" title="Atribuir Permissão">
+                                    <ShieldCheck size={16} onClick={() => {
+                                        setSelectedUserId(user.id);
+                                        setShowPermissionDialog(true);
+                                    }} />
+                                </button>
+                                <button className="action-btn" title="Atribuir Função">
+                                    <UserCheck size={16} onClick={() => {
+                                        setSelectedUserId(user.id);
+                                        setShowRoleDialog(true);
+                                    }} />
+                                </button>
+                            </td>
+                            {/* <td className="actions">
+                                <button className="action-btn refresh" title="Detalhes">
+                                    <Eye size={16} className="btnDetails" />
+                                </button>
+                                <button className="action-btn edit" title="Editar">
+                                    <Pencil size={16} className="btnUpdate" onClick={()=>{
+                                       navigate(`/dashboard/user/${user.id}`);
+                                    }} />
+                                </button>
+                                <button className="action-btn delete" title="Apagar">
+                                    <Trash2 size={16} className="btnTrash" onClick={()=>{
+                                        deleteUser(user.id)
+                                    }} />
                                 </button>
 
-                            </td>
+                            </td> */}
                         </tr>
                     ))}
                 </tbody>
             </table>
+
+            {showRoleDialog && (
+                <div className="dialog-backdrop">
+                    <div className="dialog-box">
+                        <h3>Atribuir Role</h3>
+                        <select value={selectedRole} onChange={(e) => setSelectedRole(e.target.value)} required className="roleOptions h-10 px-2 rounded border">
+                            <option value="" >Selecione</option>
+                            {roles.map(role => (
+                                <option key={role.id} value={role.name}>{role.name}</option>
+                            ))}
+                        </select>
+                        <div className="buttonAddCancel">
+                            <button onClick={assignRole}>Atribuir</button>
+                            <button onClick={() => setShowRoleDialog(false)}>Cancelar</button>
+                        </div>
+
+                    </div>
+                </div>
+            )}
+
+
+            {showPermissionDialog && (
+                <div className="dialog-backdrop">
+                    <div className="dialog-box">
+                        <h3>Atribuir Permissão</h3>
+                        <select value={selectedPermission} onChange={(e) => setSelectedPermission(e.target.value)} required className="roleOptions h-10 px-2 rounded border">
+                            <option value="">Selecione</option>
+                            {permissions.map(p => (
+                                <option key={p.id} value={p.name}>{p.name}</option>
+                            ))}
+                        </select>
+                        <div className="buttonAddCancel">
+                            <button onClick={assignPermission}>Atribuir</button>
+                            <button onClick={() => setShowPermissionDialog(false)}>Cancelar</button>
+                        </div>
+                    </div>
+                </div>
+            )}
         </div>
     );
 };

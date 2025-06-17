@@ -10,6 +10,8 @@ import Default from './pages/dashboard/dashboard/default/Default';
 import UserList from './pages/dashboard/usermanagement/user/UserList';
 import RoleList from './pages/dashboard/usermanagement/role/RoleList';
 import PermissionList from './pages/dashboard/usermanagement/permission/PermissionList';
+import UserNew from './pages/dashboard/usermanagement/user/UserNew';
+import UserUpdate from './pages/dashboard/usermanagement/user/UserUpdate';
 
 
 
@@ -22,7 +24,9 @@ function App() {
         <Route path={routes.about} element={<About />} />
         <Route path={routes.login} element={<Login />} />
         <Route path={routes.dashboard} element={<Dashboard />}>
-          <Route path={routes.userList} element={<UserList />} />
+          <Route path={routes.user.list} element={<UserList />} />
+          <Route path={routes.user.new} element={<UserNew />} />
+          <Route path={routes.user.update} element={<UserUpdate />} />
           <Route path={routes.permissions} element={<PermissionList />} />
           <Route path={routes.roles} element={<RoleList />} />
           <Route path={routes.dahsboardDefault} element={<Default />} />
