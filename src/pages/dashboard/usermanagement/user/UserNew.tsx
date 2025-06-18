@@ -120,8 +120,6 @@ const UserNew: React.FC = () => {
     </>
   );
 };
-
-// Estilos simples
 const formStyle: React.CSSProperties = {
   maxWidth: '400px',
   margin: '0 auto',

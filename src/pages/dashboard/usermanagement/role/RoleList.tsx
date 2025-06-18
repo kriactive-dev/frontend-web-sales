@@ -2,7 +2,9 @@ import axios from "axios";
 import type React from "react";
 import { useState, useEffect } from "react";
 import urls from "../../../../utils/apis/apis";
-import { Pencil, Trash2, Eye } from "lucide-react";
+import { Pencil, Trash2, Eye, Plus } from "lucide-react";
+import { useNavigate } from "react-router-dom";
+import { toast } from "react-toastify"
 interface Pivot {
     role_id: number;
     permission_id: number;
@@ -34,18 +36,91 @@ const getRolesWithPermissions = async () => {
 const RoleList: React.FC = () => {
     const [roles, setRoles] = useState<Role[]>([]);
     const [loading, setLoading] = useState<boolean>(true);
+    const navigate = useNavigate()
+    const [nameRole, setNameRole] = useState<string>('')
+    const [nameRoleUpdate, setNameRoleUpdate] = useState<string>('')
+    const [showRoleDialog, setShowRoleDialog] = useState(false);
+    const [showRoleDialogUpdate, setShowRoleDialogUpdate] = useState(false)
+    const [idRole, setIdRole] = useState<number>(0)
+    const sendRole = async (name: string) => {
+
+        setLoading(true)
+        if (name != '') {
+            try {
+                const response = await axios.post(urls.roles, {
+                    "name": name
+                });
+
+                toast.success('Role cadastrado com sucesso!')
+
+                setNameRole('')
+                setShowRoleDialog(false)
+                fetchRoles()
+            } catch (error) {
+                console.error('Erro ao salvar:', error);
+                toast.error('Erro ao salvar!')
+            } finally {
+                setLoading(false)
+            }
+        } else {
+            toast.info("Preencha todos os campos")
+        }
+
+    };
+
+    const sendRoleUpdate = async (name: string) => {
+
+        setLoading(true)
+        if (name != '' && idRole!=0) {
+            try {
+                const response = await axios.put(`${urls.roles}/${idRole}`, {
+                    "name": name
+                });
+
+                toast.success('Role atualizado com sucesso!')
+
+                setNameRoleUpdate('')
+                setShowRoleDialogUpdate(false)
+                fetchRoles()
+            } catch (error) {
+                console.error('Erro ao salvar:', error);
+                toast.error('Erro ao salvar!')
+            } finally {
+                setLoading(false)
+            }
+        } else {
+            toast.info("Preencha todos os campos")
+        }
+
+    };
+
+    const fetchRoles = async () => {
+        try {
+            const data = await getRolesWithPermissions();
+            setRoles(data);
+        } catch (error) {
+            console.error("Erro ao buscar roles:", error);
+        } finally {
+            setLoading(false);
+        }
+    };
+
+    const deleteRole = async()=>{
+        setLoading(true)
+        try{
+            const response = await axios.delete(`${urls.roles}/${idRole}`)
+            toast.success("Role removida com sucesso.")
+            fetchRoles()
+        }catch(e){
+            toast.error("Erro ao apagar")
+        }finally{
+            setLoading(false)
+        }
+    }
+
 
     useEffect(() => {
-        const fetchRoles = async () => {
-            try {
-                const data = await getRolesWithPermissions();
-                setRoles(data);
-            } catch (error) {
-                console.error("Erro ao buscar roles:", error);
-            } finally {
-                setLoading(false);
-            }
-        };
+
 
         fetchRoles();
     }, []);
@@ -56,7 +131,16 @@ const RoleList: React.FC = () => {
 
     return (
         <div className="tableContainer">
-            <h2>Lista de Roles</h2>
+            <div className="headerTableList">
+                <h2>Lista de Roles</h2>
+                <button className="action-btn" title="Novo usuário" onClick={() => {
+                    setShowRoleDialog(true)
+                }}>
+                    <Plus size={16} className='iconPlusUser' />
+                    <span>Novo</span>
+                </button>
+            </div>
+
             <table className="userTable">
                 <thead>
                     <tr>
@@ -100,10 +184,19 @@ const RoleList: React.FC = () => {
                                 <button className="action-btn refresh" title="Detalhes">
                                     <Eye size={16} className="btnDetails" />
                                 </button>
-                                <button className="action-btn edit" title="Editar">
+                                <button className="action-btn edit" title="Editar" onClick={()=>{
+                                    setIdRole(user.id)
+                                    setNameRoleUpdate(user.name)
+                                    setShowRoleDialogUpdate(true)
+                                }}>
                                     <Pencil size={16} className="btnUpdate" />
                                 </button>
-                                <button className="action-btn delete" title="Apagar">
+                                <button className="action-btn delete" title="Apagar"  onClick={
+                                    ()=>{
+                                        setIdRole(user.id)
+                                        deleteRole()
+                                    }
+                                }>
                                     <Trash2 size={16} className="btnTrash" />
                                 </button>
 
@@ -112,6 +205,39 @@ const RoleList: React.FC = () => {
                     ))}
                 </tbody>
             </table>
+            {showRoleDialog && (
+                <div className="dialog-backdrop">
+                    <div className="dialog-box">
+                        <h3>Nova Role</h3>
+                        <input placeholder="Nome da role" type="text" value={nameRole} onChange={(e) => {
+                            setNameRole(e.target.value)
+                        }} className="roleOptions h-10 px-2 rounded border" style={{ cursor: "auto" }} />
+                        <div className="buttonAddCancel">
+                            <button onClick={() => {
+                                sendRole(nameRole)
+                            }}>Salvar</button>
+                            <button onClick={() => setShowRoleDialog(false)}>Cancelar</button>
+                        </div>
+                    </div>
+                </div>
+            )}
+
+            {showRoleDialogUpdate && (
+                <div className="dialog-backdrop">
+                    <div className="dialog-box">
+                        <h3>Atualizar Role</h3>
+                        <input placeholder="Nome da role" type="text" value={nameRoleUpdate} onChange={(e) => {
+                            setNameRoleUpdate(e.target.value)
+                        }} className="roleOptions h-10 px-2 rounded border" style={{ cursor: "auto" }} />
+                        <div className="buttonAddCancel">
+                            <button onClick={() => {
+                                sendRoleUpdate(nameRoleUpdate)
+                            }}>Atualizar</button>
+                            <button onClick={() => setShowRoleDialogUpdate(false)}>Cancelar</button>
+                        </div>
+                    </div>
+                </div>
+            )}
         </div>
     );
     // return (
