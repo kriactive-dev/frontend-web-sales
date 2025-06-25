@@ -1,4 +1,4 @@
-const baseUrls = 'http://143.198.159.11:9000/api/'
+const baseUrls = 'https://api-demo.websales-mz.com/api/'
 
 const urls = {
     user: `${baseUrls}users`,
