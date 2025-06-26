@@ -1,4 +1,4 @@
-import React, { use, useEffect, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import { Pencil, Trash2, Eye, ShieldCheck, UserCheck, Plus } from "lucide-react";
 import urls from '../../../../utils/apis/apis';

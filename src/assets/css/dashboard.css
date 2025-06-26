@@ -721,3 +721,64 @@ body {
         transform: rotate(360deg);
     }
 }
+
+@media (max-width: 1410px) {
+    .tableContainer{
+        border: 0px solid red;
+        overflow-x: auto;
+    }
+}
+
+@media (max-width: 1332px) {
+    .cardsDefaultDash {
+        flex-wrap: wrap;
+    }
+    
+    .cardsDefaultDash .itemCard {
+        width: calc((100% / 2) - 5px);
+        height: 120px;
+       margin-top: 10px;
+    }
+
+    .graficsDouble {
+        flex-wrap: wrap;
+    }
+    
+    .itemGraphics {
+        width: 100%;
+       margin-top: 10px;
+    }
+    
+    
+}
+
+
+@media (max-width: 1246px) {
+    /* .tableContainer{
+        border: 0px solid red;
+        overflow-x: auto;
+        width: 900px;
+    } */
+     .userTable{
+        width: 900px;
+     }
+}
+
+@media (max-width: 870px) {
+
+.barsHeaderSide{
+    width: 0%;
+}
+
+.barsBody{
+    width: 100%;
+}
+}
+
+@media (max-width: 560px) {
+    .cardsDefaultDash .itemCard {
+        width: calc((100%));
+        height: 120px;
+        margin-top: 10px;
+    }
+}

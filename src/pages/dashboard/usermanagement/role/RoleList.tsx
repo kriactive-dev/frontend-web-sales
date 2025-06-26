@@ -3,7 +3,6 @@ import type React from "react";
 import { useState, useEffect } from "react";
 import urls from "../../../../utils/apis/apis";
 import { Pencil, Trash2, Eye, Plus } from "lucide-react";
-import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify"
 interface Pivot {
     role_id: number;
@@ -36,7 +35,6 @@ const getRolesWithPermissions = async () => {
 const RoleList: React.FC = () => {
     const [roles, setRoles] = useState<Role[]>([]);
     const [loading, setLoading] = useState<boolean>(true);
-    const navigate = useNavigate()
     const [nameRole, setNameRole] = useState<string>('')
     const [nameRoleUpdate, setNameRoleUpdate] = useState<string>('')
     const [showRoleDialog, setShowRoleDialog] = useState(false);
@@ -47,7 +45,7 @@ const RoleList: React.FC = () => {
         setLoading(true)
         if (name != '') {
             try {
-                const response = await axios.post(urls.roles, {
+                await axios.post(urls.roles, {
                     "name": name
                 });
 
@@ -73,7 +71,7 @@ const RoleList: React.FC = () => {
         setLoading(true)
         if (name != '' && idRole!=0) {
             try {
-                const response = await axios.put(`${urls.roles}/${idRole}`, {
+                await axios.put(`${urls.roles}/${idRole}`, {
                     "name": name
                 });
 
@@ -108,7 +106,7 @@ const RoleList: React.FC = () => {
     const deleteRole = async()=>{
         setLoading(true)
         try{
-            const response = await axios.delete(`${urls.roles}/${idRole}`)
+            await axios.delete(`${urls.roles}/${idRole}`)
             toast.success("Role removida com sucesso.")
             fetchRoles()
         }catch(e){

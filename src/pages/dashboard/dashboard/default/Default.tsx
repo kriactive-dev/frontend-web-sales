@@ -32,6 +32,7 @@ const Default: React.FC = () => {
                         <h2>
                             Total de Usuários
                         </h2>
+                        
                         <div className="iconcards">
                             <User className="iconcard" />
                         </div>

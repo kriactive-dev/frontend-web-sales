@@ -2,7 +2,6 @@ import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import { Pencil, Trash2, Eye, Plus } from "lucide-react";
 import urls from '../../../../utils/apis/apis';
-import { useNavigate } from 'react-router-dom';
 
 import { toast } from 'react-toastify'
 
@@ -23,7 +22,7 @@ const PermissionList: React.FC = () => {
     const [namePermissionUpdate, setNamePermissionUpdate] = useState<string>('')
     const [showPermissionDialogUpdate, setShowPermissionDialogUpdate] = useState(false)
     const [idPermission, setIdPermission] = useState<number>(0)
-    const navigate = useNavigate()
+    
 
     const permissionsView = async () => {
         axios.get<Permissions[]>(urls.permissions)
@@ -43,7 +42,7 @@ const PermissionList: React.FC = () => {
         setLoading(true)
         if (name != '') {
             try {
-                const response = await axios.post(urls.permissions, {
+               await axios.post(urls.permissions, {
                     "name": name
                 });
 
@@ -69,7 +68,7 @@ const PermissionList: React.FC = () => {
         setLoading(true)
         if (name != '' && idPermission != 0) {
             try {
-                const response = await axios.put(`${urls.permissions}/${idPermission}`, {
+                await axios.put(`${urls.permissions}/${idPermission}`, {
                     "name": name
                 });
 
@@ -93,7 +92,7 @@ const PermissionList: React.FC = () => {
     const deletePermission = async()=>{
         setLoading(true)
         try{
-            const response = await axios.delete(`${urls.permissions}/${idPermission}`)
+            await axios.delete(`${urls.permissions}/${idPermission}`)
             toast.success("Permissão removida com sucesso.")
             permissionsView()
         }catch(e){

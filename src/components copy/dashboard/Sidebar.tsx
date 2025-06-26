@@ -1,7 +1,7 @@
 import logo from "../../assets/images/logo/logo-ligth.svg"
 import userprofile from "../../assets/images/user/avatar-1.jpg"
 import React, { useState } from "react";
-import { UserRound, ScrollText, ShieldCheck, ChevronRight, ListFilter, ChevronDown, ChartPie } from "lucide-react";
+import { UserRound, ScrollText, ShieldCheck, ListFilter, ChevronDown, ChartPie } from "lucide-react";
 import { useNavigate } from "react-router-dom";
 
 interface MenuItem {

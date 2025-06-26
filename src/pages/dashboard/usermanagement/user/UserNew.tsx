@@ -120,13 +120,7 @@ const UserNew: React.FC = () => {
     </>
   );
 };
-const formStyle: React.CSSProperties = {
-  maxWidth: '400px',
-  margin: '0 auto',
-  display: 'flex',
-  flexDirection: 'column',
-  gap: '10px',
-};
+
 
 const inputStyle: React.CSSProperties = {
   padding: '8px',
@@ -135,13 +129,6 @@ const inputStyle: React.CSSProperties = {
 
 };
 
-const buttonStyle: React.CSSProperties = {
-  padding: '10px',
-  backgroundColor: '#4CAF50',
-  color: 'white',
-  border: 'none',
-  fontWeight: 'bold',
-  cursor: 'pointer',
-};
+
 
 export default UserNew;

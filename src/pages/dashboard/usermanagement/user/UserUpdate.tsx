@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import axios from 'axios';
-import { Plus, X, List, RefreshCw } from 'lucide-react';
+import { X, List, RefreshCw } from 'lucide-react';
 import urls from '../../../../utils/apis/apis';
 import { toast } from 'react-toastify';
 
@@ -118,28 +118,13 @@ const UserUpdate: React.FC = () => {
   );
 };
 
-// Estilos simples
-const formStyle: React.CSSProperties = {
-  maxWidth: '400px',
-  margin: '0 auto',
-  display: 'flex',
-  flexDirection: 'column',
-  gap: '10px',
-};
 
 const inputStyle: React.CSSProperties = {
   padding: '8px',
   fontSize: '1rem',
 };
 
-const buttonStyle: React.CSSProperties = {
-  padding: '10px',
-  backgroundColor: '#007BFF',
-  color: 'white',
-  border: 'none',
-  fontWeight: 'bold',
-  cursor: 'pointer',
-};
+
 
 export default UserUpdate;
 
