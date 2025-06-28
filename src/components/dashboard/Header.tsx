@@ -1,13 +1,19 @@
 import { Menu, Search } from "lucide-react";
 import type React from "react";
-import userAvatar from "../../assets/images/user/avatar-2.jpg"
+import userAvatar from "../../assets/images/user/avatar-2.jpg";
 
-const Header: React.FC = () => {
+interface HeaderProps {
+  onToggleSidebar: () => void;
+}
+
+const Header: React.FC<HeaderProps> = ({ onToggleSidebar }) => {
+   
+
   return (
     <>
       <header className="headerDah">
         <div className="serachBar">
-          <Menu className="serachBarMenuIcon" />
+          <Menu className="serachBarMenuIcon" onClick={onToggleSidebar}/>
           <div className="serach">
             <Search className="serachIcon" />
             <input type="text" placeholder="Pesquisar" />

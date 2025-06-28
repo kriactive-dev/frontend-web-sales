@@ -17,10 +17,21 @@ body {
     width: 300px;
     border: 0px solid black;
     height: 100vh;
+    transition: all ease .4s;
+}
+
+.sidebarhiden{
+     width: 0px;
+     overflow: hidden;
+     transition: all ease .4s;
 }
 
 .barsBody {
     width: calc(100% - 300px);
+}
+
+.barsBodyAll{
+    width: 100%;
 }
 
 
@@ -709,6 +720,7 @@ body {
     font-weight: 600;
     color: #555;
 }
+
 
 
 
