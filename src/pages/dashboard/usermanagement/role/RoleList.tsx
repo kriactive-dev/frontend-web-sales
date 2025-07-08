@@ -69,7 +69,7 @@ const RoleList: React.FC = () => {
     const sendRoleUpdate = async (name: string) => {
 
         setLoading(true)
-        if (name != '' && idRole!=0) {
+        if (name != '' && idRole != 0) {
             try {
                 await axios.put(`${urls.roles}/${idRole}`, {
                     "name": name
@@ -103,15 +103,15 @@ const RoleList: React.FC = () => {
         }
     };
 
-    const deleteRole = async()=>{
+    const deleteRole = async () => {
         setLoading(true)
-        try{
+        try {
             await axios.delete(`${urls.roles}/${idRole}`)
             toast.success("Role removida com sucesso.")
             fetchRoles()
-        }catch(e){
+        } catch (e) {
             toast.error("Erro ao apagar")
-        }finally{
+        } finally {
             setLoading(false)
         }
     }
@@ -128,6 +128,7 @@ const RoleList: React.FC = () => {
     </div>;
 
     return (
+
         <div className="tableContainer">
             <div className="headerTableList">
                 <h2>Lista de Roles</h2>
@@ -138,104 +139,105 @@ const RoleList: React.FC = () => {
                     <span>Novo</span>
                 </button>
             </div>
+            <div className="containerTable">
+                <table className="userTable">
+                    <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>Nome</th>
+                            <th>permissões</th>
+                            <th>Data de Criação</th>
 
-            <table className="userTable">
-                <thead>
-                    <tr>
-                        <th>ID</th>
-                        <th>Nome</th>
-                        <th>permissões</th>
-                        <th>Data de Criação</th>
-
-                        <th>Ações</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    {roles.map(user => (
-                        <tr key={user.id}>
-                            <td>{user.id}</td>
-                            <td>{user.name}</td>
-                            <td>{user.permissions.length > 0 ? (
-                                // <ul className="permissionsList">
-                                //     {user.permissions.map((permission) => {
-                                //         const parts = permission.name.split(".");
-                                //         const action = parts.length > 1 ? parts[1] : permission.name; // pega só o 'view', 'create'...
-                                //         return <li key={permission.id}>{action}</li>;
-                                //     })}
-                                // </ul>
-                                <ul className="permissionsList">
-                                    {user.permissions.slice(0, 3).map((permission) => {
-                                        const parts = permission.name.split(".");
-                                        const action = parts.length > 1 ? parts[1] : permission.name;
-                                        return <li key={permission.id}>{action}</li>;
-                                    })}
-                                    {user.permissions.length > 3 && <li>...</li>}
-                                </ul>
-
-                            ) : (
-                                <p className="text-sm text-gray-400">Sem permissões atribuídas.</p>
-                            )}</td>
-
-                            <td>{new Date(user.created_at).toLocaleDateString()}</td>
-
-                            <td className="actions">
-                                <button className="action-btn refresh" title="Detalhes">
-                                    <Eye size={16} className="btnDetails" />
-                                </button>
-                                <button className="action-btn edit" title="Editar" onClick={()=>{
-                                    setIdRole(user.id)
-                                    setNameRoleUpdate(user.name)
-                                    setShowRoleDialogUpdate(true)
-                                }}>
-                                    <Pencil size={16} className="btnUpdate" />
-                                </button>
-                                <button className="action-btn delete" title="Apagar"  onClick={
-                                    ()=>{
-                                        setIdRole(user.id)
-                                        deleteRole()
-                                    }
-                                }>
-                                    <Trash2 size={16} className="btnTrash" />
-                                </button>
-
-                            </td>
+                            <th>Ações</th>
                         </tr>
-                    ))}
-                </tbody>
-            </table>
-            {showRoleDialog && (
-                <div className="dialog-backdrop">
-                    <div className="dialog-box">
-                        <h3>Nova Role</h3>
-                        <input placeholder="Nome da role" type="text" value={nameRole} onChange={(e) => {
-                            setNameRole(e.target.value)
-                        }} className="roleOptions h-10 px-2 rounded border" style={{ cursor: "auto" }} />
-                        <div className="buttonAddCancel">
-                            <button onClick={() => {
-                                sendRole(nameRole)
-                            }}>Salvar</button>
-                            <button onClick={() => setShowRoleDialog(false)}>Cancelar</button>
-                        </div>
-                    </div>
-                </div>
-            )}
+                    </thead>
+                    <tbody>
+                        {roles.map(user => (
+                            <tr key={user.id}>
+                                <td>{user.id}</td>
+                                <td>{user.name}</td>
+                                <td>{user.permissions.length > 0 ? (
+                                    // <ul className="permissionsList">
+                                    //     {user.permissions.map((permission) => {
+                                    //         const parts = permission.name.split(".");
+                                    //         const action = parts.length > 1 ? parts[1] : permission.name; // pega só o 'view', 'create'...
+                                    //         return <li key={permission.id}>{action}</li>;
+                                    //     })}
+                                    // </ul>
+                                    <ul className="permissionsList">
+                                        {user.permissions.slice(0, 3).map((permission) => {
+                                            const parts = permission.name.split(".");
+                                            const action = parts.length > 1 ? parts[1] : permission.name;
+                                            return <li key={permission.id}>{action}</li>;
+                                        })}
+                                        {user.permissions.length > 3 && <li>...</li>}
+                                    </ul>
 
-            {showRoleDialogUpdate && (
-                <div className="dialog-backdrop">
-                    <div className="dialog-box">
-                        <h3>Atualizar Role</h3>
-                        <input placeholder="Nome da role" type="text" value={nameRoleUpdate} onChange={(e) => {
-                            setNameRoleUpdate(e.target.value)
-                        }} className="roleOptions h-10 px-2 rounded border" style={{ cursor: "auto" }} />
-                        <div className="buttonAddCancel">
-                            <button onClick={() => {
-                                sendRoleUpdate(nameRoleUpdate)
-                            }}>Atualizar</button>
-                            <button onClick={() => setShowRoleDialogUpdate(false)}>Cancelar</button>
+                                ) : (
+                                    <p className="text-sm text-gray-400">Sem permissões atribuídas.</p>
+                                )}</td>
+
+                                <td>{new Date(user.created_at).toLocaleDateString()}</td>
+
+                                <td className="actions">
+                                    <button className="action-btn refresh" title="Detalhes">
+                                        <Eye size={16} className="btnDetails" />
+                                    </button>
+                                    <button className="action-btn edit" title="Editar" onClick={() => {
+                                        setIdRole(user.id)
+                                        setNameRoleUpdate(user.name)
+                                        setShowRoleDialogUpdate(true)
+                                    }}>
+                                        <Pencil size={16} className="btnUpdate" />
+                                    </button>
+                                    <button className="action-btn delete" title="Apagar" onClick={
+                                        () => {
+                                            setIdRole(user.id)
+                                            deleteRole()
+                                        }
+                                    }>
+                                        <Trash2 size={16} className="btnTrash" />
+                                    </button>
+
+                                </td>
+                            </tr>
+                        ))}
+                    </tbody>
+                </table>
+                {showRoleDialog && (
+                    <div className="dialog-backdrop">
+                        <div className="dialog-box">
+                            <h3>Nova Role</h3>
+                            <input placeholder="Nome da role" type="text" value={nameRole} onChange={(e) => {
+                                setNameRole(e.target.value)
+                            }} className="roleOptions h-10 px-2 rounded border" style={{ cursor: "auto" }} />
+                            <div className="buttonAddCancel">
+                                <button onClick={() => {
+                                    sendRole(nameRole)
+                                }}>Salvar</button>
+                                <button onClick={() => setShowRoleDialog(false)}>Cancelar</button>
+                            </div>
                         </div>
                     </div>
-                </div>
-            )}
+                )}
+
+                {showRoleDialogUpdate && (
+                    <div className="dialog-backdrop">
+                        <div className="dialog-box">
+                            <h3>Atualizar Role</h3>
+                            <input placeholder="Nome da role" type="text" value={nameRoleUpdate} onChange={(e) => {
+                                setNameRoleUpdate(e.target.value)
+                            }} className="roleOptions h-10 px-2 rounded border" style={{ cursor: "auto" }} />
+                            <div className="buttonAddCancel">
+                                <button onClick={() => {
+                                    sendRoleUpdate(nameRoleUpdate)
+                                }}>Atualizar</button>
+                                <button onClick={() => setShowRoleDialogUpdate(false)}>Cancelar</button>
+                            </div>
+                        </div>
+                    </div>
+                )}
+            </div>
         </div>
     );
     // return (

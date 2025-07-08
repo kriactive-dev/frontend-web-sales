@@ -185,7 +185,7 @@ const UserList: React.FC = () => {
                     <span>Novo</span>
                 </button>
             </div>
-
+<div className="containerTable">
             <table className="userTable">
                 <thead>
                     <tr>
@@ -254,6 +254,7 @@ const UserList: React.FC = () => {
                     ))}
                 </tbody>
             </table>
+            </div>
 
             {showRoleDialog && (
                 <div className="dialog-backdrop">

@@ -123,7 +123,8 @@ const PermissionList: React.FC = () => {
                     <span>Novo</span>
                 </button>
             </div>
-            <table className="userTable">
+            <div className="containerTable">
+                <table className="userTable">
                 <thead>
                     <tr>
                         <th>ID</th>
@@ -166,6 +167,8 @@ const PermissionList: React.FC = () => {
                     ))}
                 </tbody>
             </table>
+            </div>
+            
 
             {showPermissionDialog && (
                 <div className="dialog-backdrop">

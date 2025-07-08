@@ -10,6 +10,11 @@ interface MenuItem {
     submenu: string[];
 }
 
+
+interface HeaderProps {
+    onToggleSidebar: () => void;
+}
+
 const menuItems: MenuItem[] = [
     {
         label: "User",
@@ -35,7 +40,7 @@ const menuItems2: MenuItem[] = [
         submenu: ["Default", "Finance"],
     }
 ];
-const Sidebar: React.FC = () => {
+const Sidebar: React.FC<HeaderProps> = ({ onToggleSidebar }) => {
     const [selectedSubmenu, setSelectedSubmenu] = useState({ submenu: "", parent: "" });
 
 
@@ -55,6 +60,14 @@ const Sidebar: React.FC = () => {
         return str.normalize("NFD").replace(/[\u0300-\u036f]/g, "");
     };
     const onNavigate = (path: string, name: string) => {
+
+          const isMobile = window.innerWidth < 870;
+
+    if (isMobile) {
+        onToggleSidebar(); 
+    }
+
+        // onToggleSidebar()
         let cleanPath = ""
         if (name === "") {
             cleanPath = `${removeAccents(path.toLowerCase())}`;
