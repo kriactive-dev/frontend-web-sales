@@ -427,11 +427,37 @@ body {
 
 .itemCard .titleUser .iconcards {
     padding: 5px;
-    background-color: #2ca87f30;
+    background-color: rgba(47, 113, 255, 0.2);
+    border-radius: 4px;
 }
 
 .itemCard .titleUser .iconcards .iconcard {
-    color: #2ca87f;
+    color: #2f71ff;
+}
+
+.itemCard:nth-child(2) .titleUser .iconcards {
+    background-color: rgba(255, 87, 34, 0.2);
+}
+
+.itemCard:nth-child(2) .titleUser .iconcards .iconcard{
+    color: #ff5722;
+}
+
+
+.itemCard:nth-child(3) .titleUser .iconcards {
+    background-color: rgb(207, 250, 254, 1);
+}
+
+.itemCard:nth-child(3) .titleUser .iconcards .iconcard{
+    color: rgba(6, 182, 212, 1);
+}
+
+.itemCard:nth-child(4) .titleUser .iconcards {
+    background-color: rgb(243, 232, 255, 01);
+}
+
+.itemCard:nth-child(4) .titleUser .iconcards .iconcard{
+    color: rgb(168 85 247);
 }
 
 .numersItemCard span {
@@ -750,6 +776,11 @@ body {
 .loginLbn2{
 margin-bottom: 40px;
 font-size: 14px;
+}
+
+.cardLogin{
+    border: 1px solid #ddd;
+    border-radius: 5px;
 }
 
 

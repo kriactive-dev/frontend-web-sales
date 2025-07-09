@@ -1,15 +1,18 @@
 import type React from "react";
 import BarChartComponent from "../graphics/BarChartComponent";
 import LineChartComponent from "../graphics/LineChartComponent";
-import { User } from "lucide-react";
+import { User, ShoppingCart, Users, DollarSign, FileText } from "lucide-react";
 
 const Default: React.FC = () => {
     const barData = [
-        { name: 'Jan', users: 400 },
-        { name: 'Feb', users: 300 },
-        { name: 'Mar', users: 500 },
-        { name: 'Apr', users: 200 },
+        { name: 'Jan', users: 400, admins: 150 },
+        { name: 'Feb', users: 300, admins: 180 },
+        { name: 'Mar', users: 500, admins: 200 },
+        { name: 'Apr', users: 200, admins: 120 },
+        { name: 'May', users: 350, admins: 170 },
+        { name: 'Jun', users: 450, admins: 220 },
     ];
+
 
     // const pieData = [
     //     { name: 'Ativos', value: 65 },
@@ -22,6 +25,8 @@ const Default: React.FC = () => {
         { day: 'Qua', visits: 200 },
         { day: 'Qui', visits: 400 },
         { day: 'Sex', visits: 150 },
+        { day: 'Sab', visits: 400 },
+        { day: 'Dom', visits: 10 },
     ];
 
     return (
@@ -30,11 +35,11 @@ const Default: React.FC = () => {
                 <div className="itemCard">
                     <div className="titleUser">
                         <h2>
-                            Total de Usuários
+                            Usuários
                         </h2>
-                        
+
                         <div className="iconcards">
-                            <User className="iconcard" />
+                            <Users className="iconcard" />
                         </div>
                     </div>
                     <div className="numersItemCard">
@@ -46,10 +51,10 @@ const Default: React.FC = () => {
                 <div className="itemCard">
                     <div className="titleUser">
                         <h2>
-                        Transações 
+                            Transações
                         </h2>
                         <div className="iconcards">
-                            <User className="iconcard" />
+                            <ShoppingCart className="iconcard" />
                         </div>
                     </div>
                     <div className="numersItemCard">
@@ -61,10 +66,10 @@ const Default: React.FC = () => {
                 <div className="itemCard">
                     <div className="titleUser">
                         <h2>
-                            Total de Usuários
+                            Lucro
                         </h2>
                         <div className="iconcards">
-                            <User className="iconcard" />
+                            <DollarSign className="iconcard" />
                         </div>
                     </div>
                     <div className="numersItemCard">
@@ -76,10 +81,10 @@ const Default: React.FC = () => {
                 <div className="itemCard">
                     <div className="titleUser">
                         <h2>
-                            Total de Usuários
+                            Faturas
                         </h2>
                         <div className="iconcards">
-                            <User className="iconcard" />
+                            <FileText className="iconcard" />
                         </div>
                     </div>
                     <div className="numersItemCard">

@@ -13,7 +13,7 @@ const LineChartComponent: React.FC<LineChartProps> = ({ data }) => {
                     <XAxis dataKey="day" />
                     <YAxis />
                     <Tooltip />
-                    <Line type="monotone" dataKey="visits" stroke="#82ca9d" />
+                    <Line type="monotone" dataKey="visits" stroke="#2f71ff" />
                 </LineChart>
             </ResponsiveContainer>
         </div>

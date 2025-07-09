@@ -1,5 +1,6 @@
 import type React from "react";
-import logo from '../assets/images/logo/logo-ligth.svg'
+// import logo from '../assets/images/logo/logo-ligth.svg'
+import logo from '../assets/images/logo/logo-kriative-h.svg'
 import { useNavigate } from "react-router-dom";
 import { useState } from "react";
 
@@ -17,11 +18,11 @@ const Login: React.FC = () => {
             <div className="auth-main relative">
                 <div className="auth-wrapper v1 flex items-center w-full h-full min-h-screen">
                     <div className="auth-form flex items-center justify-center grow flex-col min-h-screen bg-cover relative p-6 bg-[url('../images/authentication/img-auth-bg.jpg')] dark:bg-none dark:bg-themedark-bodybg">
-                        <div className="card sm:my-12 w-full max-w-[480px] shadow-none">
+                        <div className="card sm:my-12 w-full max-w-[480px] shadow-none cardLogin">
                             <div className="card-body !p-10">
                                 <div className="text-center">
                                     <a href="#">
-                                        <img src={logo} alt="Logo" className="w-36 mx-auto my-4" />
+                                        <img src={logo} alt="Logo" className="w-36 mx-auto my-2" />
                                     </a>
                                  <h2 className="loginLbn">
                                     Login
