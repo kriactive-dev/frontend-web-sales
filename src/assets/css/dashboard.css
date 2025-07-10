@@ -280,6 +280,17 @@ body {
     border-radius: 100%;
     overflow: hidden;
     cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-left: 10px;
+    border: 0px solid black;
+}
+
+.profileBars {
+    display: flex;
+    align-items: center;
+
 }
 
 .profileBarsUser img {
@@ -382,6 +393,7 @@ body {
     display: flex;
     align-items: center;
     justify-content: space-between;
+    min-height: 400px;
 }
 
 .itemGraphics {
@@ -398,6 +410,18 @@ body {
     margin: 20px 0px;
 }
 
+.iconsTitleUser {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    /* border: 1px solid black; */
+    /* margin-bottom: 15px; */
+}
+
+.iconsTitleUser h2 {
+    margin-left: 20px;
+}
+
 .cardsDefaultDash {
     display: flex;
     align-items: center;
@@ -406,8 +430,8 @@ body {
 }
 
 .cardsDefaultDash .itemCard {
-    width: calc((100% / 4) - 5px);
-    height: 120px;
+    width: calc((100% / 4) - 15px);
+    min-height: 120px;
     background-color: #fff;
     border: 1px solid #eee;
     border-radius: 10px;
@@ -423,6 +447,11 @@ body {
     display: flex;
     align-items: center;
     justify-content: space-between;
+    margin-bottom: 35px;
+}
+
+.pointsSelect .iconcard {
+    cursor: pointer;
 }
 
 .itemCard .titleUser .iconcards {
@@ -439,7 +468,7 @@ body {
     background-color: rgba(255, 87, 34, 0.2);
 }
 
-.itemCard:nth-child(2) .titleUser .iconcards .iconcard{
+.itemCard:nth-child(2) .titleUser .iconcards .iconcard {
     color: #ff5722;
 }
 
@@ -448,7 +477,7 @@ body {
     background-color: rgb(207, 250, 254, 1);
 }
 
-.itemCard:nth-child(3) .titleUser .iconcards .iconcard{
+.itemCard:nth-child(3) .titleUser .iconcards .iconcard {
     color: rgba(6, 182, 212, 1);
 }
 
@@ -456,7 +485,7 @@ body {
     background-color: rgb(243, 232, 255, 01);
 }
 
-.itemCard:nth-child(4) .titleUser .iconcards .iconcard{
+.itemCard:nth-child(4) .titleUser .iconcards .iconcard {
     color: rgb(168 85 247);
 }
 
@@ -747,42 +776,103 @@ body {
 }
 
 .titleUser h2 {
-    font-size: 1.1rem;
-    margin-bottom: 15px;
+    font-size: 1rem;
+    /* margin-bottom: 15px; */
     font-weight: 600;
-    color: #555;
+    color: #222;
+    
 }
 
-.form-control{
+.form-control {
     border-radius: 5px;
     height: 60px;
     /* border-bottom: 2px solid #222; */
 
 }
 
-.btnLogin{
+.btnLogin {
     border-radius: 5px;
     height: 50px;
     margin-top: 20px;
 }
 
-.loginLbn{
+.loginLbn {
     margin-bottom: 20px;
     font-weight: 700;
     font-size: 1.5rem;
     color: #222;
 }
 
-.loginLbn2{
-margin-bottom: 40px;
-font-size: 14px;
+.loginLbn2 {
+    margin-bottom: 40px;
+    font-size: 14px;
 }
 
-.cardLogin{
+.cardLogin {
     border: 1px solid #ddd;
     border-radius: 5px;
 }
 
+.graphicsAndNumbers {
+    background-color: #f9f9f9;
+
+    padding: 10px 15px;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.containergraphicLk{
+    width: calc(100% - 80px);
+    height: 80px;
+    display: flex;
+    align-items: flex-start;
+    justify-content: flex-start;
+}
+.graphicsAndNumbers .graphicLk {
+    margin-top: 20px;
+    width: calc(100%);
+    height: 50px;
+    /* border: 1px solid red; */
+    margin-right: 5px;
+    display: flex;
+    align-items: flex-start;
+    justify-content: flex-start;
+}
+
+.textAnyDetails .iconcard{
+    width: 15px;
+    margin-right: 5px;
+}
+
+.textAnyDetails h4{
+    font-size: 12px;
+}
+
+.textAnyDetails{
+    display: flex;
+    align-items: center;
+}
+
+.graficsDoubleInfo .itemGraphics{
+    width: calc(100% - 300px);
+}
+
+.graficsDoubleInfo{
+    display: flex;
+    justify-content: space-between;
+}
+
+.otherInfoLinearGraphic{
+    margin-left: 15px;
+    width: 300px;
+    height: 400px;
+    background-color: #fff;
+    padding: 16px;
+    border: 1px solid #ddd;
+    border-radius: 10px;
+}
 
 
 
@@ -802,13 +892,13 @@ font-size: 14px;
         /* overflow-x: hidden; */
     }
 
-     /* .userTable{
+    /* .userTable{
        
     } */
 
-    .containerTable{
+    .containerTable {
         overflow-x: scroll;
-        width: 100%!important;
+        width: 100% !important;
     }
 }
 
@@ -819,7 +909,7 @@ font-size: 14px;
 
     .cardsDefaultDash .itemCard {
         width: calc((100% / 2) - 5px);
-        height: 120px;
+        /* height: 120px; */
         margin-top: 10px;
     }
 
@@ -850,7 +940,7 @@ font-size: 14px;
 
 @media (max-width: 870px) {
 
-   
+
 
     .barsHeaderSide {
         width: 0%;
@@ -861,15 +951,15 @@ font-size: 14px;
     }
 
     .sidebarhiden {
-        width: 100%!important;
-       position: absolute;
-       top: 0px;
-       left: 0px;
-       z-index: 999;
-       background-color: #22222248;
+        width: 100% !important;
+        position: absolute;
+        top: 0px;
+        left: 0px;
+        z-index: 999;
+        background-color: #22222248;
     }
 
-    .sidebar{
+    .sidebar {
         width: 80%;
         background-color: white;
     }
@@ -878,27 +968,28 @@ font-size: 14px;
 @media (max-width: 560px) {
     .cardsDefaultDash .itemCard {
         width: calc((100%));
-        height: 120px;
+        /* height: 120px; */
         margin-top: 10px;
     }
+
     .sidebarhiden {
         width: 300px;
-       
+
     }
 }
 
-@media (max-width: 450px){
+@media (max-width: 450px) {
     .serachBar .serach {
         border: 0px solid red;
         width: 160px;
-         border: 1px solid #ccc;
+        border: 1px solid #ccc;
         overflow: hidden;
-        
+
     }
 
     .serachBar .serach input[type="text"] {
-    height: 35px;
-    width: 100%;
-    text-indent: 5px;
+        height: 35px;
+        width: 100%;
+        text-indent: 5px;
     }
 }

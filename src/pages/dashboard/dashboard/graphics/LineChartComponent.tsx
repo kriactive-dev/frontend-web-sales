@@ -9,13 +9,14 @@ const LineChartComponent: React.FC<LineChartProps> = ({ data }) => {
         <div className="graphicLine">
             <ResponsiveContainer width="100%" height="100%">
                 <LineChart data={data}>
-                    <CartesianGrid strokeDasharray="3 3" />
+                    <CartesianGrid horizontal={true} vertical={false} strokeDasharray="1 1" />
                     <XAxis dataKey="day" />
                     <YAxis />
                     <Tooltip />
                     <Line type="monotone" dataKey="visits" stroke="#2f71ff" />
                 </LineChart>
             </ResponsiveContainer>
+
         </div>
     );
 };

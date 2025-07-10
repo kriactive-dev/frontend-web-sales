@@ -1,7 +1,9 @@
 import type React from "react";
 import BarChartComponent from "../graphics/BarChartComponent";
 import LineChartComponent from "../graphics/LineChartComponent";
-import { User, ShoppingCart, Users, DollarSign, FileText } from "lucide-react";
+import { User, ShoppingCart, Users, DollarSign, FileText, Ellipsis, EllipsisVertical, ArrowUpRight } from "lucide-react";
+import BarChartComponentSmall from "../graphics/BarChartComponentSmall";
+import { data } from "react-router-dom";
 
 const Default: React.FC = () => {
     const barData = [
@@ -13,6 +15,22 @@ const Default: React.FC = () => {
         { name: 'Jun', users: 450, admins: 220 },
     ];
 
+
+    const barData2 = [
+        { name: 'Jan', users: 400, admins: 150 },
+        { name: 'Feb', users: 300, admins: 180 },
+        { name: 'Mar', users: 500, admins: 200 },
+        { name: 'Apr', users: 200, admins: 120 },
+        { name: 'May', users: 350, admins: 170 },
+        { name: 'Jun', users: 450, admins: 220 },
+        { name: 'Apr', users: 200, admins: 120 },
+        { name: 'May', users: 350, admins: 170 },
+        { name: 'Jun', users: 450, admins: 220 },
+        { name: 'Jan', users: 400, admins: 150 },
+        { name: 'Feb', users: 300, admins: 180 },
+        { name: 'Mar', users: 500, admins: 200 },
+        { name: 'Apr', users: 200, admins: 120 },
+    ];
 
     // const pieData = [
     //     { name: 'Ativos', value: 65 },
@@ -34,71 +52,170 @@ const Default: React.FC = () => {
             <div className="cardsDefaultDash">
                 <div className="itemCard">
                     <div className="titleUser">
-                        <h2>
-                            Usuários
-                        </h2>
+                        <div className="iconsTitleUser">
+                            <div className="iconcards">
+                                <Users className="iconcard" />
+                            </div>
+                            <h2>
+                                Usuários
+                            </h2>
 
-                        <div className="iconcards">
-                            <Users className="iconcard" />
+
+                        </div>
+                        <div className="pointsSelect">
+                            <EllipsisVertical className="iconcard" />
+                        </div>
+
+                    </div>
+                    <div className="graphicsAndNumbers">
+                        <div className="containergraphicLk">
+                            <div className="graphicLk">
+                                <BarChartComponentSmall data={barData2}
+                                    strokeColor="#2f71ff"
+                                    fillColor="rgba(47, 113, 255, 0.7)" />
+                            </div>
+                        </div>
+
+                        <div className="numersItemCard">
+                            <span>
+                                200+
+                            </span>
+                            <div className="textAnyDetails">
+                                <ArrowUpRight className="iconcard" style={{ color: "#2f71ff" }} />
+                                <h4 style={{ color: "#2f71ff" }}>30,06%</h4>
+                            </div>
                         </div>
                     </div>
-                    <div className="numersItemCard">
-                        <span>
-                            20
-                        </span>
-                    </div>
+
                 </div>
+
                 <div className="itemCard">
                     <div className="titleUser">
-                        <h2>
-                            Transações
-                        </h2>
-                        <div className="iconcards">
-                            <ShoppingCart className="iconcard" />
+                        <div className="iconsTitleUser">
+                            <div className="iconcards">
+                                <ShoppingCart className="iconcard" />
+                            </div>
+                            <h2>
+                                Transações
+                            </h2>
+
+
                         </div>
+                        <div className="pointsSelect">
+                            <EllipsisVertical className="iconcard" />
+                        </div>
+
                     </div>
-                    <div className="numersItemCard">
-                        <span>
-                            120
-                        </span>
+                    <div className="graphicsAndNumbers">
+                        <div className="containergraphicLk">
+                            <div className="graphicLk">
+                                <BarChartComponentSmall data={barData2}
+                                    strokeColor="#ff5722"
+                                    fillColor="rgba(255, 87, 34, 0.6)" />
+                            </div>
+                        </div>
+
+                        <div className="numersItemCard">
+                            <span>
+                                $300k
+                            </span>
+                            <div className="textAnyDetails">
+                                <ArrowUpRight className="iconcard" style={{ color: "#ff5722" }} />
+                                <h4 style={{ color: "#ff5722" }}>30,06%</h4>
+                            </div>
+                        </div>
                     </div>
                 </div>
+
+
                 <div className="itemCard">
                     <div className="titleUser">
-                        <h2>
-                            Lucro
-                        </h2>
-                        <div className="iconcards">
-                            <DollarSign className="iconcard" />
+                        <div className="iconsTitleUser">
+                            <div className="iconcards">
+                                <DollarSign className="iconcard" />
+                            </div>
+                            <h2>
+                                Lucro
+                            </h2>
+
+
                         </div>
+                        <div className="pointsSelect">
+                            <EllipsisVertical className="iconcard" />
+                        </div>
+
                     </div>
-                    <div className="numersItemCard">
-                        <span>
-                            230
-                        </span>
+                    <div className="graphicsAndNumbers">
+                        <div className="containergraphicLk">
+                            <div className="graphicLk">
+                                <BarChartComponentSmall data={barData2}
+                                    strokeColor="rgba(6, 182, 212, 1)"
+                                    fillColor="rgba(6, 182, 212, 0.6)" />
+                            </div>
+                        </div>
+
+                        <div className="numersItemCard">
+                            <span>
+                                839
+                            </span>
+                            <div className="textAnyDetails">
+                                <ArrowUpRight className="iconcard" style={{ color: "rgba(6, 182, 212, 1)" }} />
+                                <h4 style={{ color: "rgba(6, 182, 212, 1)" }}>New</h4>
+                            </div>
+                        </div>
                     </div>
                 </div>
+
                 <div className="itemCard">
                     <div className="titleUser">
-                        <h2>
-                            Faturas
-                        </h2>
-                        <div className="iconcards">
-                            <FileText className="iconcard" />
+                        <div className="iconsTitleUser">
+                            <div className="iconcards">
+                                <FileText className="iconcard" />
+                            </div>
+                            <h2>
+                                Faturas
+                            </h2>
+
+
                         </div>
+                        <div className="pointsSelect">
+                            <EllipsisVertical className="iconcard" />
+                        </div>
+
                     </div>
-                    <div className="numersItemCard">
-                        <span>
-                            50
-                        </span>
+                    <div className="graphicsAndNumbers">
+                        <div className="containergraphicLk">
+                            <div className="graphicLk">
+                                <BarChartComponentSmall data={barData2}
+                                    strokeColor="rgba(168, 85, 247, 1)"
+                                    fillColor="rgba(168, 85, 247, 0.6)" />
+                            </div>
+                        </div>
+
+                        <div className="numersItemCard">
+                            <span>
+                                80+
+                            </span>
+                            <div className="textAnyDetails">
+                                <ArrowUpRight className="iconcard" style={{ color: "rgba(168, 85, 247, 1)" }} />
+                                <h4 style={{ color: "rgba(168, 85, 247, 1)" }}>60,06%</h4>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
-            <div className="graficsDouble">
+            <div className="graficsDoubleInfo">
                 <div className="itemGraphics">
                     <h2>Gráfico de Linha</h2>
                     <LineChartComponent data={lineData} />
                 </div>
+                <div className="otherInfoLinearGraphic">
+                    ds
+                </div>
+            </div>
+
+            <div className="graficsDouble">
+
 
 
                 <div className="itemGraphics">
