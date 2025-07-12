@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
-import { Pencil, Trash2, Eye, Plus } from "lucide-react";
+import { Pencil, Trash2, Eye, Plus, Database } from "lucide-react";
 import urls from '../../../../utils/apis/apis';
 
 import { toast } from 'react-toastify'
@@ -22,7 +22,7 @@ const PermissionList: React.FC = () => {
     const [namePermissionUpdate, setNamePermissionUpdate] = useState<string>('')
     const [showPermissionDialogUpdate, setShowPermissionDialogUpdate] = useState(false)
     const [idPermission, setIdPermission] = useState<number>(0)
-    
+
 
     const permissionsView = async () => {
         axios.get<Permissions[]>(urls.permissions)
@@ -42,7 +42,7 @@ const PermissionList: React.FC = () => {
         setLoading(true)
         if (name != '') {
             try {
-               await axios.post(urls.permissions, {
+                await axios.post(urls.permissions, {
                     "name": name
                 });
 
@@ -89,20 +89,20 @@ const PermissionList: React.FC = () => {
 
     };
 
-    const deletePermission = async()=>{
+    const deletePermission = async () => {
         setLoading(true)
-        try{
+        try {
             await axios.delete(`${urls.permissions}/${idPermission}`)
             toast.success("Permissão removida com sucesso.")
             permissionsView()
-        }catch(e){
+        } catch (e) {
             toast.error("Erro ao apagar")
-        }finally{
+        } finally {
             setLoading(false)
         }
     }
 
-  
+
     useEffect(() => {
         permissionsView()
     }, []);
@@ -125,50 +125,72 @@ const PermissionList: React.FC = () => {
             </div>
             <div className="containerTable">
                 <table className="userTable">
-                <thead>
-                    <tr>
-                        <th>ID</th>
-                        <th>Nome</th>
-                        <th>Data de Criação</th>
-                        <th>Ações</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    {users.map(user => (
-                        <tr key={user.id} className="tableRow">
-                            <td>{user.id}</td>
-                            <td>{user.name.split(".").length > 1 ? user.name.split(".")[1] : user.name}</td>
-                            <td>{new Date(user.created_at).toLocaleDateString()}</td>
-
-                            <td className="actions">
-                                <button className="action-btn refresh" title="Detalhes">
-                                    <Eye size={16} className="btnDetails" />
-                                </button>
-                                <button className="action-btn edit" title="Editar" onClick={
-                                    () => {
-                                        setIdPermission(user.id)
-                                        setNamePermissionUpdate(user.name)
-                                        setShowPermissionDialogUpdate(true)
-                                    }
-                                }>
-                                    <Pencil size={16} className="btnUpdate" />
-                                </button>
-                                <button className="action-btn delete" title="Apagar" onClick={
-                                    ()=>{
-                                        setIdPermission(user.id)
-                                        deletePermission()
-                                    }
-                                }>
-                                    <Trash2 size={16} className="btnTrash" />
-                                </button>
-
-                            </td>
+                    <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>Nome</th>
+                            <th>Data de Criação</th>
+                            <th>Ações</th>
                         </tr>
-                    ))}
-                </tbody>
-            </table>
+                    </thead>
+                    <tbody>
+                        {users.map(user => (
+                            <tr key={user.id} className="tableRow">
+                                <td>{user.id}</td>
+                                <td>{user.name.split(".").length > 1 ? user.name.split(".")[1] : user.name}</td>
+                                <td>{new Date(user.created_at).toLocaleDateString()}</td>
+
+                                <td className="actions">
+                                    <button className="action-btn refresh" title="Detalhes">
+                                        <Eye size={16} className="btnDetails" />
+                                    </button>
+                                    <button className="action-btn edit" title="Editar" onClick={
+                                        () => {
+                                            setIdPermission(user.id)
+                                            setNamePermissionUpdate(user.name)
+                                            setShowPermissionDialogUpdate(true)
+                                        }
+                                    }>
+                                        <Pencil size={16} className="btnUpdate" />
+                                    </button>
+                                    <button className="action-btn delete" title="Apagar" onClick={
+                                        () => {
+                                            setIdPermission(user.id)
+                                            deletePermission()
+                                        }
+                                    }>
+                                        <Trash2 size={16} className="btnTrash" />
+                                    </button>
+
+                                </td>
+                            </tr>
+                        ))}
+                    </tbody>
+                </table>
             </div>
-            
+
+            <div className="paginationLaben">
+                <div className="lbnTotal">
+                    <Database className='lbnTotalIcon' />
+                    <span>
+                        Total:
+                    </span>
+                    <span>
+                        {users.length}
+                    </span>
+                </div>
+                <div className="pagination">
+                    <div className="arrowsPage"></div>
+                    <div className="numbersPage">
+                        <div className="numberItem">
+                            1
+                        </div>
+
+                    </div>
+                    <div className="arrowsPage"></div>
+                </div>
+            </div>
+
 
             {showPermissionDialog && (
                 <div className="dialog-backdrop">

@@ -32,7 +32,7 @@ const UserTable: React.FC = () => {
                 <table className="userTable">
                     <thead>
                         <tr>
-                            <th>ID</th>
+                            {/* <th>ID</th> */}
                             <th>Nome</th>
                             <th>Email</th>
                             <th>Contacto</th>
@@ -73,6 +73,7 @@ const UserTable: React.FC = () => {
                         ))}
                     </tbody>
                 </table>
+                
 
             </div>
         </>

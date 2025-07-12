@@ -2,7 +2,7 @@ import axios from "axios";
 import type React from "react";
 import { useState, useEffect } from "react";
 import urls from "../../../../utils/apis/apis";
-import { Pencil, Trash2, Eye, Plus } from "lucide-react";
+import { Pencil, Trash2, Eye, Plus, Database } from "lucide-react";
 import { toast } from "react-toastify"
 interface Pivot {
     role_id: number;
@@ -204,6 +204,28 @@ const RoleList: React.FC = () => {
                         ))}
                     </tbody>
                 </table>
+
+                <div className="paginationLaben">
+                    <div className="lbnTotal">
+                        <Database className='lbnTotalIcon'/>
+                        <span>
+                            Total:
+                        </span>
+                        <span>
+                            {roles.length}
+                        </span>
+                    </div>
+                    <div className="pagination">
+                        <div className="arrowsPage"></div>
+                        <div className="numbersPage">
+                            <div className="numberItem">
+                                1
+                            </div>
+                            
+                        </div>
+                        <div className="arrowsPage"></div>
+                    </div>
+                </div>
                 {showRoleDialog && (
                     <div className="dialog-backdrop">
                         <div className="dialog-box">

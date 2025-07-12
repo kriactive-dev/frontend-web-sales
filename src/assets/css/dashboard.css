@@ -364,13 +364,14 @@ body {
     border: 0px solid black;
     background-color: #fff;
     border-radius: 10px;
-    padding: 20px 0px;
+    padding-top: 20px;
     border: 1px solid #dedede;
 }
 
 .tableContainer .userTable {
     width: calc(100% - 0px);
     margin-top: 20px;
+    /* border: 1px solid black; */
 }
 
 .tableContainer .userTable tr {
@@ -382,7 +383,7 @@ body {
 
 }
 
-.tableContainer .userTable .tableRow:hover{
+.tableContainer .userTable .tableRow:hover {
     background-color: #f5f5f5;
 }
 
@@ -434,6 +435,52 @@ body {
 
 .userTable .action-btn.refresh:hover {
     background-color: #f1f8e9;
+}
+
+.paginationLaben {
+    border-top: 1px solid #ddd;
+    /* height: 40px; */
+    width: 100%;
+    padding: 20px 15px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    /* margin-top: 10px; */
+}
+
+.numbersPage {
+    display: flex;
+    cursor: pointer;
+
+}
+
+.numberItem {
+    /* margin-left: 10px; */
+    padding: 10px 20px;
+    border-radius: 1px;
+}
+
+.numberItem:first-child {
+    background-color: #eee;
+}
+
+.paginationLaben .lbnTotal {
+    display: flex;
+    align-items: center;
+    color: #777;
+}
+
+.paginationLaben .lbnTotal span:nth-child(2) {
+    margin: 0px 5px;
+    /* color: red; */
+}
+
+.paginationLaben .lbnTotal span:last-child {
+    font-weight: 700;
+}
+
+.lbnTotalIcon {
+    width: 15px;
 }
 
 .status {
@@ -655,6 +702,7 @@ body {
     display: flex;
     align-items: center;
     justify-content: center;
+    opacity: 0;
 }
 
 .dialog-box {
@@ -667,7 +715,54 @@ body {
     flex-direction: column;
     justify-content: center;
     align-items: flex-start;
+    transform: translateY(-20px);
+    opacity: 0;
 }
+
+
+.dialog-backdrop.show {
+    animation: fadeIn 300ms forwards ease-out;
+}
+
+.dialog-backdrop.hide {
+    animation: fadeOut 250ms forwards ease-in;
+}
+
+@keyframes fadeIn {
+    to {
+        opacity: 1;
+    }
+}
+
+@keyframes fadeOut {
+    to {
+        opacity: 0;
+    }
+}
+
+
+.dialog-backdrop.show .dialog-box {
+    animation: slideDown 300ms 50ms forwards ease-out;
+}
+
+.dialog-backdrop.hide .dialog-box {
+    animation: slideUp 250ms forwards ease-in;
+}
+
+@keyframes slideDown {
+    to {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+@keyframes slideUp {
+    to {
+        transform: translateY(-20px);
+        opacity: 0;
+    }
+}
+
 
 .dialog-box h3 {
     font-weight: 700;
@@ -720,14 +815,14 @@ body {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    padding: 10px 20px;
+    padding: 0px 20px;
     width: 100%;
 }
 
 .headerTableList button {
     background-color: #2f71ff;
-    padding: 10px 25px;
-    border-radius: 12px;
+    padding: 7px 25px;
+    border-radius: 25px;
     display: flex;
     align-items: center;
     /* border: 1px solid #eee; */
@@ -768,7 +863,7 @@ body {
 .containerForm .headerTableList {
     padding: 0px;
     margin-bottom: 20px;
-    border: 1px solid red;
+    /* border: 1px solid red; */
     /* padding-bottom: 20px; */
 }
 
@@ -1060,7 +1155,7 @@ body {
     } */
 
     .containerTable {
-        overflow-x: scroll;
+        overflow-x: auto;
         width: 100% !important;
     }
 }

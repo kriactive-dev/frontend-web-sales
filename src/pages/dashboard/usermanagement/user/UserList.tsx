@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
-import { Pencil, Trash2, Eye, ShieldCheck, UserCheck, Plus } from "lucide-react";
+import { Pencil, Trash2, Eye, ShieldCheck, UserCheck, Plus, Database } from "lucide-react";
 import urls from '../../../../utils/apis/apis';
 import { useNavigate } from 'react-router-dom';
 import { toast } from 'react-toastify';
@@ -52,6 +52,7 @@ const UserList: React.FC = () => {
     const [selectedPermission, setSelectedPermission] = useState<string>("");
     const [showRoleDialog, setShowRoleDialog] = useState(false);
     const [showPermissionDialog, setShowPermissionDialog] = useState(false);
+    const [showNewUserDialog, setShowNewUserDialog] = useState(false);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState<string | null>(null);
     const handleClickSucess = () => {
@@ -167,6 +168,10 @@ const UserList: React.FC = () => {
         }
     };
 
+    const createNewUser = () => {
+
+    }
+
 
     if (loading) return <div className="containerLoader">
         <div className="loader"></div>
@@ -179,7 +184,8 @@ const UserList: React.FC = () => {
             <div className="headerTableList">
                 <h2>Lista de Usuários</h2>
                 <button className="action-btn" title="Novo usuário" onClick={() => {
-                    navigate("/dashboard/user/novo")
+                    // navigate("/dashboard/user/novo")
+                    setShowNewUserDialog(true)
                 }}>
                     <Plus size={16} className='iconPlusUser' />
                     <span>Novo</span>
@@ -189,7 +195,7 @@ const UserList: React.FC = () => {
                 <table className="userTable">
                     <thead>
                         <tr>
-                            <th>ID</th>
+                            {/* <th>ID</th> */}
                             <th>Nome</th>
                             <th>Email</th>
                             <th>Data de Criação</th>
@@ -200,7 +206,7 @@ const UserList: React.FC = () => {
                     <tbody>
                         {users.map(user => (
                             <tr key={user.id} className="tableRow">
-                                <td>{user.id}</td>
+                                {/* <td>{user.id}</td> */}
                                 <td>{user.name}</td>
                                 <td>{user.email}</td>
                                 <td>{new Date(user.created_at).toLocaleDateString()}</td>
@@ -255,6 +261,27 @@ const UserList: React.FC = () => {
                     </tbody>
                 </table>
             </div>
+            <div className="paginationLaben">
+                <div className="lbnTotal">
+                    <Database className='lbnTotalIcon' />
+                    <span>
+                        Total:
+                    </span>
+                    <span>
+                        {users.length}
+                    </span>
+                </div>
+                <div className="pagination">
+                    <div className="arrowsPage"></div>
+                    <div className="numbersPage">
+                        <div className="numberItem">
+                            1
+                        </div>
+
+                    </div>
+                    <div className="arrowsPage"></div>
+                </div>
+            </div>
 
             {showRoleDialog && (
                 <div className="dialog-backdrop">
@@ -293,6 +320,20 @@ const UserList: React.FC = () => {
                     </div>
                 </div>
             )}
+
+            {showNewUserDialog && (
+                <div className="dialog-backdrop">
+                    <div className="dialog-box">
+                        <h3>Adicionar usuário</h3>
+
+                        <div className="buttonAddCancel">
+                            <button onClick={createNewUser}>Criar</button>
+                            <button onClick={() => setShowNewUserDialog(false)}>Cancelar</button>
+                        </div>
+                    </div>
+                </div>
+            )}
+
         </div>
     );
 };
