@@ -1,7 +1,7 @@
 import logo from "../../assets/images/logo/logo-ligth.svg"
 import userprofile from "../../assets/images/user/avatar-1.jpg"
 import React, { useState } from "react";
-import { UserRound, ScrollText, ShieldCheck, ListFilter, ChevronDown, ChartPie } from "lucide-react";
+import { UserRound, ScrollText, ShieldCheck, ListFilter, ChevronDown, ChartPie, User, Settings, LockKeyhole, Power } from "lucide-react";
 import { useNavigate } from "react-router-dom";
 
 interface MenuItem {
@@ -46,6 +46,7 @@ const Sidebar: React.FC<HeaderProps> = ({ onToggleSidebar }) => {
 
     const [activeIndex, setActiveIndex] = useState<number | null>(null);
     const [activeIndexDash, setActiveIndexDash] = useState<number | null>(null);
+    const [menuIsExpanded, setMenuIsExpanded] = useState<boolean>(false)
     const navigate = useNavigate();
 
     const toggleSubmenu = (index: number) => {
@@ -56,16 +57,18 @@ const Sidebar: React.FC<HeaderProps> = ({ onToggleSidebar }) => {
         setActiveIndexDash((prevIndex) => (prevIndex === index ? null : index));
     };
 
+
+
     const removeAccents = (str: string) => {
         return str.normalize("NFD").replace(/[\u0300-\u036f]/g, "");
     };
     const onNavigate = (path: string, name: string) => {
 
-          const isMobile = window.innerWidth < 870;
+        const isMobile = window.innerWidth < 870;
 
-    if (isMobile) {
-        onToggleSidebar(); 
-    }
+        if (isMobile) {
+            onToggleSidebar();
+        }
 
         // onToggleSidebar()
         let cleanPath = ""
@@ -90,6 +93,7 @@ const Sidebar: React.FC<HeaderProps> = ({ onToggleSidebar }) => {
                 </div>
                 <div className="dashProfile">
                     <div className="profile">
+                        <div className="topPartProfile">
                         <div className="proL">
                             <div className="imgProfile">
                                 <img src={userprofile} alt="Profiles" />
@@ -106,12 +110,46 @@ const Sidebar: React.FC<HeaderProps> = ({ onToggleSidebar }) => {
                         </div>
 
                         <div className="listFilterL">
-                            <ListFilter className="listFilterLIcon"></ListFilter>
+                            <ListFilter className="listFilterLIcon" onClick={()=>{
+                                setMenuIsExpanded(!menuIsExpanded)
+                            }}></ListFilter>
+                        </div>
+                        </div>
+                        
+                        <div className={`expandirProfile ${menuIsExpanded ? 'isExpandirProfile' : 'notExpandirProfile'}`}>
+                            <ul>
+                                <li>
+                                    <User className="expandirProfileIcon"/>
+                                    <span>
+                                        My account
+                                    </span>
+                                </li>
+                                <li>
+                                    <Settings className="expandirProfileIcon"/>
+                                    <span>
+                                        Settings
+                                    </span>
+                                </li>
+                                <li>
+                                    <LockKeyhole className="expandirProfileIcon"/>
+                                    <span>
+                                        Lock screen
+                                    </span>
+                                </li>
+                                <li onClick={()=>{
+                                    navigate("/")
+                                }}>
+                                    <Power className="expandirProfileIcon"/>
+                                    <span>
+                                        Logout
+                                    </span>
+                                </li>
+                            </ul>
                         </div>
 
 
-
                     </div>
+
                     {/* <div className="pagesDash">
                         <h2>Dashboard</h2>
                         <ul>

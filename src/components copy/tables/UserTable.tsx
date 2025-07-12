@@ -43,8 +43,8 @@ const UserTable: React.FC = () => {
                     </thead>
                     <tbody>
                         {users.map((user) => (
-                            <tr key={user.id}>
-                                <td>{user.id}</td>
+                            <tr key={user.id} className="tableRow">
+                                {/* <td>{user.id}</td> */}
                                 <td>{user.name}</td>
                                 <td>{user.email}</td>
                                 <td>{user.number}</td>

@@ -52,17 +52,71 @@ body {
     margin-top: 20px;
 }
 
-.dashProfile .profile {
+.dashProfile .topPartProfile {
     width: 100%;
-    height: 80px;
-    border: 0px solid black;
-    background-color: #efefefc2;
-    border-radius: 10px;
+
     display: flex;
     align-items: center;
-    padding: 0px 20px;
+
     justify-content: space-between;
+
+}
+
+.dashProfile .profile {
+    min-height: 80px;
     border: 1px solid #ddd;
+    background-color: #efefefc2;
+    border-radius: 10px;
+    padding: 15px 20px;
+    transition: all 0.2s ease;
+}
+
+.dashProfile .expandirProfile {
+    transition: all 0.5s ease;
+}
+
+.isExpandirProfile {
+    height: 160px;
+    overflow: hidden;
+    /* transition: all 0.5s ease; */
+}
+
+.notExpandirProfile {
+    height: 0px;
+    overflow: hidden;
+    /* transition: all 0.5s ease; */
+}
+
+.expandirProfile ul {
+    list-style: none;
+    margin-top: 20px;
+}
+
+.expandirProfile ul li {
+    display: flex;
+    align-items: center;
+    margin-top: 15px;
+    cursor: pointer;
+    transition: all 0.2 ease;
+}
+
+.expandirProfile ul li:hover span {
+    color: #2f71ff;
+}
+
+.expandirProfile ul li:hover .expandirProfileIcon {
+    color: #2f71ff;
+}
+
+.expandirProfile ul li span {
+    margin-left: 10px;
+    color: #777;
+    font-size: 14px;
+}
+
+.expandirProfileIcon {
+    width: 18px;
+    color: #777;
 }
 
 .imgProfile {
@@ -323,7 +377,13 @@ body {
     height: 40px;
     /* display: block; */
     padding: 20px;
+    /* cursor: pointer; */
+    transition: all 0.4s ease;
 
+}
+
+.tableContainer .userTable .tableRow:hover{
+    background-color: #f5f5f5;
 }
 
 .userTable th,
@@ -360,6 +420,8 @@ body {
     padding: 6px;
     border-radius: 4px;
     transition: background-color 0.2s;
+
+    /* border: 2px solid red; */
 }
 
 .userTable .action-btn.edit:hover {
@@ -664,12 +726,12 @@ body {
 
 .headerTableList button {
     background-color: #2f71ff;
-    padding: 10px 15px;
-    border-radius: 5px;
+    padding: 10px 25px;
+    border-radius: 12px;
     display: flex;
     align-items: center;
     /* border: 1px solid #eee; */
-    box-shadow: rgba(50, 50, 93, 0.25) 0px 2px 5px -1px, rgba(0, 0, 0, 0.3) 0px 1px 3px -1px;
+    /* box-shadow: rgba(50, 50, 93, 0.25) 0px 2px 5px -1px, rgba(0, 0, 0, 0.3) 0px 1px 3px -1px; */
 }
 
 .headerTableList button span {
@@ -706,7 +768,8 @@ body {
 .containerForm .headerTableList {
     padding: 0px;
     margin-bottom: 20px;
-    padding-bottom: 20px;
+    border: 1px solid red;
+    /* padding-bottom: 20px; */
 }
 
 .containerForm .headerTableList {
@@ -780,7 +843,7 @@ body {
     /* margin-bottom: 15px; */
     font-weight: 600;
     color: #222;
-    
+
 }
 
 .form-control {
@@ -823,13 +886,14 @@ body {
     justify-content: space-between;
 }
 
-.containergraphicLk{
+.containergraphicLk {
     width: calc(100% - 80px);
     height: 80px;
     display: flex;
     align-items: flex-start;
     justify-content: flex-start;
 }
+
 .graphicsAndNumbers .graphicLk {
     margin-top: 20px;
     width: calc(100%);
@@ -841,40 +905,139 @@ body {
     justify-content: flex-start;
 }
 
-.textAnyDetails .iconcard{
+.textAnyDetails .iconcard {
     width: 15px;
     margin-right: 5px;
 }
 
-.textAnyDetails h4{
+.textAnyDetails h4 {
     font-size: 12px;
 }
 
-.textAnyDetails{
+.textAnyDetails {
     display: flex;
     align-items: center;
 }
 
-.graficsDoubleInfo .itemGraphics{
+.graficsDoubleInfo .itemGraphics {
     width: calc(100% - 300px);
 }
 
-.graficsDoubleInfo{
+.graficsDoubleInfo {
     display: flex;
     justify-content: space-between;
 }
 
-.otherInfoLinearGraphic{
+.otherInfoLinearGraphic {
     margin-left: 15px;
     width: 300px;
     height: 400px;
     background-color: #fff;
-    padding: 16px;
+    /* padding: 20px; */
     border: 1px solid #ddd;
     border-radius: 10px;
 }
 
+.otherInfoLinearGraphic .titleotherInfoLinearGraphic h2 {
+    font-weight: 700;
+}
 
+.titleotherInfoLinearGraphic {
+    padding: 25px 20px;
+}
+
+.releaseDive {
+    padding: 10px 20px;
+    padding-top: 25px;
+
+}
+
+.lineDevider {
+    border-bottom: 1px solid #ddd;
+
+}
+
+.titlereleaseDive {
+    display: flex;
+    justify-content: space-between;
+}
+
+.linePercente {
+    width: 100%;
+    height: 12px;
+    /* border: 1px solid black; */
+    margin-top: 20px;
+    border-radius: 8px;
+    background-color: #2f71ff39;
+}
+
+.percenteFill {
+    width: 70%;
+    height: 12px;
+    border-radius: 8px;
+    background-color: #2f71ff;
+}
+
+.releaseDive ul {
+    list-style: none;
+    margin-top: 12px;
+}
+
+.releaseDive ul li {
+    margin-top: 0px;
+    display: flex;
+    align-items: center;
+    margin-left: 10px;
+    padding: 15px 15px;
+    border-radius: 20px;
+    transition: all 0.5s ease;
+}
+
+.releaseDive ul li:hover {
+    background-color: #eee;
+    cursor: pointer;
+}
+
+.releaseDive ul li span {
+    margin-right: 8px;
+    height: 8px;
+    width: 8px;
+    /* border: 1px solid black; */
+    display: block;
+    border-radius: 100%;
+    background-color: #ff5722;
+}
+
+
+.releaseDive ul li h3 {
+    font-size: 13px;
+}
+
+.releaseDive ul li:last-child span {
+    background-color: #2ca87f;
+}
+
+.btnPercente {
+    background-color: #2f71ff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 35px;
+    border-radius: 18px;
+    margin-top: 10px;
+}
+
+.btnPercente span {
+    margin-left: 5px;
+    color: #fff;
+    font-size: 14px;
+}
+
+.btnPercenteicons {
+    width: 15px;
+    color: #fff;
+}
 
 @keyframes spin {
     0% {

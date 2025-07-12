@@ -1,9 +1,10 @@
 import type React from "react";
 import BarChartComponent from "../graphics/BarChartComponent";
 import LineChartComponent from "../graphics/LineChartComponent";
-import { User, ShoppingCart, Users, DollarSign, FileText, Ellipsis, EllipsisVertical, ArrowUpRight } from "lucide-react";
+import { User, ShoppingCart, Users, DollarSign, FileText, Ellipsis, EllipsisVertical, ArrowUpRight, Plus } from "lucide-react";
 import BarChartComponentSmall from "../graphics/BarChartComponentSmall";
 import { data } from "react-router-dom";
+import CustomChart from "../graphics/LineChartComponent";
 
 const Default: React.FC = () => {
     const barData = [
@@ -207,14 +208,46 @@ const Default: React.FC = () => {
             <div className="graficsDoubleInfo">
                 <div className="itemGraphics">
                     <h2>Gráfico de Linha</h2>
-                    <LineChartComponent data={lineData} />
+                    <CustomChart data={lineData} />
                 </div>
                 <div className="otherInfoLinearGraphic">
-                    ds
+                    <div className="titleotherInfoLinearGraphic">
+                        <h2>
+                            Project - title
+                        </h2>
+                        
+                    </div>
+                    <div className="lineDevider"></div>
+                    <div className="releaseDive">
+                        <div className="titlereleaseDive">
+                            <h2>
+                                Release v1.2.0
+                            </h2>
+                            <div className="percenteRelease">
+                                70%
+                            </div>
+                        </div>
+                        <div className="linePercente">
+                            <div className="percenteFill"></div>
+                        </div>
+                        <ul>
+                            <li><span></span><h3>Horizontal Layout</h3></li>
+                            <li><span></span><h3>Invoice Generator</h3></li>
+                            <li><span></span><h3>Packge Upgrades</h3></li>
+                            <li><span></span><h3>Figma Auto Layout</h3></li>
+                            
+                        </ul>
+
+                        <button className="btnPercente">
+                            <Plus className="btnPercenteicons"/>
+                            <span>Add Task</span>
+                        </button>
+                    </div>
+
                 </div>
             </div>
 
-            <div className="graficsDouble">
+            {/* <div className="graficsDouble">
 
 
 
@@ -224,7 +257,7 @@ const Default: React.FC = () => {
                 </div>
 
 
-            </div>
+            </div> */}
 
 
             {/* <h2>Gráfico de Pizza</h2>

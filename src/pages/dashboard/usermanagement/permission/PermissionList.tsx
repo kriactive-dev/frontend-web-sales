@@ -135,7 +135,7 @@ const PermissionList: React.FC = () => {
                 </thead>
                 <tbody>
                     {users.map(user => (
-                        <tr key={user.id}>
+                        <tr key={user.id} className="tableRow">
                             <td>{user.id}</td>
                             <td>{user.name.split(".").length > 1 ? user.name.split(".")[1] : user.name}</td>
                             <td>{new Date(user.created_at).toLocaleDateString()}</td>

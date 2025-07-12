@@ -143,7 +143,7 @@ const RoleList: React.FC = () => {
                 <table className="userTable">
                     <thead>
                         <tr>
-                            <th>ID</th>
+                            {/* <th>ID</th> */}
                             <th>Nome</th>
                             <th>permissões</th>
                             <th>Data de Criação</th>
@@ -153,8 +153,8 @@ const RoleList: React.FC = () => {
                     </thead>
                     <tbody>
                         {roles.map(user => (
-                            <tr key={user.id}>
-                                <td>{user.id}</td>
+                            <tr key={user.id} className="tableRow">
+                                {/* <td>{user.id}</td> */}
                                 <td>{user.name}</td>
                                 <td>{user.permissions.length > 0 ? (
                                     // <ul className="permissionsList">

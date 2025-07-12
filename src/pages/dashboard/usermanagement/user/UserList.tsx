@@ -185,56 +185,56 @@ const UserList: React.FC = () => {
                     <span>Novo</span>
                 </button>
             </div>
-<div className="containerTable">
-            <table className="userTable">
-                <thead>
-                    <tr>
-                        <th>ID</th>
-                        <th>Nome</th>
-                        <th>Email</th>
-                        <th>Data de Criação</th>
-                        <th>Funções</th>
-                        <th>Ações</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    {users.map(user => (
-                        <tr key={user.id}>
-                            <td>{user.id}</td>
-                            <td>{user.name}</td>
-                            <td>{user.email}</td>
-                            <td>{new Date(user.created_at).toLocaleDateString()}</td>
-                            <td>{user.roles.map(role => role.name).join(', ')}</td>
-                            <td className="actions">
-                                <button className="action-btn refresh" title="Detalhes" onClick={() => {
+            <div className="containerTable">
+                <table className="userTable">
+                    <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>Nome</th>
+                            <th>Email</th>
+                            <th>Data de Criação</th>
+                            <th>Funções</th>
+                            <th>Ações</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {users.map(user => (
+                            <tr key={user.id} className="tableRow">
+                                <td>{user.id}</td>
+                                <td>{user.name}</td>
+                                <td>{user.email}</td>
+                                <td>{new Date(user.created_at).toLocaleDateString()}</td>
+                                <td>{user.roles.map(role => role.name).join(', ')}</td>
+                                <td className="actions">
+                                    <button className="action-btn refresh" title="Detalhes" onClick={() => {
 
-                                }}>
-                                    <Eye size={16} className="btnDetails" />
-                                </button>
-                                <button className="action-btn edit" title="Editar" onClick={() => {
-                                    navigate(`/dashboard/user/${user.id}`);
-                                }}>
-                                    <Pencil size={16} className="btnUpdate" />
-                                </button>
-                                <button className="action-btn delete" title="Apagar" onClick={() => {
-                                    deleteUser(user.id)
-                                }}>
-                                    <Trash2 size={16} className="btnTrash" />
-                                </button>
-                                <button className="action-btn" title="Atribuir Permissão" onClick={() => {
-                                    setSelectedUserId(user.id);
-                                    setShowPermissionDialog(true);
-                                }}>
-                                    <ShieldCheck className="btnPermission" size={16} />
-                                </button>
-                                <button className="action-btn" title="Atribuir Função" onClick={() => {
-                                    setSelectedUserId(user.id);
-                                    setShowRoleDialog(true);
-                                }}>
-                                    <UserCheck size={16} />
-                                </button>
-                            </td>
-                            {/* <td className="actions">
+                                    }}>
+                                        <Eye size={16} className="btnDetails" />
+                                    </button>
+                                    <button className="action-btn edit" title="Editar" onClick={() => {
+                                        navigate(`/dashboard/user/${user.id}`);
+                                    }}>
+                                        <Pencil size={16} className="btnUpdate" />
+                                    </button>
+                                    <button className="action-btn delete" title="Apagar" onClick={() => {
+                                        deleteUser(user.id)
+                                    }}>
+                                        <Trash2 size={16} className="btnTrash" />
+                                    </button>
+                                    <button className="action-btn" title="Atribuir Permissão" onClick={() => {
+                                        setSelectedUserId(user.id);
+                                        setShowPermissionDialog(true);
+                                    }}>
+                                        <ShieldCheck className="btnPermission" size={16} />
+                                    </button>
+                                    <button className="action-btn" title="Atribuir Função" onClick={() => {
+                                        setSelectedUserId(user.id);
+                                        setShowRoleDialog(true);
+                                    }}>
+                                        <UserCheck size={16} />
+                                    </button>
+                                </td>
+                                {/* <td className="actions">
                                 <button className="action-btn refresh" title="Detalhes">
                                     <Eye size={16} className="btnDetails" />
                                 </button>
@@ -250,10 +250,10 @@ const UserList: React.FC = () => {
                                 </button>
 
                             </td> */}
-                        </tr>
-                    ))}
-                </tbody>
-            </table>
+                            </tr>
+                        ))}
+                    </tbody>
+                </table>
             </div>
 
             {showRoleDialog && (
@@ -263,7 +263,7 @@ const UserList: React.FC = () => {
                         <select value={selectedRole} onChange={(e) => setSelectedRole(e.target.value)} required className="roleOptions h-10 px-2 rounded border">
                             <option value="" >Selecione</option>
                             {roles.map(role => (
-                                <option style={{textTransform: "capitalize"}} key={role.id} value={role.name}>{role.name}</option>
+                                <option style={{ textTransform: "capitalize" }} key={role.id} value={role.name}>{role.name}</option>
                             ))}
                         </select>
                         <div className="buttonAddCancel">
@@ -283,7 +283,7 @@ const UserList: React.FC = () => {
                         <select value={selectedPermission} onChange={(e) => setSelectedPermission(e.target.value)} required className="roleOptions h-10 px-2 rounded border">
                             <option value="">Selecione</option>
                             {permissions.map(p => (
-                                <option style={{textTransform: "capitalize"}} key={p.id} value={p.name}>{p.name.split(".").length > 1 ? p.name.split(".")[1] : p.name}</option>
+                                <option style={{ textTransform: "capitalize" }} key={p.id} value={p.name}>{p.name.split(".").length > 1 ? p.name.split(".")[1] : p.name}</option>
                             ))}
                         </select>
                         <div className="buttonAddCancel">
