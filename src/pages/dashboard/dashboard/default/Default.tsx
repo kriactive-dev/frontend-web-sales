@@ -39,14 +39,20 @@ const Default: React.FC = () => {
     // ];
 
     const lineData = [
-        { day: 'Seg', visits: 100 },
-        { day: 'Ter', visits: 300 },
-        { day: 'Qua', visits: 200 },
-        { day: 'Qui', visits: 400 },
-        { day: 'Sex', visits: 150 },
-        { day: 'Sab', visits: 400 },
-        { day: 'Dom', visits: 10 },
-    ];
+  { name: 'Jan', value: 120 },
+  { name: 'Fev', value: 350 },
+  { name: 'Mar', value: 210 },
+  { name: 'Abr', value: 380 },
+  { name: 'Mai', value: 290 },
+  { name: 'Jun', value: 730 },
+  { name: 'Jul', value: 270 },
+  { name: 'Ago', value: 350 },
+  { name: 'Set', value: 200 },
+  { name: 'Out', value: 400 },
+  { name: 'Nov', value: 300 },
+  { name: 'Dez', value: 370 },
+];
+
 
     return (
         <div>

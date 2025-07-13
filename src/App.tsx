@@ -15,6 +15,7 @@ import UserUpdate from './pages/dashboard/usermanagement/user/UserUpdate';
 import UseDrop from './components/drop/UseDrop';
 import UseMulti from './components/drop/UseMulti';
 import UseMultiCheck from './components/drop/UseMultiCheck';
+import AreaChartComponent from './components/graph/AreaChartComponent';
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
@@ -32,6 +33,7 @@ function App() {
         <Route path={routes.drop} element={<UseDrop />} />
         <Route path={routes.dropmulticheck} element={<UseMultiCheck />} />
         <Route path={routes.dropmulti} element={<UseMulti />} />
+        <Route path={routes.graph.linear} element={<AreaChartComponent />} />
         <Route path={routes.dashboard} element={<Dashboard />}>
           <Route path={routes.user.list} element={<UserList />} />
           <Route path={routes.user.new} element={<UserNew />} />

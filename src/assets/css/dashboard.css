@@ -732,8 +732,11 @@ body {
 .dropdown-container {
   display: flex;
   flex-direction: column;
-  max-width: 300px;
+  /* max-width: 300px; */
+  width: 100%;
   margin-top: 1rem;
+  /* border: 1px solid black; */
+  /* margin: 20px 0px; */
 }
 
 .dropdown-label {
@@ -985,6 +988,7 @@ body {
 .iconButtonCreate {
     width: 18px;
     height: 18px;
+    margin-right: 5px
 }
 
 .btnRegister button:first-child {
@@ -1194,15 +1198,16 @@ body {
 
 .dropdown-container {
   position: relative;
-  width: 250px;
+  /* width: 250px; */
 }
 
 .dropdown-box {
-  border: 1px solid #ccc;
-  padding: 0.5rem;
+    width: 100%;
+  border: 1px solid #ddd;
+  padding: 1rem;
   background: white;
   cursor: pointer;
-  border-radius: 4px;
+  border-radius: 7px;
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -1218,16 +1223,21 @@ body {
   max-height: 200px;
   overflow-y: auto;
   z-index: 100;
-  padding: 0.5rem;
+  padding: 0.9xrem;
   box-shadow: 0 2px 4px rgba(0,0,0,0.1);
   border-radius: 4px;
+
 }
 
 .dropdown-option {
   display: flex;
   align-items: center;
-  gap: 0.5rem;
-  margin-bottom: 0.3rem;
+  /* gap: 0.5rem; */
+  margin-bottom: 0.5rem;
+}
+
+.dropdown-option input{
+    margin: 5px 10px;
 }
 
 .dropdown-buttons {

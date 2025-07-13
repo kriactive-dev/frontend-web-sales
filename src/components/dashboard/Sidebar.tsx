@@ -19,7 +19,7 @@ const menuItems: MenuItem[] = [
     {
         label: "User",
         icon: <UserRound className="iconLinkUser" />,
-        submenu: ["Lista", "Novo"],
+        submenu: ["Lista"],
     },
     {
         label: "Roles",

@@ -1,9 +1,10 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
-import { Pencil, Trash2, Eye, ShieldCheck, UserCheck, Plus, Database, X, List, User, UserRound } from "lucide-react";
+import { Pencil, Trash2, Eye, ShieldCheck, UserCheck, Plus, Database, X, List, User, UserRound, Check } from "lucide-react";
 import urls from '../../../../utils/apis/apis';
 import { useNavigate } from 'react-router-dom';
 import { toast } from 'react-toastify';
+import MultiCheckboxDropdown from '../../../../components/drop/MultiCheckboxDropdownProps';
 
 
 interface Pivot {
@@ -49,9 +50,11 @@ interface UserNew {
     email: string;
     password: string;
 }
+const frameworks = ['React', 'Vue', 'Angular', 'Svelte', 'Next.js'];
 
 const UserList: React.FC = () => {
     const navigate = useNavigate();
+    const [selected, setSelected] = useState<string[]>([]);
     const [users, setUsers] = useState<User[]>([]);
     const [roles, setRoles] = useState<Role[]>([]);
     const [permissions, setPermissions] = useState<Permissions[]>([]);
@@ -83,7 +86,7 @@ const UserList: React.FC = () => {
         } else if (name == lbnDialogs.role.user) {
             setShowRoleDialog(true)
         } else if (name == lbnDialogs.permitions.user) {
-            
+
             setShowPermissionDialog(true)
         }
 
@@ -377,19 +380,30 @@ const UserList: React.FC = () => {
             {showRoleDialog && (
                 <div className={`dialog-backdrop ${isVisible ? 'fade-in' : 'fade-out'}`}>
                     <div className="dialog-box">
-                        <h3>Atribuir Role</h3>
-                        <select multiple={true} value={selectedRole} onChange={(e) => setSelectedRole(e.target.value)} required className="roleOptions h-10 px-2 rounded border">
+                        <h3>Role</h3>
+                        
+                        {/* <select multiple={true} value={selectedRole} onChange={(e) => setSelectedRole(e.target.value)} required className="roleOptions h-10 px-2 rounded border">
                             <option value="" >Selecione</option>
                             {roles.map(role => (
                                 <option style={{ textTransform: "capitalize" }} key={role.id} value={role.name}>{role.name}</option>
                             ))}
-                        </select>
+                        </select> */}
 
-                        
+                        <MultiCheckboxDropdown
+                            label="Role:"
+                            options={frameworks}
+                            selected={selected}
+                            onChange={setSelected}
+                        />
+                        <div className="lineDeviderFormCreate">
+
+                        </div>
+
+
                         <div className="buttonAddCancel">
-                            
+
                             <button onClick={() => closeDialog(lbnDialogs.role.user)}>Cancelar</button>
-                            <button onClick={assignRole}>Atribuir</button>
+                            <button onClick={assignRole}><Check className='iconButtonCreate' /><span>Salvar</span></button>
                         </div>
 
                     </div>
@@ -408,9 +422,9 @@ const UserList: React.FC = () => {
                             ))}
                         </select>
                         <div className="buttonAddCancel">
-                             <button onClick={() => closeDialog(lbnDialogs.permitions.user)}>Cancelar</button>
+                            <button onClick={() => closeDialog(lbnDialogs.permitions.user)}>Cancelar</button>
                             <button onClick={assignPermission}>Atribuir</button>
-                           
+
                         </div>
                     </div>
                 </div>

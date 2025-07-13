@@ -16,7 +16,10 @@ const routes = {
     profile: '/profile/:id',
     drop: '/drop-down-use',
     dropmulti: '/drop-multi-down-use',
-    dropmulticheck: '/drop-check-multi-down-use'
+    dropmulticheck: '/drop-check-multi-down-use',
+    graph: {
+      linear: "/graphlinear"
+    }
   };
   
   export default routes;
