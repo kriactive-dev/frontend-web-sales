@@ -14,6 +14,9 @@ const routes = {
     roles: 'roles/lista',
     dahsboardDefault: 'default',
     profile: '/profile/:id',
+    drop: '/drop-down-use',
+    dropmulti: '/drop-multi-down-use',
+    dropmulticheck: '/drop-check-multi-down-use'
   };
   
   export default routes;
