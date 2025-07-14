@@ -561,16 +561,24 @@ body {
 
 .pointsSelect .iconcard {
     cursor: pointer;
+    width: 17px;
+    color: #777;
 }
 
 .itemCard .titleUser .iconcards {
     padding: 5px;
     background-color: rgba(47, 113, 255, 0.2);
     border-radius: 4px;
+    width: 35px;
+    height: 35px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 .itemCard .titleUser .iconcards .iconcard {
     color: #2f71ff;
+    width: 17px;
 }
 
 .itemCard:nth-child(2) .titleUser .iconcards {
