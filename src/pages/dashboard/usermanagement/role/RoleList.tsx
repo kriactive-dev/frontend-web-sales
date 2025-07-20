@@ -2,7 +2,8 @@ import axios from "axios";
 import type React from "react";
 import { useState, useEffect } from "react";
 import urls from "../../../../utils/apis/apis";
-import { Pencil, Trash2, Eye, Plus, Database } from "lucide-react";
+import { Pencil, Trash2, Eye, Plus, Database, ChevronRight, Search } from "lucide-react";
+import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify"
 interface Pivot {
     role_id: number;
@@ -40,6 +41,22 @@ const RoleList: React.FC = () => {
     const [showRoleDialog, setShowRoleDialog] = useState(false);
     const [showRoleDialogUpdate, setShowRoleDialogUpdate] = useState(false)
     const [idRole, setIdRole] = useState<number>(0)
+    const navigate = useNavigate();
+
+    const handleClickNavList = (name: string) => {
+        navigate(`/dashboard/${name}`)
+    }
+
+    const [startDateTime, setStartDateTime] = useState('');
+    // const [startDateTime, setStartDateTime] = useState<Date | null>(null);
+
+    const [endDateTime, setEndDateTime] = useState('');
+
+    const [query, setQuery] = useState('');
+    const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+        setQuery(e.target.value);
+    };
+
     const sendRole = async (name: string) => {
 
         setLoading(true)
@@ -128,137 +145,186 @@ const RoleList: React.FC = () => {
     </div>;
 
     return (
-
-        <div className="tableContainer">
-            <div className="headerTableList">
-                <h2>Lista de Roles</h2>
-                <button className="action-btn" title="Novo usuário" onClick={() => {
-                    setShowRoleDialog(true)
-                }}>
-                    <Plus size={16} className='iconPlusUser' />
-                    <span>Novo</span>
-                </button>
+        <div className="containerFolderFollow">
+            <div className="pathFollow">
+                <ul>
+                    <li onClick={() => {
+                        handleClickNavList("default")
+                    }}>
+                        <span>Home</span>
+                        <ChevronRight className='iconFollow'></ChevronRight>
+                    </li>
+                    <li>
+                        <span>Roles</span>
+                    </li>
+                </ul>
             </div>
-            <div className="containerTable">
-                <table className="userTable">
-                    <thead>
-                        <tr>
-                            {/* <th>ID</th> */}
-                            <th>Nome</th>
-                            <th>permissões</th>
-                            <th>Data de Criação</th>
-
-                            <th>Ações</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        {roles.map(user => (
-                            <tr key={user.id} className="tableRow">
-                                {/* <td>{user.id}</td> */}
-                                <td>{user.name}</td>
-                                <td>{user.permissions.length > 0 ? (
-                                    // <ul className="permissionsList">
-                                    //     {user.permissions.map((permission) => {
-                                    //         const parts = permission.name.split(".");
-                                    //         const action = parts.length > 1 ? parts[1] : permission.name; // pega só o 'view', 'create'...
-                                    //         return <li key={permission.id}>{action}</li>;
-                                    //     })}
-                                    // </ul>
-                                    <ul className="permissionsList">
-                                        {user.permissions.slice(0, 3).map((permission) => {
-                                            const parts = permission.name.split(".");
-                                            const action = parts.length > 1 ? parts[1] : permission.name;
-                                            return <li key={permission.id}>{action}</li>;
-                                        })}
-                                        {user.permissions.length > 3 && <li>...</li>}
-                                    </ul>
-
-                                ) : (
-                                    <p className="text-sm text-gray-400">Sem permissões atribuídas.</p>
-                                )}</td>
-
-                                <td>{new Date(user.created_at).toLocaleDateString()}</td>
-
-                                <td className="actions">
-                                    <button className="action-btn refresh" title="Detalhes">
-                                        <Eye size={16} className="btnDetails" />
-                                    </button>
-                                    <button className="action-btn edit" title="Editar" onClick={() => {
-                                        setIdRole(user.id)
-                                        setNameRoleUpdate(user.name)
-                                        setShowRoleDialogUpdate(true)
-                                    }}>
-                                        <Pencil size={16} className="btnUpdate" />
-                                    </button>
-                                    <button className="action-btn delete" title="Apagar" onClick={
-                                        () => {
-                                            setIdRole(user.id)
-                                            deleteRole()
-                                        }
-                                    }>
-                                        <Trash2 size={16} className="btnTrash" />
-                                    </button>
-
-                                </td>
-                            </tr>
-                        ))}
-                    </tbody>
-                </table>
-
-                <div className="paginationLaben">
-                    <div className="lbnTotal">
-                        <Database className='lbnTotalIcon'/>
-                        <span>
-                            Total:
-                        </span>
-                        <span>
-                            {roles.length}
-                        </span>
-                    </div>
-                    <div className="pagination">
-                        <div className="arrowsPage"></div>
-                        <div className="numbersPage">
-                            <div className="numberItem">
-                                1
-                            </div>
-                            
-                        </div>
-                        <div className="arrowsPage"></div>
-                    </div>
+            <div className="tableContainer">
+                <div className="containerTitleHeader">
+                    <h2>Lista de Roles</h2>
                 </div>
-                {showRoleDialog && (
-                    <div className="dialog-backdrop">
-                        <div className="dialog-box">
-                            <h3>Nova Role</h3>
-                            <input placeholder="Nome da role" type="text" value={nameRole} onChange={(e) => {
-                                setNameRole(e.target.value)
-                            }} className="roleOptions h-10 px-2 rounded border" style={{ cursor: "auto" }} />
-                            <div className="buttonAddCancel">
-                                <button onClick={() => {
-                                    sendRole(nameRole)
-                                }}>Salvar</button>
-                                <button onClick={() => setShowRoleDialog(false)}>Cancelar</button>
-                            </div>
-                        </div>
-                    </div>
-                )}
 
-                {showRoleDialogUpdate && (
-                    <div className="dialog-backdrop">
-                        <div className="dialog-box">
-                            <h3>Atualizar Role</h3>
-                            <input placeholder="Nome da role" type="text" value={nameRoleUpdate} onChange={(e) => {
-                                setNameRoleUpdate(e.target.value)
-                            }} className="roleOptions h-10 px-2 rounded border" style={{ cursor: "auto" }} />
-                            <div className="buttonAddCancel">
-                                <button onClick={() => {
-                                    sendRoleUpdate(nameRoleUpdate)
-                                }}>Atualizar</button>
-                                <button onClick={() => setShowRoleDialogUpdate(false)}>Cancelar</button>
-                            </div>
+                <div className="headerTableList">
+
+                    <div className="search-container">
+                        <div className="search-row search-row2">
+                            <Search size={20} className="search-icon" />
+                            <input
+                                type="text"
+                                placeholder="Pesquisar..."
+                                value={query}
+                                onChange={(e) => setQuery(e.target.value)}
+                                className="search-input"
+                            />
+                        </div>
+
+                        <div className="search-row">
+                            <input
+                                type="datetime-local"
+                                value={startDateTime}
+                                onChange={(e) => setStartDateTime(e.target.value)}
+                                className="datetime-input"
+                            />
+
+
+
+                            <input
+                                type="datetime-local"
+                                value={endDateTime}
+                                onChange={(e) => setEndDateTime(e.target.value)}
+                                className="datetime-input"
+                            />
                         </div>
                     </div>
-                )}
+
+                    <button className="action-btn" title="Novo usuário" onClick={() => {
+                        setShowRoleDialog(true)
+                    }}>
+                        <Plus size={16} className='iconPlusUser' />
+                        <span>Novo</span>
+                    </button>
+                </div>
+                <div className="containerTable">
+                    <table className="userTable">
+                        <thead>
+                            <tr>
+                                {/* <th>ID</th> */}
+                                <th>Nome</th>
+                                <th>permissões</th>
+                                <th>Data de Criação</th>
+
+                                <th>Ações</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {roles.map(user => (
+                                <tr key={user.id} className="tableRow">
+                                    {/* <td>{user.id}</td> */}
+                                    <td>{user.name}</td>
+                                    <td>{user.permissions.length > 0 ? (
+                                        // <ul className="permissionsList">
+                                        //     {user.permissions.map((permission) => {
+                                        //         const parts = permission.name.split(".");
+                                        //         const action = parts.length > 1 ? parts[1] : permission.name; // pega só o 'view', 'create'...
+                                        //         return <li key={permission.id}>{action}</li>;
+                                        //     })}
+                                        // </ul>
+                                        <ul className="permissionsList">
+                                            {user.permissions.slice(0, 3).map((permission) => {
+                                                const parts = permission.name.split(".");
+                                                const action = parts.length > 1 ? parts[1] : permission.name;
+                                                return <li key={permission.id}>{action}</li>;
+                                            })}
+                                            {user.permissions.length > 3 && <li>...</li>}
+                                        </ul>
+
+                                    ) : (
+                                        <p className="text-sm text-gray-400">Sem permissões atribuídas.</p>
+                                    )}</td>
+
+                                    <td>{new Date(user.created_at).toLocaleDateString()}</td>
+
+                                    <td className="actions">
+                                        <button className="action-btn refresh" title="Detalhes">
+                                            <Eye size={16} className="btnDetails" />
+                                        </button>
+                                        <button className="action-btn edit" title="Editar" onClick={() => {
+                                            setIdRole(user.id)
+                                            setNameRoleUpdate(user.name)
+                                            setShowRoleDialogUpdate(true)
+                                        }}>
+                                            <Pencil size={16} className="btnUpdate" />
+                                        </button>
+                                        <button className="action-btn delete" title="Apagar" onClick={
+                                            () => {
+                                                setIdRole(user.id)
+                                                deleteRole()
+                                            }
+                                        }>
+                                            <Trash2 size={16} className="btnTrash" />
+                                        </button>
+
+                                    </td>
+                                </tr>
+                            ))}
+                        </tbody>
+                    </table>
+
+                    <div className="paginationLaben">
+                        <div className="lbnTotal">
+                            <Database className='lbnTotalIcon' />
+                            <span>
+                                Total:
+                            </span>
+                            <span>
+                                {roles.length}
+                            </span>
+                        </div>
+                        <div className="pagination">
+                            <div className="arrowsPage"></div>
+                            <div className="numbersPage">
+                                <div className="numberItem">
+                                    1
+                                </div>
+
+                            </div>
+                            <div className="arrowsPage"></div>
+                        </div>
+                    </div>
+                    {showRoleDialog && (
+                        <div className="dialog-backdrop">
+                            <div className="dialog-box">
+                                <h3>Nova Role</h3>
+                                <input placeholder="Nome da role" type="text" value={nameRole} onChange={(e) => {
+                                    setNameRole(e.target.value)
+                                }} className="roleOptions h-10 px-2 rounded border" style={{ cursor: "auto" }} />
+                                <div className="buttonAddCancel">
+                                    <button onClick={() => {
+                                        sendRole(nameRole)
+                                    }}>Salvar</button>
+                                    <button onClick={() => setShowRoleDialog(false)}>Cancelar</button>
+                                </div>
+                            </div>
+                        </div>
+                    )}
+
+                    {showRoleDialogUpdate && (
+                        <div className="dialog-backdrop">
+                            <div className="dialog-box">
+                                <h3>Atualizar Role</h3>
+                                <input placeholder="Nome da role" type="text" value={nameRoleUpdate} onChange={(e) => {
+                                    setNameRoleUpdate(e.target.value)
+                                }} className="roleOptions h-10 px-2 rounded border" style={{ cursor: "auto" }} />
+                                <div className="buttonAddCancel">
+                                    <button onClick={() => {
+                                        sendRoleUpdate(nameRoleUpdate)
+                                    }}>Atualizar</button>
+                                    <button onClick={() => setShowRoleDialogUpdate(false)}>Cancelar</button>
+                                </div>
+                            </div>
+                        </div>
+                    )}
+                </div>
             </div>
         </div>
     );
