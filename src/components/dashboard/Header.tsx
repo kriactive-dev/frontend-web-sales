@@ -1,7 +1,8 @@
-import { Bell, CardSim, Database, Languages, Mail, Menu, Moon, Search, Settings, Sun, UserRoundPlus } from "lucide-react";
+import { Bell, CardSim, Database, Languages, LockKeyhole, LogOut, Mail, Menu, Moon, Search, Settings, Share2, Sun, UserRoundPlus } from "lucide-react";
 import type React from "react";
 import userAvatar from "../../assets/images/user/avatar-2.jpg";
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 interface HeaderProps {
   onToggleSidebar: () => void;
@@ -9,9 +10,11 @@ interface HeaderProps {
 
 const Header: React.FC<HeaderProps> = ({ onToggleSidebar }) => {
 
+  const navigate = useNavigate()
   const [darkOpen, setDarkOpen] = useState<boolean>(false)
-  const [languageOpen, setLanguageOpen] = useState<boolean>(true)
+  const [languageOpen, setLanguageOpen] = useState<boolean>(false)
   const [notificationOpen, setnotificationOpen] = useState<boolean>(false)
+  const [profileOpenDetail, setProfileOpenDetail] = useState<boolean>(false)
   const handleChooseMode = (name: string) => {
     console.log(name)
     setDarkOpen(false)
@@ -25,6 +28,12 @@ const Header: React.FC<HeaderProps> = ({ onToggleSidebar }) => {
     console.log(name)
     setnotificationOpen(false)
   }
+
+  const handleProfile = (name: string) => {
+    console.log(name)
+    setProfileOpenDetail(false)
+  }
+
   return (
     <>
       <header className="headerDah">
@@ -102,16 +111,18 @@ const Header: React.FC<HeaderProps> = ({ onToggleSidebar }) => {
           </div>
 
           <div className="profileBarsUser profileBarsUserSun">
-            <Bell className="iconBell" onClick={()=>{
+            <Bell className="iconBell" onClick={() => {
               setnotificationOpen(!notificationOpen)
             }} />
 
-            <div className={`selectOptionsUser ${notificationOpen ? 'notificationOpen' : 'notificationClose'}`}>
+            <div className={`selectOptionsUser selectOptionsUsernot ${notificationOpen ? 'notificationOpen' : 'notificationClose'}`}>
               <div className="headerSelectUser">
                 <h2>
                   Notificações
                 </h2>
-                <div className="notfNa">
+                <div className="notfNa" onClick={() => {
+                  handleNotification('readall')
+                }}>
                   Marcar como lidas
                 </div>
               </div>
@@ -121,7 +132,9 @@ const Header: React.FC<HeaderProps> = ({ onToggleSidebar }) => {
                     Hoje
                   </h3>
                   <ul>
-                    <li>
+                    <li onClick={() => {
+                      handleNotification('readall')
+                    }}>
                       <div className="headerNot">
                         <div className="headerNotType">
                           <Database className="headerNotIcon" />
@@ -138,7 +151,9 @@ const Header: React.FC<HeaderProps> = ({ onToggleSidebar }) => {
                       </div>
                     </li>
 
-                    <li>
+                    <li onClick={() => {
+                      handleNotification('readall')
+                    }}>
                       <div className="headerNot">
                         <div className="headerNotType">
                           <Mail className="headerNotIcon" />
@@ -162,7 +177,9 @@ const Header: React.FC<HeaderProps> = ({ onToggleSidebar }) => {
                     Ontem
                   </h3>
                   <ul>
-                    <li>
+                    <li onClick={() => {
+                      handleNotification('readall')
+                    }}>
                       <div className="headerNot">
                         <div className="headerNotType">
                           <CardSim className="headerNotIcon" />
@@ -179,7 +196,9 @@ const Header: React.FC<HeaderProps> = ({ onToggleSidebar }) => {
                       </div>
                     </li>
 
-                    <li>
+                    <li onClick={() => {
+                      handleNotification('readall')
+                    }}>
                       <div className="headerNot">
                         <div className="headerNotType">
                           <UserRoundPlus className="headerNotIcon" />
@@ -200,12 +219,69 @@ const Header: React.FC<HeaderProps> = ({ onToggleSidebar }) => {
 
               </div>
 
+              <div className="footerNot">
+                <div className="notfNaFoot" onClick={() => {
+                  handleNotification('readall')
+                }}>
+                  Apagar todas notificações
+                </div>
+              </div>
+
 
             </div>
           </div>
 
-          <div className="profileBarsUser">
-            <img src={userAvatar} alt="user profile" />
+          <div className="profileBarsUser profileBarsUserSun">
+            <img src={userAvatar} alt="user profile" onClick={()=>{
+              setProfileOpenDetail(!profileOpenDetail)
+            }}/>
+            <div className={`selectOptionsUser selectOptionsUserProfile ${profileOpenDetail ? 'profileOpenDetail' : 'profileCloseDetail'}`}>
+              <h1>
+                Perfil
+              </h1>
+              <div className="headerProfileDetails">
+                <img src={userAvatar} alt="user profile" />
+                <div className="containerInfoProfileDetails">
+                  <h2>
+                    John doe
+                  </h2>
+                  <span>
+                    doejohn@kriactive.co.mz
+                  </span>
+                </div>
+              </div>
+              <div className="containerthememks">
+                <h3>
+                  Manage
+                </h3>
+                <ul>
+                  <li onClick={()=>{
+                    handleProfile("")
+                  }}>
+                    <Settings className="containerthememksIcon"/>
+                    <span>Settings</span>
+                  </li>
+                   <li onClick={()=>{
+                    handleProfile("")
+                  }}>
+                    <Share2 className="containerthememksIcon"/>
+                    <span>Share</span>
+                  </li>
+                   <li onClick={()=>{
+                    handleProfile("")
+                  }}>
+                    <LockKeyhole className="containerthememksIcon"/>
+                    <span>Change password</span>
+                  </li>
+                </ul>
+              </div>
+              <button onClick={()=>{
+                navigate("/")
+              }}>
+                <LogOut className="icobBtnLogou" />
+                <span>Logout</span>
+              </button>
+            </div>
           </div>
         </div>
       </header>
