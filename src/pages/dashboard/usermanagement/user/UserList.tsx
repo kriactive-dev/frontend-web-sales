@@ -51,7 +51,7 @@ interface UserNew {
     email: string;
     password: string;
 }
-const frameworks = ['React', 'Vue', 'Angular', 'Svelte', 'Next.js'];
+const frameworks = ['Admin', 'Editor', 'view', 'Moderador', 'Convidado'];
 
 const UserList: React.FC = () => {
     const navigate = useNavigate();
@@ -328,12 +328,12 @@ const UserList: React.FC = () => {
                         </div>
 
                         <div className="search-row">
-                            <input
+                            {/* <input
                                 type="datetime-local"
                                 value={startDateTime}
                                 onChange={(e) => setStartDateTime(e.target.value)}
                                 className="datetime-input"
-                            />
+                            /> */}
 {/* 
                             <DatePicker
                                 selected={startDateTime}
@@ -346,12 +346,12 @@ const UserList: React.FC = () => {
                             /> */}
 
 
-                            <input
+                            {/* <input
                                 type="datetime-local"
                                 value={endDateTime}
                                 onChange={(e) => setEndDateTime(e.target.value)}
                                 className="datetime-input"
-                            />
+                            /> */}
                         </div>
                     </div>
                     <button className="action-btn-new-user" title="Novo usuário" onClick={() => {

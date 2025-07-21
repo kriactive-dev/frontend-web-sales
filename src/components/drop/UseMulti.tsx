@@ -2,12 +2,13 @@
 import React, { useState } from 'react';
 import MultiSelectDropdown from './MultiSelectDropdown';
 const options = [
-  { value: 'react', label: 'React' },
-  { value: 'vue', label: 'Vue' },
-  { value: 'angular', label: 'Angular' },
-  { value: 'svelte', label: 'Svelte' },
-  { value: 'next', label: 'Next.js' },
+  { value: 'admin', label: 'Administrador' },
+  { value: 'editor', label: 'Editor' },
+  { value: 'viewer', label: 'Visualizador' },
+  { value: 'moderator', label: 'Moderador' },
+  { value: 'guest', label: 'Convidado' },
 ];
+
 
 const UseMulti: React.FC = () => {
   const [selectedOptions, setSelectedOptions] = useState<typeof options>([]);

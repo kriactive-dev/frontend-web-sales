@@ -1,7 +1,5 @@
-import { ChevronDown, ChevronUp } from 'lucide-react';
+import { BrushCleaning, ChevronDown, ChevronUp, Search, SquareCheckBig } from 'lucide-react';
 import React, { useState } from 'react';
-
-// import './dropdown.css';
 
 interface MultiCheckboxDropdownProps {
   label: string;
@@ -17,6 +15,7 @@ const MultiCheckboxDropdown: React.FC<MultiCheckboxDropdownProps> = ({
   onChange,
 }) => {
   const [isOpen, setIsOpen] = useState(false);
+  const [query, setQuery] = useState('');
 
   const toggleOption = (value: string) => {
     if (selected.includes(value)) {
@@ -26,33 +25,65 @@ const MultiCheckboxDropdown: React.FC<MultiCheckboxDropdownProps> = ({
     }
   };
 
-  const selectAll = () => onChange(options);
+  const selectAll = () => {
+    const filtered = options.filter((opt) =>
+      opt.toLowerCase().includes(query.toLowerCase())
+    );
+    onChange(filtered);
+  };
+
   const clearAll = () => onChange([]);
+
+  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setQuery(e.target.value);
+  };
+
+  const filteredOptions = options.filter((opt) =>
+    opt.toLowerCase().includes(query.toLowerCase())
+  );
 
   return (
     <div className="dropdown-container">
       {/* <label>{label}</label> */}
       <div className="dropdown-box" onClick={() => setIsOpen(!isOpen)}>
         {selected.length > 0 ? selected.join(', ') : 'Selecione...'}
-        <span className="arrow">{isOpen ? <ChevronUp/> : <ChevronDown/>}</span>
+        <span className="arrow">{isOpen ? <ChevronUp /> : <ChevronDown />}</span>
       </div>
 
       {isOpen && (
         <div className="dropdown-menu">
-          {options.map((opt) => (
-            <label key={opt} className="dropdown-option">
-              <input
-                type="checkbox"
-                checked={selected.includes(opt)}
-                onChange={() => toggleOption(opt)}
-              />
-              {opt}
-            </label>
-          ))}
           <div className="dropdown-buttons">
-            <button onClick={selectAll}>Selecionar Todos</button>
-            <button onClick={clearAll}>Limpar</button>
+            <button onClick={selectAll}><SquareCheckBig size={15} style={{marginLeft: "0px"}}/><span>Selecionar Todos</span></button>
+            <button onClick={clearAll}><BrushCleaning size={15} style={{marginLeft: "0px"}}/><span>Limpar</span> </button>
           </div>
+          <div className="search-row search-row2 searchSelect">
+            <Search size={20} className="search-icon" />
+            <input
+              type="text"
+              placeholder="Pesquisar..."
+              value={query}
+              onChange={handleInputChange}
+              className="search-input"
+            />
+          </div>
+          
+
+          {filteredOptions.length > 0 ? (
+            filteredOptions.map((opt) => (
+              <label key={opt} className="dropdown-option">
+                <input
+                  type="checkbox"
+                  checked={selected.includes(opt)}
+                  onChange={() => toggleOption(opt)}
+                />
+                {opt}
+              </label>
+            ))
+          ) : (
+            <div className="no-options">Nenhuma opção encontrada</div>
+          )}
+
+         
         </div>
       )}
     </div>
