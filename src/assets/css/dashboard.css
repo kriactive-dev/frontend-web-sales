@@ -1716,7 +1716,7 @@ body {
 }
 
 .releaseDive ul li:hover {
-    background-color: #eee;
+    background-color: var(--subitem-menu-hover-color);
     cursor: pointer;
 }
 
