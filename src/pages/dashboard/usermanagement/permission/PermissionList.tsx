@@ -186,7 +186,7 @@ const PermissionList: React.FC = () => {
                         setShowPermissionDialog(true)
                     }}>
                         <Plus size={16} className='iconPlusUser' />
-                        <span>Novo</span>
+                        <span>{t('new')}</span>
                     </button>
                 </div>
                 <div className="containerTable">
@@ -194,9 +194,9 @@ const PermissionList: React.FC = () => {
                         <thead>
                             <tr>
                                 <th>ID</th>
-                                <th>Nome</th>
-                                <th>Data de Criação</th>
-                                <th>Ações</th>
+                                <th>{t('name')}</th>
+                                <th>{t('creation_date')}</th>
+                                <th>{t('actions')}</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -268,8 +268,8 @@ const PermissionList: React.FC = () => {
                             <div className="buttonAddCancel">
                                 <button onClick={() => {
                                     sendPermission(namePermissions)
-                                }}>Salvar</button>
-                                <button onClick={() => setShowPermissionDialog(false)}>Cancelar</button>
+                                }}>{t('save')}</button>
+                                <button onClick={() => setShowPermissionDialog(false)}>{t('cancel')}</button>
                             </div>
                         </div>
                     </div>
@@ -286,7 +286,7 @@ const PermissionList: React.FC = () => {
                                 <button onClick={() => {
                                     sendPermissionUpdate(namePermissionUpdate)
                                 }}>Atualizar</button>
-                                <button onClick={() => setShowPermissionDialogUpdate(false)}>Cancelar</button>
+                                <button onClick={() => setShowPermissionDialogUpdate(false)}>{t('cancel')}</button>
                             </div>
                         </div>
                     </div>

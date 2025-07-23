@@ -4,6 +4,7 @@ import axios from 'axios';
 import { X, List, RefreshCw } from 'lucide-react';
 import urls from '../../../../utils/apis/apis';
 import { toast } from 'react-toastify';
+import { useTranslation } from 'react-i18next';
 
 interface User {
   name: string;
@@ -16,6 +17,7 @@ const UserUpdate: React.FC = () => {
   const navigate = useNavigate();
   const [loading, setLoading] = useState<boolean>(true);
   const [user, setUser] = useState<User>({ name: '', email: '', password: '' });
+  const {t} = useTranslation()
 
 
   useEffect(() => {
@@ -97,7 +99,7 @@ const UserUpdate: React.FC = () => {
           style={inputStyle}
         />
 
-        <label>Senha:</label>
+        <label>{t('password')}:</label>
         <input
           type="password"
           name="password"
@@ -110,7 +112,7 @@ const UserUpdate: React.FC = () => {
         <div className="btnRegister">
           <button onClick={() => {
             navigate("/dashboard/user/lista")
-          }}><X className='iconButtonCreate' /><span>Cancelar</span></button>
+          }}><X className='iconButtonCreate' /><span>{t('cancel')}</span></button>
           <button type="submit" ><RefreshCw className='iconButtonCreate' /><span>Atualizar</span></button>
         </div>
       </form>

@@ -47,15 +47,15 @@ const {t} = useTranslation()
     <div className="dropdown-container">
       {/* <label>{label}</label> */}
       <div className="dropdown-box" onClick={() => setIsOpen(!isOpen)}>
-        {selected.length > 0 ? selected.join(', ') : 'Selecione...'}
+        {selected.length > 0 ? selected.join(', ') : `${t('select')}...`}
         <span className="arrow">{isOpen ? <ChevronUp /> : <ChevronDown />}</span>
       </div>
 
       {isOpen && (
         <div className="dropdown-menu">
           <div className="dropdown-buttons">
-            <button onClick={selectAll}><SquareCheckBig size={15} style={{marginLeft: "0px"}}/><span>Selecionar Todos</span></button>
-            <button onClick={clearAll}><BrushCleaning size={15} style={{marginLeft: "0px"}}/><span>Limpar</span> </button>
+            <button onClick={selectAll}><SquareCheckBig size={15} style={{marginLeft: "0px"}}/><span>{t('select_all')}</span></button>
+            <button onClick={clearAll}><BrushCleaning size={15} style={{marginLeft: "0px"}}/><span>{t('clear')}</span> </button>
           </div>
           <div className="search-row search-row2 searchSelect">
             <Search size={20} className="search-icon" />

@@ -5,7 +5,7 @@ import urls from '../../../../utils/apis/apis';
 import { useNavigate } from 'react-router-dom';
 import { toast } from 'react-toastify';
 import MultiCheckboxDropdown from '../../../../components/drop/MultiCheckboxDropdownProps';
-import DatePicker from 'react-datepicker';
+import { useTranslation } from 'react-i18next';
 
 
 interface Pivot {
@@ -68,6 +68,7 @@ const UserList: React.FC = () => {
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState<string | null>(null);
     const [isVisible, setIsVisible] = useState(false);
+    const {t} = useTranslation()
 
     const [showPassword, setShowPassword] = useState(false);
     const [startDateTime, setStartDateTime] = useState('');
@@ -304,14 +305,14 @@ const UserList: React.FC = () => {
                         <ChevronRight className='iconFollow'></ChevronRight>
                     </li>
                     <li>
-                        <span>Usuários</span>
+                        <span>{t('user')}</span>
                     </li>
                 </ul>
             </div>
             <div className="tableContainer">
                 <div className="dialog"></div>
                 <div className="containerTitleHeader">
-                    <h2>Lista de Usuários</h2>
+                    <h2>{t("user_list")}</h2>
                 </div>
 
                 <div className="headerTableList">
@@ -320,7 +321,7 @@ const UserList: React.FC = () => {
                             <Search size={20} className="search-icon" />
                             <input
                                 type="text"
-                                placeholder="Pesquisar..."
+                                placeholder={t('search')}
                                 value={query}
                                 onChange={(e) => setQuery(e.target.value)}
                                 className="search-input"
@@ -359,7 +360,7 @@ const UserList: React.FC = () => {
                         openDialog(lbnDialogs.user.new)
                     }}>
                         <UserRoundPlus size={16} className='iconPlusUser' />
-                        <span>Novo</span>
+                        <span>{t('new')}</span>
                     </button>
                 </div>
                 <div className="containerTable">
@@ -367,11 +368,11 @@ const UserList: React.FC = () => {
                         <thead>
                             <tr>
                                 {/* <th>ID</th> */}
-                                <th>Nome</th>
+                                <th>{t('name')}</th>
                                 <th>Email</th>
-                                <th>Data de Criação</th>
-                                <th>Funções</th>
-                                <th className='centerTable'>Ações</th>
+                                <th>{t('creation_date')}</th>
+                                <th>{t('roles')}</th>
+                                <th className='centerTable'>{t('actions')}</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -481,8 +482,8 @@ const UserList: React.FC = () => {
 
                             <div className="buttonAddCancel">
 
-                                <button onClick={() => closeDialog(lbnDialogs.role.user)}>Cancelar</button>
-                                <button onClick={assignRole}><Check className='iconButtonCreate' /><span>Salvar</span></button>
+                                <button onClick={() => closeDialog(lbnDialogs.role.user)}>{t('cancel')}</button>
+                                <button onClick={assignRole}><Check className='iconButtonCreate' /><span>{t('save')}</span></button>
                             </div>
 
                         </div>
@@ -495,13 +496,13 @@ const UserList: React.FC = () => {
                         <div className="dialog-box">
                             <h3>Permissão</h3>
                             <select value={selectedPermission} onChange={(e) => setSelectedPermission(e.target.value)} required className="roleOptions h-10 px-2 rounded border">
-                                <option value="">Selecione</option>
+                                <option value="">{t('select')}</option>
                                 {permissions.map(p => (
                                     <option style={{ textTransform: "capitalize" }} key={p.id} value={p.name}>{p.name.split(".").length > 1 ? p.name.split(".")[1] : p.name}</option>
                                 ))}
                             </select>
                             <div className="buttonAddCancel">
-                                <button onClick={() => closeDialog(lbnDialogs.permitions.user)}>Cancelar</button>
+                                <button onClick={() => closeDialog(lbnDialogs.permitions.user)}>{t('cancel')}</button>
                                 <button onClick={assignPermission}>Atribuir</button>
 
                             </div>
@@ -512,7 +513,7 @@ const UserList: React.FC = () => {
                 {showNewUserDialog && (
                     <div className={`dialog-backdrop ${isVisible ? 'fade-in' : 'fade-out'}`}>
                         <div className="dialog-box">
-                            <h3>Novo user</h3>
+                            <h3>{t('new')}</h3>
                             <div className="lineDeviderFormCreate">
 
                             </div>
@@ -521,7 +522,7 @@ const UserList: React.FC = () => {
                                 <form onSubmit={handleSubmit} className='formUserd'>
 
 
-                                    <label>Nome Completo</label>
+                                    <label>{t('full_name')}</label>
                                     <input
                                         type="text"
                                         name="name"
@@ -543,7 +544,7 @@ const UserList: React.FC = () => {
                                         placeholder='example@example.com'
                                     />
 
-                                    <label>Senha</label>
+                                    <label>{t('password')}</label>
                                     <div className="inputPassAdd">
                                         <input
                                             type={showPassword ? 'text' : 'password'}
@@ -569,8 +570,8 @@ const UserList: React.FC = () => {
 
                                         <button type='button' onClick={() => {
                                             closeDialog(lbnDialogs.user.new)
-                                        }}>Cancelar</button>
-                                        <button type="submit" ><UserRound className='iconButtonCreate' /><span>Salvar</span></button>
+                                        }}>{t('cancel')}</button>
+                                        <button type="submit" ><UserRound className='iconButtonCreate' /><span>{t('save')}</span></button>
                                     </div>
 
                                 </form>

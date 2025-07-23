@@ -1,5 +1,6 @@
 import type React from "react";
 import { Pencil, Trash2, Eye } from "lucide-react";
+import { useTranslation } from "react-i18next";
 
 
 interface User {
@@ -25,20 +26,22 @@ const UserTable: React.FC = () => {
         { id: 10, name: "André Pinto", email: "andre@exemplo.com", number: "842233119", role: "Editor", status: "Ativo" },
     ];
 
+    const {t} = useTranslation()
+
     return (
         <>
             <div className="tableContainer">
-                <h2>Lista de Usuários</h2>
+                <h2>{t('user_list')}</h2>
                 <table className="userTable">
                     <thead>
                         
                             <th>ID</th>
-                            <th>Nome</th>
+                            <th>{t('name')}</th>
                             <th>Email</th>
                             <th>Contacto</th>
                             <th>Função</th>
                             <th>Status</th>
-                            <th>Ações</th>
+                            <th>{t('actions')}</th>
                         
                     </thead>
                     <tbody>

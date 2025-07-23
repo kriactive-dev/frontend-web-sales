@@ -22,5 +22,17 @@
   "today": "Hoje",
   "yersterday": "Ontem",
   "delete_all_notifications": "Apagar todas notificações",
-  "search": "Pesquisar"
+  "search": "Pesquisar",
+  "user_list": "Lista de Usuários",
+  "name": "Nome",
+  "creation_date": "Data de Criação",
+  "actions": "Ações",
+  "select": "Selecione",
+  "select_all": "Selecionar Todos",
+  "clear": "Limpar",
+  "cancel": "Cancelar",
+  "new": "Novo",
+  "save": "Salvar",
+  "full_name": "Nome Completo",
+  "password": "Senha"
 }

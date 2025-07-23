@@ -3,8 +3,9 @@ import type React from "react";
 import { useState, useEffect } from "react";
 import urls from "../../../../utils/apis/apis";
 import { Pencil, Trash2, Eye, Plus, Database, ChevronRight, Search } from "lucide-react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useNavigation } from "react-router-dom";
 import { toast } from "react-toastify"
+import { useTranslation } from "react-i18next";
 interface Pivot {
     role_id: number;
     permission_id: number;
@@ -41,6 +42,7 @@ const RoleList: React.FC = () => {
     const [showRoleDialog, setShowRoleDialog] = useState(false);
     const [showRoleDialogUpdate, setShowRoleDialogUpdate] = useState(false)
     const [idRole, setIdRole] = useState<number>(0)
+    const {t} = useTranslation()
     const navigate = useNavigate();
 
     const handleClickNavList = (name: string) => {
@@ -171,7 +173,7 @@ const RoleList: React.FC = () => {
                             <Search size={20} className="search-icon" />
                             <input
                                 type="text"
-                                placeholder="Pesquisar..."
+                                placeholder={t('search')}
                                 value={query}
                                 onChange={(e) => setQuery(e.target.value)}
                                 className="search-input"
@@ -201,7 +203,7 @@ const RoleList: React.FC = () => {
                         setShowRoleDialog(true)
                     }}>
                         <Plus size={16} className='iconPlusUser' />
-                        <span>Novo</span>
+                        <span>{t('new')}</span>
                     </button>
                 </div>
                 <div className="containerTable">
@@ -209,11 +211,11 @@ const RoleList: React.FC = () => {
                         <thead>
                             <tr>
                                 {/* <th>ID</th> */}
-                                <th>Nome</th>
+                                <th>{t('name')}</th>
                                 <th>permissões</th>
-                                <th>Data de Criação</th>
+                                <th>{t('creation_date')}</th>
 
-                                <th>Ações</th>
+                                <th>{t('actions')}</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -301,8 +303,8 @@ const RoleList: React.FC = () => {
                                 <div className="buttonAddCancel">
                                     <button onClick={() => {
                                         sendRole(nameRole)
-                                    }}>Salvar</button>
-                                    <button onClick={() => setShowRoleDialog(false)}>Cancelar</button>
+                                    }}>{t('save')}</button>
+                                    <button onClick={() => setShowRoleDialog(false)}>{t('cancel')}</button>
                                 </div>
                             </div>
                         </div>
@@ -319,7 +321,7 @@ const RoleList: React.FC = () => {
                                     <button onClick={() => {
                                         sendRoleUpdate(nameRoleUpdate)
                                     }}>Atualizar</button>
-                                    <button onClick={() => setShowRoleDialogUpdate(false)}>Cancelar</button>
+                                    <button onClick={() => setShowRoleDialogUpdate(false)}>{t('cancel')}</button>
                                 </div>
                             </div>
                         </div>

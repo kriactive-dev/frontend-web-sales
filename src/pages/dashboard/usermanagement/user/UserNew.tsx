@@ -4,6 +4,7 @@ import urls from '../../../../utils/apis/apis';
 import { useNavigate } from 'react-router-dom';
 import { Plus, X, List } from 'lucide-react';
 import { toast } from 'react-toastify';
+import { useTranslation } from 'react-i18next';
 interface User {
   name: string;
   email: string;
@@ -14,6 +15,7 @@ const UserNew: React.FC = () => {
   const [user, setUser] = useState<User>({ name: '', email: '', password: '' });
   const [submitUser, setSubmitUser] = useState<User | null>(null);
   const [loading, setLoading] = useState<boolean>(false);
+  const {t} = useTranslation()
   const navigate = useNavigate()
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -75,7 +77,7 @@ const UserNew: React.FC = () => {
             </button>
           </div>
 
-          <label>Nome Completo</label>
+          <label>{t('full_name')}</label>
           <input
             type="text"
             name="name"
@@ -97,7 +99,7 @@ const UserNew: React.FC = () => {
             placeholder='Teste@teste.com'
           />
 
-          <label>Senha</label>
+          <label>{t('password')}</label>
           <input
             type="password"
             name="password"
@@ -111,8 +113,8 @@ const UserNew: React.FC = () => {
           <div className="btnRegister">
             <button onClick={() => {
               navigate("/dashboard/user/lista")
-            }}><X className='iconButtonCreate' /><span>Cancelar</span></button>
-            <button type="submit" ><Plus className='iconButtonCreate' /><span>Salvar</span></button>
+            }}><X className='iconButtonCreate' /><span>{t('cancel')}</span></button>
+            <button type="submit" ><Plus className='iconButtonCreate' /><span>{t('save')}</span></button>
           </div>
 
         </form>
