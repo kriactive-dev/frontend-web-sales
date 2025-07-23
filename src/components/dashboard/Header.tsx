@@ -3,6 +3,7 @@ import type React from "react";
 import userAvatar from "../../assets/images/user/avatar-2.jpg";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { useTranslation } from "react-i18next";
 
 interface HeaderProps {
   onToggleSidebar: () => void;
@@ -15,12 +16,14 @@ const Header: React.FC<HeaderProps> = ({ onToggleSidebar }) => {
   const [languageOpen, setLanguageOpen] = useState<boolean>(false)
   const [notificationOpen, setnotificationOpen] = useState<boolean>(false)
   const [profileOpenDetail, setProfileOpenDetail] = useState<boolean>(false)
+  const { t, i18n } = useTranslation();
   const handleChooseMode = (name: string) => {
     console.log(name)
     setDarkOpen(false)
   }
   const handleChooseLanguage = (name: string) => {
     console.log(name)
+    i18n.changeLanguage(name);
     setLanguageOpen(false)
   }
 
@@ -41,7 +44,7 @@ const Header: React.FC<HeaderProps> = ({ onToggleSidebar }) => {
           <Menu className="serachBarMenuIcon" onClick={onToggleSidebar} />
           <div className="serach">
             <Search className="serachIcon" />
-            <input type="text" placeholder="Pesquisar" />
+            <input type="text" placeholder={t('search')} />
           </div>
         </div>
         <div className="profileBars">
@@ -118,18 +121,18 @@ const Header: React.FC<HeaderProps> = ({ onToggleSidebar }) => {
             <div className={`selectOptionsUser selectOptionsUsernot ${notificationOpen ? 'notificationOpen' : 'notificationClose'}`}>
               <div className="headerSelectUser">
                 <h2>
-                  Notificações
+                  {t('notifications')}
                 </h2>
                 <div className="notfNa" onClick={() => {
                   handleNotification('readall')
                 }}>
-                  Marcar como lidas
+                  {t('mark_as_read')}
                 </div>
               </div>
               <div className="containerBell">
                 <div className="containerNot">
                   <h3>
-                    Hoje
+                    {t('today')}
                   </h3>
                   <ul>
                     <li onClick={() => {
@@ -174,7 +177,7 @@ const Header: React.FC<HeaderProps> = ({ onToggleSidebar }) => {
 
                 <div className="containerNot">
                   <h3>
-                    Ontem
+                    {t('yersterday')}
                   </h3>
                   <ul>
                     <li onClick={() => {
@@ -223,7 +226,7 @@ const Header: React.FC<HeaderProps> = ({ onToggleSidebar }) => {
                 <div className="notfNaFoot" onClick={() => {
                   handleNotification('readall')
                 }}>
-                  Apagar todas notificações
+                  {t('delete_all_notifications')}
                 </div>
               </div>
 
@@ -237,7 +240,7 @@ const Header: React.FC<HeaderProps> = ({ onToggleSidebar }) => {
             }}/>
             <div className={`selectOptionsUser selectOptionsUserProfile ${profileOpenDetail ? 'profileOpenDetail' : 'profileCloseDetail'}`}>
               <h1>
-                Perfil
+                {t('profile')}
               </h1>
               <div className="headerProfileDetails">
                 <img src={userAvatar} alt="user profile" />
@@ -252,26 +255,26 @@ const Header: React.FC<HeaderProps> = ({ onToggleSidebar }) => {
               </div>
               <div className="containerthememks">
                 <h3>
-                  Manage
+                  {t('manage')}
                 </h3>
                 <ul>
                   <li onClick={()=>{
                     handleProfile("")
                   }}>
                     <Settings className="containerthememksIcon"/>
-                    <span>Settings</span>
+                    <span>{t('settings')}</span>
                   </li>
                    <li onClick={()=>{
                     handleProfile("")
                   }}>
                     <Share2 className="containerthememksIcon"/>
-                    <span>Share</span>
+                    <span>{t('share')}</span>
                   </li>
                    <li onClick={()=>{
                     handleProfile("")
                   }}>
                     <LockKeyhole className="containerthememksIcon"/>
-                    <span>Change password</span>
+                    <span>{t('change_password')}</span>
                   </li>
                 </ul>
               </div>
@@ -279,7 +282,7 @@ const Header: React.FC<HeaderProps> = ({ onToggleSidebar }) => {
                 navigate("/")
               }}>
                 <LogOut className="icobBtnLogou" />
-                <span>Logout</span>
+                <span>{t('logout')}</span>
               </button>
             </div>
           </div>

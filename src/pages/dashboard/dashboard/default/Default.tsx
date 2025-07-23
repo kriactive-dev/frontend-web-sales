@@ -5,8 +5,10 @@ import { User, ShoppingCart, Users, DollarSign, FileText, Ellipsis, EllipsisVert
 import BarChartComponentSmall from "../graphics/BarChartComponentSmall";
 import { data } from "react-router-dom";
 import CustomChart from "../graphics/LineChartComponent";
+import { useTranslation } from "react-i18next";
 
 const Default: React.FC = () => {
+    const { t, i18n } = useTranslation();
     const barData = [
         { name: 'Jan', users: 400, admins: 150 },
         { name: 'Feb', users: 300, admins: 180 },
@@ -39,19 +41,19 @@ const Default: React.FC = () => {
     // ];
 
     const lineData = [
-  { name: 'Jan', value: 120 },
-  { name: 'Fev', value: 350 },
-  { name: 'Mar', value: 210 },
-  { name: 'Abr', value: 380 },
-  { name: 'Mai', value: 290 },
-  { name: 'Jun', value: 730 },
-  { name: 'Jul', value: 270 },
-  { name: 'Ago', value: 350 },
-  { name: 'Set', value: 200 },
-  { name: 'Out', value: 400 },
-  { name: 'Nov', value: 300 },
-  { name: 'Dez', value: 370 },
-];
+        { name: 'Jan', value: 120 },
+        { name: 'Fev', value: 350 },
+        { name: 'Mar', value: 210 },
+        { name: 'Abr', value: 380 },
+        { name: 'Mai', value: 290 },
+        { name: 'Jun', value: 730 },
+        { name: 'Jul', value: 270 },
+        { name: 'Ago', value: 350 },
+        { name: 'Set', value: 200 },
+        { name: 'Out', value: 400 },
+        { name: 'Nov', value: 300 },
+        { name: 'Dez', value: 370 },
+    ];
 
 
     return (
@@ -64,7 +66,7 @@ const Default: React.FC = () => {
                                 <Users className="iconcard" />
                             </div>
                             <h2>
-                                Usuários
+                                {t('user')}
                             </h2>
 
 
@@ -103,7 +105,7 @@ const Default: React.FC = () => {
                                 <ShoppingCart className="iconcard" />
                             </div>
                             <h2>
-                                Transações
+                                {t('transactions')}
                             </h2>
 
 
@@ -142,7 +144,7 @@ const Default: React.FC = () => {
                                 <DollarSign className="iconcard" />
                             </div>
                             <h2>
-                                Lucro
+                                {t('profit')}
                             </h2>
 
 
@@ -180,7 +182,7 @@ const Default: React.FC = () => {
                                 <FileText className="iconcard" />
                             </div>
                             <h2>
-                                Faturas
+                            {t('invoices')}
                             </h2>
 
 
@@ -221,7 +223,7 @@ const Default: React.FC = () => {
                         <h2>
                             Project - title
                         </h2>
-                        
+
                     </div>
                     <div className="lineDevider"></div>
                     <div className="releaseDive">
@@ -241,11 +243,11 @@ const Default: React.FC = () => {
                             <li><span></span><h3>Invoice Generator</h3></li>
                             <li><span></span><h3>Packge Upgrades</h3></li>
                             <li><span></span><h3>Figma Auto Layout</h3></li>
-                            
+
                         </ul>
 
                         <button className="btnPercente">
-                            <Plus className="btnPercenteicons"/>
+                            <Plus className="btnPercenteicons" />
                             <span>Add Task</span>
                         </button>
                     </div>

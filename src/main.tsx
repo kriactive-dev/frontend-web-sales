@@ -6,6 +6,7 @@ import './index.css'
 import './assets/css/style.css'
 import './assets/css/dashboard.css'
 import App from './App.tsx'
+import i18n from './i18n.ts';
 
 createRoot(document.getElementById('root')!).render(
   <StrictMode>

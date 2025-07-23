@@ -1,5 +1,6 @@
 import { BrushCleaning, ChevronDown, ChevronUp, Search, SquareCheckBig } from 'lucide-react';
 import React, { useState } from 'react';
+import { useTranslation } from "react-i18next";
 
 interface MultiCheckboxDropdownProps {
   label: string;
@@ -16,7 +17,7 @@ const MultiCheckboxDropdown: React.FC<MultiCheckboxDropdownProps> = ({
 }) => {
   const [isOpen, setIsOpen] = useState(false);
   const [query, setQuery] = useState('');
-
+const {t} = useTranslation()
   const toggleOption = (value: string) => {
     if (selected.includes(value)) {
       onChange(selected.filter((v) => v !== value));
@@ -60,7 +61,7 @@ const MultiCheckboxDropdown: React.FC<MultiCheckboxDropdownProps> = ({
             <Search size={20} className="search-icon" />
             <input
               type="text"
-              placeholder="Pesquisar..."
+              placeholder={t('search')}
               value={query}
               onChange={handleInputChange}
               className="search-input"

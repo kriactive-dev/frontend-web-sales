@@ -3,6 +3,7 @@ import axios from 'axios';
 import { Pencil, Trash2, Eye, Plus, Database, ChevronRight, Search } from "lucide-react";
 import urls from '../../../../utils/apis/apis';
 import { useNavigate } from 'react-router-dom';
+import { useTranslation } from 'react-i18next';
 
 import { toast } from 'react-toastify'
 
@@ -22,6 +23,7 @@ const PermissionList: React.FC = () => {
     const [showPermissionDialog, setShowPermissionDialog] = useState(false);
     const [namePermissionUpdate, setNamePermissionUpdate] = useState<string>('')
     const [showPermissionDialogUpdate, setShowPermissionDialogUpdate] = useState(false)
+    const {t} = useTranslation()
     const [idPermission, setIdPermission] = useState<number>(0)
      const navigate = useNavigate();
 
@@ -155,7 +157,7 @@ const PermissionList: React.FC = () => {
                             <Search size={20} className="search-icon" />
                             <input
                                 type="text"
-                                placeholder="Pesquisar..."
+                                placeholder={t('search')}
                                 value={query}
                                 onChange={(e) => setQuery(e.target.value)}
                                 className="search-input"

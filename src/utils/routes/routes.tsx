@@ -19,6 +19,9 @@ const routes = {
     dropmulticheck: '/drop-check-multi-down-use',
     graph: {
       linear: "/graphlinear"
+    },
+    tests: {
+      language: "/languages"
     }
   };
   
