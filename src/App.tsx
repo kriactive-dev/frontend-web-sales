@@ -18,6 +18,7 @@ import UseMultiCheck from './components/drop/UseMultiCheck';
 import AreaChartComponent from './components/graph/AreaChartComponent';
 import { ToastContainer } from 'react-toastify';
 import Language from './pages/tests/languages/Language';
+import AppUse from './pages/tests/mode/Appuse';
 import 'react-toastify/dist/ReactToastify.css';
 
 
@@ -34,6 +35,7 @@ function App() {
         <Route path={routes.drop} element={<UseDrop />} />
         <Route path={routes.tests.language} element={<Language />} />
         <Route path={routes.dropmulticheck} element={<UseMultiCheck />} />
+        <Route path={routes.tests.mode} element={<AppUse />} />
         <Route path={routes.dropmulti} element={<UseMulti />} />
         <Route path={routes.graph.linear} element={<AreaChartComponent />} />
         <Route path={routes.dashboard} element={<Dashboard />}>

@@ -4,13 +4,14 @@ import userAvatar from "../../assets/images/user/avatar-2.jpg";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useTranslation } from "react-i18next";
+import { useTheme } from "../../hooks/useTheme";
 
 interface HeaderProps {
   onToggleSidebar: () => void;
 }
 
 const Header: React.FC<HeaderProps> = ({ onToggleSidebar }) => {
-
+  const { theme, toggleTheme } = useTheme();
   const navigate = useNavigate()
   const [darkOpen, setDarkOpen] = useState<boolean>(false)
   const [languageOpen, setLanguageOpen] = useState<boolean>(false)
@@ -18,8 +19,10 @@ const Header: React.FC<HeaderProps> = ({ onToggleSidebar }) => {
   const [profileOpenDetail, setProfileOpenDetail] = useState<boolean>(false)
   const { t, i18n } = useTranslation();
   const handleChooseMode = (name: string) => {
-    console.log(name)
-    setDarkOpen(false)
+    if (name !== theme) {
+      toggleTheme(); 
+    }
+    setDarkOpen(false);
   }
   const handleChooseLanguage = (name: string) => {
     console.log(name)
@@ -71,7 +74,7 @@ const Header: React.FC<HeaderProps> = ({ onToggleSidebar }) => {
                   </span>
                 </li>
                 <li onClick={() => {
-                  handleChooseMode("default")
+                  handleChooseMode("light")
                 }}>
                   <Settings className="selectOptionsUserIcon" />
                   <span>
@@ -235,9 +238,9 @@ const Header: React.FC<HeaderProps> = ({ onToggleSidebar }) => {
           </div>
 
           <div className="profileBarsUser profileBarsUserSun">
-            <img src={userAvatar} alt="user profile" onClick={()=>{
+            <img src={userAvatar} alt="user profile" onClick={() => {
               setProfileOpenDetail(!profileOpenDetail)
-            }}/>
+            }} />
             <div className={`selectOptionsUser selectOptionsUserProfile ${profileOpenDetail ? 'profileOpenDetail' : 'profileCloseDetail'}`}>
               <h1>
                 {t('profile')}
@@ -258,27 +261,27 @@ const Header: React.FC<HeaderProps> = ({ onToggleSidebar }) => {
                   {t('manage')}
                 </h3>
                 <ul>
-                  <li onClick={()=>{
+                  <li onClick={() => {
                     handleProfile("")
                   }}>
-                    <Settings className="containerthememksIcon"/>
+                    <Settings className="containerthememksIcon" />
                     <span>{t('settings')}</span>
                   </li>
-                   <li onClick={()=>{
+                  <li onClick={() => {
                     handleProfile("")
                   }}>
-                    <Share2 className="containerthememksIcon"/>
+                    <Share2 className="containerthememksIcon" />
                     <span>{t('share')}</span>
                   </li>
-                   <li onClick={()=>{
+                  <li onClick={() => {
                     handleProfile("")
                   }}>
-                    <LockKeyhole className="containerthememksIcon"/>
+                    <LockKeyhole className="containerthememksIcon" />
                     <span>{t('change_password')}</span>
                   </li>
                 </ul>
               </div>
-              <button onClick={()=>{
+              <button onClick={() => {
                 navigate("/")
               }}>
                 <LogOut className="icobBtnLogou" />
