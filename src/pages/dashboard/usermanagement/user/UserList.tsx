@@ -71,10 +71,6 @@ const UserList: React.FC = () => {
     const {t} = useTranslation()
 
     const [showPassword, setShowPassword] = useState(false);
-    const [startDateTime, setStartDateTime] = useState('');
-    // const [startDateTime, setStartDateTime] = useState<Date | null>(null);
-
-    const [endDateTime, setEndDateTime] = useState('');
 
 
     const togglePassword = () => {
@@ -82,10 +78,6 @@ const UserList: React.FC = () => {
     };
 
     const [query, setQuery] = useState('');
-
-    const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-        setQuery(e.target.value);
-    };
 
 
     const lbnDialogs = {
