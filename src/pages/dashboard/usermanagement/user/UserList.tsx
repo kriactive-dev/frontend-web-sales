@@ -92,7 +92,6 @@ const UserList: React.FC = () => {
         }
     }
     const openDialog = (name: string) => {
-        console.log(`Open ${name}`)
         if (name == lbnDialogs.user.new) {
             setShowNewUserDialog(true);
         } else if (name == lbnDialogs.role.user) {
@@ -106,7 +105,6 @@ const UserList: React.FC = () => {
     };
 
     const closeDialog = (name: string) => {
-        console.log(`Close ${name}`)
         setIsVisible(false);
         if (name == lbnDialogs.user.new) {
             setTimeout(() => setShowNewUserDialog(false), 300);
@@ -254,7 +252,6 @@ const UserList: React.FC = () => {
             setLoading(true)
             try {
                 const response = await axios.post(urls.user, submitUser);
-                console.log('Usuário cadastrado com sucesso:', response.data);
                 toast.success('Usuário cadastrado com sucesso!')
 
                 setUser({ name: '', email: '', password: '' });

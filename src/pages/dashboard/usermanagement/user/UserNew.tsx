@@ -34,7 +34,6 @@ const UserNew: React.FC = () => {
         setLoading(true)
         try {
           const response = await axios.post(urls.user, submitUser);
-          console.log('Usuário cadastrado com sucesso:', response.data);
           toast.success('Usuário cadastrado com sucesso!')
 
           setUser({ name: '', email: '', password: '' });

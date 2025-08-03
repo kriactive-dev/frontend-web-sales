@@ -28,18 +28,15 @@ const Header: React.FC<HeaderProps> = ({ onToggleSidebar }) => {
     setDarkOpen(false);
   }
   const handleChooseLanguage = (name: string) => {
-    console.log(name)
     i18n.changeLanguage(name);
     setLanguageOpen(false)
   }
 
   const handleNotification = (name: string) => {
-    console.log(name)
     setnotificationOpen(false)
   }
 
   const handleProfile = (name: string) => {
-    console.log(name)
     setProfileOpenDetail(false)
   }
 
