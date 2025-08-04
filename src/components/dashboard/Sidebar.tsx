@@ -57,7 +57,7 @@ const Sidebar: React.FC<HeaderProps> = ({ onToggleSidebar }) => {
             icon: <ChartPie className="iconLinkUser" />,
             submenu: [
                 { name: "Default", router: routes.dahsboardDefault },
-                { name: "Finance", router: routes.drop },
+                { name: "Finance", router: routes.dahsboardAnalitics },
             ],
         },
     ];

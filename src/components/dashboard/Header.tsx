@@ -5,6 +5,7 @@ import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 import { useTheme } from "../../hooks/useTheme";
+import routes from "../../utils/routes/routes";
 
 interface HeaderProps {
   onToggleSidebar: () => void;
@@ -37,6 +38,10 @@ const Header: React.FC<HeaderProps> = ({ onToggleSidebar }) => {
   }
 
   const handleProfile = (name: string) => {
+    console.log(name)
+    if(name == 'settings'){
+      navigate(`${routes.settings.user_settings}`)
+    }
     setProfileOpenDetail(false)
   }
 
@@ -267,13 +272,13 @@ const Header: React.FC<HeaderProps> = ({ onToggleSidebar }) => {
                 </h3>
                 <ul>
                   <li onClick={() => {
-                    handleProfile("")
+                    handleProfile("settings")
                   }}>
                     <Settings className="containerthememksIcon" />
                     <span>{t('settings')}</span>
                   </li>
                   <li onClick={() => {
-                    handleProfile("")
+                    handleProfile("settings")
                   }}>
                     <Share2 className="containerthememksIcon" />
                     <span>{t('share')}</span>

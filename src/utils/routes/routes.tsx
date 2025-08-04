@@ -13,12 +13,16 @@ const routes = {
     permissions: 'permissoes/lista',
     roles: 'roles/lista',
     dahsboardDefault: 'default',
+    dahsboardAnalitics: "analitics",
     profile: '/profile/:id',
     drop: '/drop-down-use',
     dropmulti: '/drop-multi-down-use',
     dropmulticheck: '/drop-check-multi-down-use',
     graph: {
       linear: "/graphlinear"
+    },
+    settings: {
+      user_settings: "settings-user"
     },
     tests: {
       language: "/languages",

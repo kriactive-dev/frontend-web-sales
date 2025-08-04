@@ -18,7 +18,9 @@ import UseMultiCheck from './components/drop/UseMultiCheck';
 import AreaChartComponent from './components/graph/AreaChartComponent';
 import { ToastContainer } from 'react-toastify';
 import Language from './pages/tests/languages/Language';
+import Analitics from './pages/dashboard/dashboard/analitics/Analitics';
 import AppUse from './pages/tests/mode/Appuse';
+import Settings from './pages/dashboard/settings/Settings';
 import 'react-toastify/dist/ReactToastify.css';
 
 
@@ -45,6 +47,8 @@ function App() {
           <Route path={routes.permissions} element={<PermissionList />} />
           <Route path={routes.roles} element={<RoleList />} />
           <Route path={routes.dahsboardDefault} element={<Default />} />
+          <Route path={routes.dahsboardAnalitics} element={<Analitics />} />
+          <Route path={routes.settings.user_settings} element={<Settings />} />
         </Route>
       </Routes>
     </>

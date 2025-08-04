@@ -164,7 +164,7 @@ const PermissionList: React.FC = () => {
                             />
                         </div>
 
-                        <div className="search-row">
+                        {/* <div className="search-row">
                             <input
                                 type="datetime-local"
                                 value={startDateTime}
@@ -180,7 +180,7 @@ const PermissionList: React.FC = () => {
                                 onChange={(e) => setEndDateTime(e.target.value)}
                                 className="datetime-input"
                             />
-                        </div>
+                        </div> */}
                     </div>
                     <button className="action-btn" title="Novo usuário" onClick={() => {
                         setShowPermissionDialog(true)
