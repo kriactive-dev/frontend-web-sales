@@ -19,12 +19,12 @@ const Header: React.FC<HeaderProps> = ({ onToggleSidebar }) => {
   const [languageOpen, setLanguageOpen] = useState<boolean>(false)
   const [notificationOpen, setnotificationOpen] = useState<boolean>(false)
   const [profileOpenDetail, setProfileOpenDetail] = useState<boolean>(false)
-  
+
   const { t, i18n } = useTranslation();
   const handleChooseMode = (name: string) => {
     if (name !== theme) {
       setIconDarkOpen(!iconDarkOpen)
-      toggleTheme(); 
+      toggleTheme();
     }
     setDarkOpen(false);
   }
@@ -39,7 +39,7 @@ const Header: React.FC<HeaderProps> = ({ onToggleSidebar }) => {
 
   const handleProfile = (name: string) => {
     console.log(name)
-    if(name == 'settings'){
+    if (name == 'settings') {
       navigate(`${routes.settings.user_settings}`)
     }
     setProfileOpenDetail(false)
@@ -58,13 +58,13 @@ const Header: React.FC<HeaderProps> = ({ onToggleSidebar }) => {
         <div className="profileBars">
           <div className="profileBarsUser profileBarsUserSun">
             {
-              iconDarkOpen? <Sun className="iconBell" onClick={() => {
+              iconDarkOpen ? <Sun className="iconBell" onClick={() => {
                 setDarkOpen(!darkOpen)
               }} /> : <Moon className="iconBell" onClick={() => {
                 setDarkOpen(!darkOpen)
               }} />
             }
-            
+
             <div className={`selectOptionsUser ${darkOpen ? 'darkOpen' : 'darkClose'}`}>
               <ul>
                 <li onClick={() => {
