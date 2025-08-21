@@ -34,6 +34,7 @@ const Header: React.FC<HeaderProps> = ({ onToggleSidebar }) => {
   }
 
   const handleNotification = (name: string) => {
+    console.log(name)
     setnotificationOpen(false)
   }
 

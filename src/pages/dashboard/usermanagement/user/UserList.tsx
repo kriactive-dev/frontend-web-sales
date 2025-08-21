@@ -251,7 +251,7 @@ const UserList: React.FC = () => {
         if (submitUser) {
             setLoading(true)
             try {
-                const response = await axios.post(urls.user, submitUser);
+                await axios.post(urls.user, submitUser);
                 toast.success('Usuário cadastrado com sucesso!')
 
                 setUser({ name: '', email: '', password: '' });

@@ -1,19 +1,11 @@
 import type React from "react";
-import { User, ShoppingCart, Users, DollarSign, FileText, Ellipsis, EllipsisVertical, ArrowUpRight, Plus } from "lucide-react";
+import { ShoppingCart, Users, DollarSign, FileText, EllipsisVertical, ArrowUpRight, Plus } from "lucide-react";
 import BarChartComponentSmall from "../graphics/BarChartComponentSmall";
 import CustomChart from "../graphics/LineChartComponent";
 import { useTranslation } from "react-i18next";
 
 const Analitics: React.FC = () => {
-    const { t, i18n } = useTranslation();
-    const barData = [
-        { name: 'Jan', users: 400, admins: 150 },
-        { name: 'Feb', users: 300, admins: 180 },
-        { name: 'Mar', users: 500, admins: 200 },
-        { name: 'Apr', users: 200, admins: 120 },
-        { name: 'May', users: 350, admins: 170 },
-        { name: 'Jun', users: 450, admins: 220 },
-    ];
+    const { t } = useTranslation();
 
 
     const barData2 = [
