@@ -57,13 +57,13 @@ body {
     width: 300px;
     border: 0px solid black;
     height: 100vh;
-    transition: all ease .2s;
+    /* transition: all ease .01s; */
 }
 
 .sidebarhiden {
     width: 0px;
     overflow: hidden;
-    transition: all ease .2s;
+    /* transition: all ease .2s; */
 }
 
 .barsBody {
